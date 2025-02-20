@@ -20,6 +20,9 @@ function Home() {
                             <Link className='text-white  hover:text-green-400' to="/chrono">Chronometer</Link>
                         </li>
                         <li>
+                            <Link className='text-white  hover:text-green-400' to="/countdown">Count Down</Link>
+                        </li>
+                        <li>
                             <Link className='text-white  hover:text-green-400' to="/todo">To Do List</Link>
                         </li>
 
@@ -28,13 +31,16 @@ function Home() {
                 <div className='text-left m-10'>
                     <ul>
                         <li>
+                            <Link className='text-white  hover:text-green-400' to="/calculator">Calculator</Link>
+                        </li>
+                        <li>
                             <Link className='text-white  hover:text-green-400' to="/cards">Random Cards</Link>
                         </li>
                         <li>
                             <Link className='text-white hover:text-green-400' to="/memegenerator"> Meme Generator</Link>
                         </li>
                         <li>
-                            <Link className='text-white  hover:text-green-400' to="/chrono">Contact List</Link>
+                            <Link className='text-white  hover:text-green-400' to="/weather">App Weather</Link>
                         </li>
 
                     </ul>
