@@ -8,6 +8,9 @@ import Chrono from "./components/chrono";
 import Todo from "./components/todo";
 import RandomCards from "./components/randomCards";
 import MemeGenerator from "./components/memeGenerator";
+import CountDown from "./components/countDown";
+import Calculator from "./components/calculator";
+import AppWeather from "./components/appWeather";
 
 
 const Layout = () => {
@@ -30,9 +33,12 @@ const Layout = () => {
                     <Route path="/" element={<Home />} />
                     <Route path="/counter" element={<Counter />} />
                     <Route path="/chrono" element={<Chrono />} />
+                    <Route path="/countdown" element={<CountDown />} />
                     <Route path="/todo" element={<Todo />} />
+                    <Route path="/calculator" element={<Calculator />} />
                     <Route path="/cards" element={<RandomCards />} />
                     <Route path="/memegenerator" element={<MemeGenerator />} />
+                    <Route path="/weather" element={<AppWeather />} />
                     <Route path="*" element={<h1>Not found!</h1>} />
                 </Routes>
             </BrowserRouter>
