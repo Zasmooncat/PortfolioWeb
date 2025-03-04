@@ -61,7 +61,7 @@ function Todo() {
                 <ol className='text-white flex flex-wrap justify-center'>
                     {todos.map((todo, index) => (
                         <div key={index} className='todos-wrapper inline-flex'>
-                            <div className='div-todo border-2 rounded-2xl m-3 w-50 h-50 bg-amber-50 relative'>
+                            <div className='div-todo border-2 rounded-2xl m-3 w-70 h-70 bg-amber-50 relative'>
                                 
                                 {/* Iconos en la parte superior */}
                                 <div className="iconos absolute top-0 right-0 p-2 ">
