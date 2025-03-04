@@ -30,7 +30,7 @@ const MemeGenerator = () => {
 
             <div className="flex flex-wrap justify-center">
 
-            <div className="left w-[50%]">
+            <div className="left  w-[50%]">
 
                 <div className="memeimages">
                     <label className="text-white ms-14">Select image</label>

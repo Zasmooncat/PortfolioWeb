@@ -11,6 +11,7 @@ import MemeGenerator from "./components/memeGenerator";
 import CountDown from "./components/countDown";
 import Calculator from "./components/calculator";
 import AppWeather from "./components/appWeather";
+import Projects from "./views/projects";
 
 
 const Layout = () => {
@@ -31,6 +32,7 @@ const Layout = () => {
                 <Navbar />
                 <Routes>
                     <Route path="/" element={<Home />} />
+                    <Route path="/projects" element={<Projects />} />
                     <Route path="/counter" element={<Counter />} />
                     <Route path="/chrono" element={<Chrono />} />
                     <Route path="/countdown" element={<CountDown />} />
