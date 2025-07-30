@@ -1,6 +1,8 @@
 @import "tailwindcss";
 
-
+body{
+  background-color: black;
+}
 
 .titulo{
   font-family: "Smooch Sans", serif;
@@ -10,22 +12,52 @@
 
 
 .video-background {
-    position: fixed;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    object-fit: cover;
-    z-index: -1;
-    
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100vh;
+  object-fit: cover;
+  object-position: left center;
+  z-index: -1; /* Centrado a la izquierda del video */
+}
+
+/* Ajuste en dispositivos móviles */
+@media (max-width: 768px) {
+  .video-background {
+      object-position: left top; /* Ajustar para ver la parte izquierda en pantallas móviles */
   }
+}
+
+.react {
+  width: 100px;
+  filter: drop-shadow(0px 0px 0px rgba(255, 255, 255, 0));
+  transition: filter 0.5s ease;
+  animation: spin 20s linear infinite;
+  
+    
+}
+.react:hover{
+
+  filter: drop-shadow(0px 0px 20px rgb(255, 255, 255));
+  transition: filter 0.5s ease;
+}
+
+@keyframes spin {
+  from {
+      transform: rotate(0deg);
+  }
+  to {
+      transform: rotate(360deg);
+  }
+}
 
   
 
 
 .digito{
   width: 200px; /* Ajusta este valor según sea necesario */
-    text-align: center;
+    
 }
 
 .carta{
@@ -38,4 +70,108 @@
   font-style: normal;
 
 
+}
+
+.navbar {
+  position: fixed;
+  top: 0;
+  width: 100%;
+  z-index: 30;
+}
+
+.zasbw{
+  filter: drop-shadow(8px 8px 60px rgb(255, 255, 255));
+}
+
+
+
+.video-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 10px;
+  width: 100vw;
+  height: 100vh;
+  overflow-y: auto;
+  scroll-snap-type: y mandatory;
+}
+
+.video-container video {
+  width: 100vw;
+  height: 100vh;
+  object-fit: cover;
+  scroll-snap-align: start;
+}
+
+html, body, #root {
+  margin: 0;
+  padding: 0;
+  height: 100%;
+}
+.liquidChrome-container {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100vh; /* <--- IMPORTANTE */
+  z-index: -1;
+  
+}
+
+canvas {
+  display: block;
+  width: 100% !important;
+  height: 100% !important;
+}
+
+.light-rays-container {
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100vh;
+  position: fixed;
+  pointer-events: none;
+  z-index: -1;
+  overflow: hidden;
+}
+
+.squares-canvas {
+  z-index: 0;
+   display: block;
+  width: 100%;
+  height: 100%;
+  pointer-events: auto;
+  position: relative;
+  
+}
+
+@keyframes scaleUp {
+  0% {
+    transform: scale(0.9);
+    opacity: 0;
+  }
+  100% {
+    transform: scale(1);
+    opacity: 1;
+  }
+}
+
+.animate-scaleUp {
+  animation: scaleUp 0.3s ease forwards;
+}
+
+.fadeIn {
+  animation-name: fadeIn;
+  animation-duration: 0.3s;
+  animation-fill-mode: forwards;
+  animation-timing-function: ease;
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
 }

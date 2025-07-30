@@ -14,14 +14,16 @@
     "@fortawesome/fontawesome-svg-core": "^6.7.2",
     "@fortawesome/free-solid-svg-icons": "^6.7.2",
     "@fortawesome/react-fontawesome": "^0.2.2",
+    "@supabase/supabase-js": "^2.52.1",
     "@tailwindcss/vite": "^4.0.1",
     "animate.css": "^4.1.1",
+    "ogl": "^1.0.11",
     "react": "^18.3.1",
     "react-dom": "^18.3.1",
+    "react-icons": "^5.5.0",
     "react-router": "^7.1.4",
     "react-router-dom": "^7.1.5",
-    "sweetalert2": "^11.15.10",
-    "tailwindcss": "^4.0.1"
+    "sweetalert2": "^11.15.10"
   },
   "devDependencies": {
     "@eslint/js": "^9.17.0",
@@ -33,6 +35,7 @@
     "eslint-plugin-react-hooks": "^5.0.0",
     "eslint-plugin-react-refresh": "^0.4.16",
     "globals": "^15.14.0",
+    "tailwindcss": "^4.1.11",
     "vite": "^6.0.5"
   }
 }

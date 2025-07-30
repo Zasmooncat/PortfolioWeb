@@ -2,6 +2,8 @@ import React, { useState } from "react";
 import '@fortawesome/fontawesome-free/css/all.min.css';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faSun, faCloudSun, faCloud, faCloudShowersHeavy, faCloudRain, faBolt, faSnowflake, faSmog } from '@fortawesome/free-solid-svg-icons';
+import ProjectNavigation from "../components/ProjectNavigation";
+import Squares from "./Squares"; // Asegúrate que la ruta es correcta
 
 
 
@@ -60,13 +62,24 @@ const AppWeather = () => {
     const weatherIconClass = weatherIcons[weatherDescription] || "fas fa-question";
 
     return (
+
+        <>
+            <div className="fixed top-0 left-0 w-full h-full z-0 pointer-events-none">
+                <Squares
+                    speed={0.2}
+                    squareSize={70}
+                    direction="diagonal"
+                    borderColor="#fff3"
+                    hoverFillColor="#911"
+                />
+            </div>
         <div className="container m-auto">
-            <h1 className="titulo text-center text-white text-7xl">El Tiempo</h1>
-            <div className="seccion1 bg-black rounded-4xl p-2 border-2 w-[95%] md:w-[50%] lg:w-[30%] border-white">
+            <h1 className="titulo text-center text-white text-7xl">EL TIEMPO</h1>
+            <div className="seccion1 bg-gradient-to-b from-gray-400/50 to-gray-800/50 p-8 w-[95%] md:w-[50%] lg:w-[30%] border-white">
                 <form className="flex flex-col m-auto" onSubmit={handleSubmit}>
                     <div className="form-group flex flex-col">
-                        <label htmlFor="country">País:</label>
-                        <select className="form-control bg-white rounded-4xl p-2 mx-4" id="country" name="country" onChange={handleChange} value={searchWeather.country}>
+                       
+                        <select className="form-control bg-white  p-2 m-4" id="country" name="country" onChange={handleChange} value={searchWeather.country}>
                             <option value="">Selecciona el país</option>
                             <option value="ES">España</option>
                             <option value="GB">Reino Unido</option>
@@ -86,13 +99,13 @@ const AppWeather = () => {
                         </select>
                     </div>
                     <div className="form-group mx-4">
-                        <label htmlFor="city">Ciudad:</label>
-                        <input type="text" className="form-control bg-white rounded-4xl w-[100%] p-2 " id="city" name="city" placeholder="Escribe el nombre de la ciudad" onChange={handleChange} value={searchWeather.city} />
+                        
+                        <input type="text" className="form-control bg-white w-[100%] p-2 " id="city" name="city" placeholder="Escribe el nombre de la ciudad" onChange={handleChange} value={searchWeather.city} />
                     </div>
                     <button className="boton bg-gray-800 text-white hover:text-green-200 hover:bg-gray-950 border-2 my-6 mx-4 p-2 rounded-4xl">Consultar</button>
                 </form>
             </div>
-            <div className="seccion2 w-[95%] md:w-[50%] lg:w-[30%] bg-black rounded-4xl p-9 border-2 border-white">
+            <div className="seccion2 w-[95%] md:w-[50%] lg:w-[30%] bg-black rounded-4xl p-4 ">
                 {!weather ? (
                     <div className=" flex justify-center bg-black text-white">Consulta el tiempo en tu ciudad</div>
                 ) : weather.cod === "404" ? (
@@ -101,8 +114,8 @@ const AppWeather = () => {
                     <>
                     <div className="flex">
 
-                        <div className="tempPanel flex flex-col justify-center items-center">
-                            <p className="temp mx-5 text-red-500 text-6xl">{Math.ceil(weather?.main?.temp)}ºC</p>
+                        <div className="tempPanel flex flex-col justify-center items-center mb-20">
+                            <p className="temp  mx-5 text-red-500 text-6xl">{Math.ceil(weather?.main?.temp)}ºC</p>
                             <div className="">
                                 <p className="tempicon">
                                 <FontAwesomeIcon icon={weatherIcons[weatherDescription] || faSun} className="mx-2 flex justify-center text-8xl m-8 text-white" />
@@ -110,7 +123,7 @@ const AppWeather = () => {
                                 </p>
                             </div>
                         </div>
-                        <div>
+                        <div className="">
                             <h2 className="infotitulo text-white text-4xl mb-4">{weather?.name || "des"}</h2>
                             <div className="info">
                                 <p className="my-1 text-white">{weatherDescription || "sin información"}</p>
@@ -122,10 +135,14 @@ const AppWeather = () => {
                             </div>
                         </div>
                     </div>
+                    
                     </>
+                    
                 )}
             </div>
         </div>
+            <ProjectNavigation />
+                </>
     );
 };
 
