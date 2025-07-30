@@ -3,16 +3,19 @@ import Navbar from "./js/components/navbar"
 
 
 
+
 function App() {
 
 
   return (
     <>
-    <img 
+    {/* <img 
             className="video-background" 
             src="src/img/TDMovieOut.3.png
             ">
-            </img>
+            </img> */}
+
+
       <Navbar />
       
     </>

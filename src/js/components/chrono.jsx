@@ -1,36 +1,19 @@
 import React, { useState } from "react";
- // Asegúrate de importar el archivo de estilos
+import Squares from './Squares';
+import ProjectNavigation from "../components/ProjectNavigation";
 
 function Chrono() {
-    const [centesimas, setCentesimas] = useState(0);
-    const [segundos, setSegundos] = useState(0);
-    const [minutos, setMinutos] = useState(0);
+    const [totalCentesimas, setTotalCentesimas] = useState(0);
     const [playPause, setPlayPause] = useState(false);
     const [intervalID, setIntervalID] = useState(null);
 
-    const formatTime = (value) => {
-        return value < 10 ? `0${value}` : value;
-    };
+    const formatTime = (value) => (value < 10 ? `0${value}` : value);
 
     const play = () => {
         if (!playPause) {
             const newIntervalID = setInterval(() => {
-                setCentesimas((centesimas) => {
-                    if (centesimas === 99) {
-                        setCentesimas(0);
-                        setSegundos((segundos) => {
-                            if (segundos === 59) {
-                                setSegundos(0);
-                                setMinutos((minutos) => minutos + 0.5);
-                            } else {
-                                return segundos + 0.5;
-                            }
-                        });
-                    } else {
-                        return centesimas + 1;
-                    }
-                });
-            }, 10);
+                setTotalCentesimas((prev) => prev + 1);
+            }, 10); // 10ms = 1 centésima
 
             setIntervalID(newIntervalID);
             setPlayPause(true);
@@ -43,39 +26,75 @@ function Chrono() {
 
     const clickonreset = () => {
         clearInterval(intervalID);
-        setCentesimas(0);
-        setSegundos(0);
-        setMinutos(0);
+        setTotalCentesimas(0);
         setPlayPause(false);
         setIntervalID(null);
     };
 
+    // Cálculos basados en total de centésimas
+    const centesimas = totalCentesimas % 100;
+    const totalSegundos = Math.floor(totalCentesimas / 100);
+    const segundos = totalSegundos % 60;
+    const minutos = Math.floor(totalSegundos / 60);
+
     return (
         <>
-            <p className="titulo text-center text-white text-5xl mt-30 mb-10">C H R O N O M E T E R</p>
-
-            <div className="chronos flex flex-row justify-center flex-wrap">
-                <div className="digito text-white text-9xl mb-3 font-extrabold">{formatTime(minutos)}</div>
-                <p className="text-white text-9xl mb-3 font-extrabold"> </p>
-                <div className="digito text-white text-9xl mb-3 font-extrabold">{formatTime(segundos)}</div>
-                <p className="text-white text-9xl mb-3 font-extrabold"> </p>
-                <div className="digito text-white text-9xl mb-3 font-extrabold">{formatTime(centesimas)}</div>
+            {/* Fondo animado */}
+            <div className="absolute top-0 left-0 w-full h-full z-0 pointer-events-none">
+                <Squares
+                    speed={0.2}
+                    squareSize={70}
+                    direction="diagonal"
+                    borderColor="#fff3"
+                    hoverFillColor="#911"
+                />
             </div>
 
-            <div className="flex justify-center mt-10">
-                <button
-                    onClick={play}
-                    className="stop text-7xl text-white me-5">
-                    {playPause ? (
-                        <i className="fa fa-pause hover:text-red-500"></i>
-                    ) : (
-                        <i className="fa fa-play hover:text-green-500"></i>
-                    )}
-                </button>
+            {/* Contenido */}
+            <div className="relative z-10 flex flex-col items-center justify-center h-full mt-30">
+                <p className="titulo text-center text-white text-5xl mb-10">
+                    C H R O N O M E T E R
+                </p>
 
-                <button onClick={clickonreset} className="titulo rounded-2xl text-white px-2 border-3 text-3xl hover:text-red-600 hover:cursor-pointer">
-                    RESET
-                </button>
+                <div className="flex justify-center w-full">
+    <div className="grid grid-cols-3 gap-2 sm:gap-20 place-items-center max-w-xs sm:max-w-md md:max-w-lg mx-auto w-full">
+
+        <div className="digito text-white text-7xl sm:text-6xl md:text-8xl lg:text-9xl mb-3 font-extrabold text-center">
+            {formatTime(minutos)}
+        </div>
+        <div className="digito text-white text-7xl sm:text-6xl md:text-8xl lg:text-9xl mb-3 font-extrabold text-center">
+            {formatTime(segundos)}
+        </div>
+        <div className="digito text-white text-7xl sm:text-6xl md:text-8xl lg:text-9xl mb-3 font-extrabold text-center">
+            {formatTime(centesimas)}
+        </div>
+    </div>
+</div>
+
+
+                <div className="flex justify-center mt-10 gap-5">
+                    <button
+                        onClick={play}
+                        className="stop text-7xl text-white hover:text-green-500 hover:cursor-pointer"
+                    >
+                        {playPause ? (
+                            <i className="fa fa-pause hover:text-red-500"></i>
+                        ) : (
+                            <i className="fa fa-play hover:text-green-500"></i>
+                        )}
+                    </button>
+
+                    <button
+                        onClick={clickonreset}
+                        className="titulo rounded-2xl text-white px-4 py-2 border-2 text-3xl hover:text-red-600 hover:cursor-pointer"
+                    >
+                        RESET
+                    </button>
+                </div>
+
+                <div className="mt-10">
+                    <ProjectNavigation />
+                </div>
             </div>
         </>
     );

@@ -1,4 +1,6 @@
 import React, { useState, useEffect } from "react";
+import Squares from './Squares';
+import ProjectNavigation from "../components/ProjectNavigation";
 
 const CountDown = () => {
     const [hours, setHours] = useState(0);
@@ -17,12 +19,11 @@ const CountDown = () => {
     useEffect(() => {
         let blinkTimer;
         let clickSoundInterval;
+
         if (isFinished) {
-            // Reproducir sonido de notificación
             const notificationSound = new Audio("src/audio/notification.wav");
             notificationSound.play();
 
-            // Iniciar parpadeo
             blinkTimer = setInterval(() => {
                 setDisplayHours((prev) => (prev === "00" ? "" : "00"));
                 setDisplayMins((prev) => (prev === "00" ? "" : "00"));
@@ -31,7 +32,6 @@ const CountDown = () => {
         }
 
         if (isTenSecondsLeft) {
-            // Reproducir sonido 'click.wav' cada segundo
             clickSoundInterval = setInterval(() => {
                 const clickSound = new Audio("src/audio/click.wav");
                 clickSound.play();
@@ -90,7 +90,7 @@ const CountDown = () => {
             setDisplaySecs(formatTime(totalSeconds % 60));
 
             if (totalSeconds <= 10 && totalSeconds > 0) {
-                setIsTenSecondsLeft(true); // Activar el parpadeo
+                setIsTenSecondsLeft(true);
             }
 
             if (totalSeconds <= 0) {
@@ -98,7 +98,7 @@ const CountDown = () => {
                 setTimer(null);
                 setIsRunning(false);
                 setIsFinished(true);
-                setIsTenSecondsLeft(false); // Desactivar el parpadeo
+                setIsTenSecondsLeft(false);
             }
         }, 1000);
         setTimer(newTimer);
@@ -136,60 +136,101 @@ const CountDown = () => {
     };
 
     return (
-        <div className="container m-auto">
-            <p className="titulo text-center text-white text-5xl mt-30 mb-10">COUNT DOWN</p>
-            <label htmlFor="number" className="text-white me-3">Set Start Point</label>
-            <div>
-                <input
-                    placeholder="hours"
-                    type="number"
-                    className="bg-black border-2 border-white rounded text-white w-15 m-1 px-1"
-                    value={hours || ""}
-                    onChange={handleHoursChange}
-                />
-                <input
-                    placeholder="min"
-                    type="number"
-                    className="bg-black border-2 border-white rounded text-white w-15 m-1 px-1"
-                    value={mins || ""}
-                    onChange={handleMinsChange}
-                />
-                <input
-                    placeholder="sec"
-                    type="number"
-                    className="bg-black border-2 border-white rounded text-white w-15 m-1 px-1"
-                    value={secs || ""}
-                    onChange={handleSecsChange}
+        <>
+            {/* Fondo animado SIN eventos */}
+            <div className="absolute top-0 left-0 w-full h-full z-0 pointer-events-none">
+                <Squares
+                    speed={0.2}
+                    squareSize={70}
+                    direction="diagonal"
+                    borderColor="#fff3"
+                    hoverFillColor="#911"
                 />
             </div>
-            <div>
-                <button
-                    className="titulo text-white px-3 border-3 rounded text-3xl hover:text-red-600 hover:cursor-pointer"
-                    onClick={toggleCountDown}
-                >
-                    {isRunning ? (isPaused ? "RESUME" : "PAUSE") : "START"}
-                </button>
-                <button
-                    className="titulo text-white px-3 border-3 rounded text-3xl hover:text-red-600 hover:cursor-pointer ml-3"
-                    onClick={resetCountDown}
-                >
-                    RESET
-                </button>
+
+            {/* Contenido interactivo */}
+            <div className="relative z-10 flex flex-col items-center justify-center h-full">
+                <div className="container">
+                    <p className="titulo text-center text-white text-5xl mt-5 mb-5">
+                        COUNT DOWN
+                    </p>
+                    <label htmlFor="number" className="text-white me-3">
+                        Set Start Point
+                    </label>
+                    <div>
+                        <input
+                            placeholder="hours"
+                            type="number"
+                            className="bg-black border border-white rounded text-white w-15 m-1 px-1"
+                            value={hours || ""}
+                            onChange={handleHoursChange}
+                        />
+                        <input
+                            placeholder="min"
+                            type="number"
+                            className="bg-black border border-white rounded text-white w-15 m-1 px-1"
+                            value={mins || ""}
+                            onChange={handleMinsChange}
+                        />
+                        <input
+                            placeholder="sec"
+                            type="number"
+                            className="bg-black border border-white rounded text-white w-15 m-1 px-1"
+                            value={secs || ""}
+                            onChange={handleSecsChange}
+                        />
+                    </div>
+                    <div>
+                        <button
+                            className="titulo text-white px-3 border-3 rounded text-3xl hover:text-red-600 hover:cursor-pointer"
+                            onClick={toggleCountDown}
+                        >
+                            {isRunning ? (isPaused ? "RESUME" : "PAUSE") : "START"}
+                        </button>
+                        <button
+                            className="titulo text-white px-3 border-3 rounded text-3xl hover:text-red-600 hover:cursor-pointer ml-3"
+                            onClick={resetCountDown}
+                        >
+                            RESET
+                        </button>
+                    </div>
+
+
+
+                    <div className="ms-7">
+
+
+                        <div className="grid grid-cols-3 mt-20 ">
+                            <div
+                                className={`digito hours text-7xl md:text-9xl lg:text-9xl font-extrabold ${isTenSecondsLeft ? "animate-blink text-red-600" : "text-white"
+                                    }`}
+                            >
+                                {displayHours}
+                            </div>
+                            {/* <p className="text-white text-7xl md:text-9xl lg:text-9xl mb-3">:</p> */}
+                            <div
+                                className={`digito mins text-7xl md:text-9xl lg:text-9xl font-extrabold ${isTenSecondsLeft ? "animate-blink text-red-600" : "text-white"
+                                    }`}
+                            >
+                                {displayMins}
+                            </div>
+                            {/* <p className="text-white text-7xl md:text-9xl lg:text-9xl mb-3">:</p> */}
+                            <div
+                                className={`digito secs text-7xl md:text-9xl lg:text-9xl font-extrabold ${isTenSecondsLeft ? "animate-blink text-red-600" : "text-white"
+                                    }`}
+                            >
+                                {displaySecs}
+                            </div>
+                        </div>
+                    </div>
+                </div>
             </div>
-            <div className="flex">
-                <div className={`digito hours text-9xl mb-3 font-extrabold ${isTenSecondsLeft ? "animate-blink text-red-600" : "text-white"}`}>
-                    {displayHours}
-                </div>
-                <p className="text-white text-9xl mb-3 ">:</p>
-                <div className={`digito mins text-9xl mb-3 font-extrabold ${isTenSecondsLeft ? "animate-blink text-red-600" : "text-white"}`}>
-                    {displayMins}
-                </div>
-                <p className="text-white text-9xl mb-3">:</p>
-                <div className={`digito secs text-9xl mb-3 font-extrabold ${isTenSecondsLeft ? "animate-blink text-red-600" : "text-white"}`}>
-                    {displaySecs}
-                </div>
+
+            {/* Botones de navegación arriba de todo */}
+            <div className="relative z-20">
+                <ProjectNavigation />
             </div>
-        </div>
+        </>
     );
 };
 
