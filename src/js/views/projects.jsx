@@ -1,13 +1,10 @@
 import React from 'react'
 import { Link } from 'react-router-dom'
-import Navbar from '../components/navbar'
 import LiquidChrome from '../components/LiquidChrome'
-import TicTacToe from "../components/TicTacToe";
 
 function Projects() {
     return (
         <>
-
             <LiquidChrome
                 baseColor={[0.05, 0.05, 0.05]}
                 speed={0.1}
@@ -16,7 +13,6 @@ function Projects() {
             />
 
             <div className="relative z-10 mt-5 m-3">
-                {/* GRID PARA ALINEAR */}
                 <div className="mx-auto w-10/12 grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
 
                     <Link to="/counter" className="hover:cursor-pointer">
@@ -30,8 +26,9 @@ function Projects() {
 
                     <Link to="/chrono" className="hover:cursor-pointer">
                         <div className="text-white w-70 h-70 flex flex-col items-center justify-center bg-black/40 p-5 hover:text-black hover:bg-white transition relative">
+                            {/* Cambié el p interno por span */}
                             <p className="top-0 left-0 text-4xl absolute p-5">
-                                CHRONO <p></p>METER
+                                CHRONO <span>METER</span>
                             </p>
                             <p className="text-gray-400 p-5 top-[30%] bottom-2 absolute left-0">
                                 Cronometer App with minutes, seconds and centiseconds accuracy.
@@ -44,7 +41,8 @@ function Projects() {
                             <p className="top-0 left-0 text-4xl absolute p-5">COUNT DOWN</p>
                             <p className="text-gray-400 p-5 top-[30%] bottom-2 absolute left-0">
                                 Set the time and press start. Timer will start counting down to zero.
-                                <p>With 10 seconds left warning and final alarm.</p>
+                                {/* Cambié el p interno por span */}
+                                <span>With 10 seconds left warning and final alarm.</span>
                             </p>
                         </div>
                     </Link>
@@ -54,15 +52,17 @@ function Projects() {
                             <p className="top-0 left-0 text-4xl absolute p-5">TO DO LIST</p>
                             <p className="text-gray-400 p-5 top-[30%] bottom-2 absolute left-0">
                                 Just write your task and press enter. Your task will appear in the list.
-                                <p>You can edit, delete or mark your task as done.</p>
+                                {/* Cambié el p interno por span */}
+                                <span>You can edit, delete or mark your task as done.</span>
                             </p>
                         </div>
                     </Link>
 
                     <Link to="/calculator" className="hover:cursor-pointer">
                         <div className="text-white w-70 h-70 flex flex-col items-center justify-center bg-black/40 p-5 hover:text-black hover:bg-white transition relative">
+                            {/* Cambié el p interno por span */}
                             <p className="top-0 left-0 text-4xl absolute p-5">
-                                CALCU <p>LATOR</p>
+                                CALCU <span>LATOR</span>
                             </p>
                             <p className="text-gray-400 p-5 top-[30%] bottom-2 absolute left-0">
                                 Simple calculator App with basic operations for your daily calculations.
@@ -90,7 +90,8 @@ function Projects() {
 
                     <Link to="/weather" className="hover:cursor-pointer">
                         <div className="text-white w-70 h-70 flex flex-col items-center justify-center bg-black/40 p-5 hover:text-black hover:bg-white transition relative">
-                            <p className="top-0 left-0 text-4xl absolute p-5">APP <p>WEATHER</p></p>
+                            {/* Cambié el p interno por span */}
+                            <p className="top-0 left-0 text-4xl absolute p-5">APP <span>WEATHER</span></p>
                             <p className="text-gray-400 p-5 top-[30%] bottom-2 absolute left-0">
                                 Select the country, enter the city name ang get the weather information.
                             </p>
@@ -99,8 +100,9 @@ function Projects() {
 
                     <Link to="/contacts" className="hover:cursor-pointer">
                         <div className="text-white w-70 h-70 flex flex-col items-center justify-center bg-black/40 p-5 hover:text-black hover:bg-white transition relative">
+                            {/* Cambié el p interno por span */}
                             <p className="top-0 left-0 text-4xl absolute p-5">
-                                <p>CONTACT LIST</p>
+                                <span>CONTACT LIST</span>
                             </p>
                             <p className="text-gray-400 p-5 top-[30%] bottom-2 absolute left-0">
                                 Select the country, enter the city name ang get the weather information.
@@ -116,6 +118,7 @@ function Projects() {
                             </p>
                         </div>
                     </Link>
+
                     <Link to="/tic-tac-toe" className="hover:cursor-pointer">
                         <div className="text-white w-70 h-70 flex flex-col items-center justify-center bg-black/40 p-5 hover:text-black hover:bg-white transition relative">
                             <p className="top-0 left-0 text-4xl absolute p-5">TIC TAC TOE</p>
@@ -124,12 +127,12 @@ function Projects() {
                             </p>
                         </div>
                     </Link>
+
                     <Link to="/" className="hover:cursor-pointer">
                         <div className="text-white w-70 h-70 flex flex-col items-center justify-center bg-black/40 p-5 hover:text-black hover:bg-white transition relative">
-
+                            {/* Puedes dejar vacío o agregar contenido */}
                         </div>
                     </Link>
-
 
                 </div>
             </div>
