@@ -21,14 +21,14 @@ function Home() {
                 {user && <Sidebar user={user} />}
 
                 <main className={`relative w-full h-screen ${user ? 'ml-64' : ''}`}>
-                    <div>
+                    {/* <div>
                         <LiquidChrome
                             baseColor={[0.05, 0.05, 0.05]}
                             speed={0.1}
                             amplitude={0.4}
                             interactive={true}
                         />
-                    </div>
+                    </div> */}
 
                     <div className="box mt-20">
                         <div className="m-auto flex flex-wrap justify-center ">
