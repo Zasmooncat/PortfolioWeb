@@ -13,7 +13,7 @@ function Projects() {
             />
 
             <div className="relative z-10 mt-5 m-3">
-                <div className="mx-auto w-10/12 grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
+                <div className="mx-auto w-10/12 grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6">
 
                     <Link to="/counter" className="hover:cursor-pointer">
                         <div className="text-white w-70 h-70 flex flex-col items-center justify-center bg-black/40 p-5 hover:text-black hover:bg-white transition relative">
