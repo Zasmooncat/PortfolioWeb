@@ -24,6 +24,7 @@ import AppWeather from "./components/appWeather";
 import TicTacToeView from "./views/TicTacToe";
 import TechnologyNews from "./components/TechnologyNews";
 import ContactList from "./components/ContactList";
+import ExpensesTracker from "./components/ExpensesTracker";
 
 // Componente interno que usa el AuthContext
 const AppContent = () => {
@@ -46,20 +47,20 @@ const AppContent = () => {
   }, []);
 
   // Mostrar loading solo si está cargando Y no se ha alcanzado el timeout
-  if (loading && !timeoutReached) {
-    return (
-      <div className="flex items-center justify-center h-screen bg-gray-900">
-        <div className="text-center">
-          <div className="text-white text-xl mb-4">Cargando...</div>
-          <div className="text-gray-400 text-sm">Conectando con el servidor...</div>
-          {/* Spinner visual */}
-          <div className="mt-4">
-            <div className="animate-spin rounded-full h-8 w-8 border-b-2 border-green-400 mx-auto"></div>
-          </div>
-        </div>
-      </div>
-    );
-  }
+  // if (loading && !timeoutReached) {
+  //   return (
+  //     <div className="flex items-center justify-center h-screen bg-gray-900">
+  //       <div className="text-center">
+  //         <div className="text-white text-xl mb-4">Cargando...</div>
+  //         <div className="text-gray-400 text-sm">Conectando con el servidor...</div>
+  //         {/* Spinner visual */}
+  //         <div className="mt-4">
+  //           <div className="animate-spin rounded-full h-8 w-8 border-b-2 border-green-400 mx-auto"></div>
+  //         </div>
+  //       </div>
+  //     </div>
+  //   );
+  // }
 
   return (
     <div className="App">
@@ -69,7 +70,7 @@ const AppContent = () => {
       {user && <Sidebar />}
 
       {/* Ajustar el margen del contenido principal si hay sidebar */}
-      <main className={user ? 'ml-64 min-h-screen' : 'min-h-screen'}>
+<main className={`min-h-screen transition-all duration-300 ${user ? 'md:ml-20' : ''}`}>
         <Routes>
           <Route path="/" element={<Home />} />
           <Route path="/projects" element={<Projects />} />
@@ -85,12 +86,8 @@ const AppContent = () => {
           <Route path="/weather" element={<AppWeather />} />
           <Route path="/tictactoe" element={<TicTacToeView />} />
           <Route path="/noticias" element={<TechnologyNews />} />
-
-          {/* Rutas protegidas - solo disponibles si está logueado */}
-          <Route
-            path="/contacts"
-            element={user ? <ContactList /> : <div className="p-8 text-white">Debes iniciar sesión para ver esta página</div>}
-          />
+          <Route path="/expenses" element={<ExpensesTracker />} />
+          <Route path="/contacts" element={<ContactList />} />
 
           <Route path="*" element={<h1 className="text-white p-8">Not found!</h1>} />
         </Routes>

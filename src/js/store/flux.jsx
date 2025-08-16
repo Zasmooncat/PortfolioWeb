@@ -27,24 +27,7 @@ const getState = ({ getStore, getActions, setStore }) => {
 
 
             },
-            loginUser: async (email, password, supabase) => {
-                try {
-                    const { data, error } = await supabase.auth.signInWithPassword({
-                        email: email.trim(),
-                        password,
-                    });
-
-
-                    if (error) {
-                        console.error("Error al iniciar sesión:", error);
-                        throw error;
-                    }
-                    setStore({ user: data.user, token: data.token });
-                }
-                catch (error) {
-                    console.error("Error en loginUser:", error);
-                }
-            },
+            
         }
     };
 };

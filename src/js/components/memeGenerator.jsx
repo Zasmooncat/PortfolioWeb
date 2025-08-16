@@ -37,7 +37,7 @@ const MemeGenerator = () => {
                 />
             </div>
         <div className="relative min-h-screen w-full">
-            <p className="titulo text-center text-white text-5xl mt-30 mb-10">
+            <p className="titulo text-center text-white text-5xl mt-10 mb-10">
                 MEME GENERATOR
             </p>
 

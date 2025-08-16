@@ -1,32 +1,45 @@
 // src/front/JS/components/TechnologyNews.jsx
 import React, { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
-import Squares from "./Squares"; // Asegúrate que la ruta es correcta
-import ProjectNavigation from "../components/ProjectNavigation"; // Asegúrate que la ruta es correcta
+import Squares from "./Squares"; 
+import ProjectNavigation from "../components/ProjectNavigation"; 
 
 const API_KEY = import.meta.env.VITE_GNEWS_API_KEY;
 
 const TechnologyNews = () => {
   const [news, setNews] = useState([]);
+  const [query, setQuery] = useState("desarrollo web OR robótica OR audiovisual OR touchdesigner"); // búsqueda inicial
+  const [inputValue, setInputValue] = useState(""); // valor del input
   const navigate = useNavigate();
 
-  useEffect(() => {
-    const fetchNews = async () => {
-      try {
-        const response = await fetch(
-          `https://gnews.io/api/v4/search?q=tecnología OR robótica OR internet&lang=es&token=${API_KEY}`
-        );
-        
-        const data = await response.json();
-        console.log("DATA:", data);
-        setNews(data.articles || []);
-      } catch (error) {
-        console.error("Error al cargar noticias:", error);
-      }
-    };
+  // Función para cargar noticias según la query
+  const fetchNews = async (searchQuery) => {
+    try {
+      const response = await fetch(
+        `https://gnews.io/api/v4/search?q=${encodeURIComponent(searchQuery)}&lang=es&max=9&token=${API_KEY}`
+      );
 
-    fetchNews();
+      const data = await response.json();
+      console.log("DATA:", data);
+      setNews(data.articles || []);
+    } catch (error) {
+      console.error("Error al cargar noticias:", error);
+    }
+  };
+
+  // Cargar noticias al inicio con la query por defecto
+  useEffect(() => {
+    fetchNews(query);
   }, []);
+
+  // Handler al enviar el input
+  const handleSearch = (e) => {
+    e.preventDefault();
+    if (inputValue.trim() === "") return;
+    setQuery(inputValue);
+    fetchNews(inputValue);
+    setInputValue(""); // limpiar el input
+  };
 
   return (
     <div className="min-h-screen bg-black text-white p-6 relative overflow-y-auto">
@@ -42,8 +55,31 @@ const TechnologyNews = () => {
       </div>
 
       {/* Contenido */}
-      <div className="relative z-10 ">
-        <h1 className="titulo text-center text-white text-5xl mb-8 pointer-events-auto">TECNOLOGY NEWS</h1>
+      <div className="relative z-10">
+        <h1 className="titulo text-center text-white text-5xl mb-8 pointer-events-auto">
+          NEWS SEARCH ENGINE
+        </h1>
+
+        {/* Input de búsqueda */}
+        <form
+          onSubmit={handleSearch}
+          className="flex justify-center mb-6 gap-2 pointer-events-auto"
+        >
+          <input
+            type="text"
+            value={inputValue}
+            onChange={(e) => setInputValue(e.target.value)}
+            placeholder="Buscar noticias..."
+            className="w-72 px-4 py-2 bg-white placeholder-gray-500 rounded-lg text-black focus:outline-none"
+          />
+          <button
+            type="submit"
+            className="bg-red-600 hover:bg-red-700 px-4 py-2 rounded-lg transition"
+          >
+            Buscar
+          </button>
+        </form>
+
         <div className="md:w-10/12 mx-auto grid gap-6 md:grid-cols-2 lg:grid-cols-3">
           {news.map((article, index) => (
             <a
@@ -65,12 +101,10 @@ const TechnologyNews = () => {
             </a>
           ))}
         </div>
-      <ProjectNavigation />
-      </div>
 
-     
+        <ProjectNavigation />
+      </div>
     </div>
-    
   );
 };
 
