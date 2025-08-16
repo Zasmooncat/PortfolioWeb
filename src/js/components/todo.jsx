@@ -53,7 +53,7 @@ function Todo() {
 
             {/* Contenido */}
             <div className="relative z-10 flex flex-col items-center pb-40">
-                <h1 className="titulo text-center text-white text-5xl mt-30">TO DO LIST</h1>
+                <h1 className="titulo text-center text-white text-5xl mt-15">TO DO LIST</h1>
 
                 <div className="flex flex-row justify-center">
                     <label className="text-white titulo text-2xl me-3 mt-5">New Task </label>

@@ -1,6 +1,6 @@
 // src/js/components/Navbar.jsx
 import React, { useState, useContext } from "react";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { supabase } from "../../supabase/client";
 import logomooncat from "../../img/logomooncat.png";
 import { AuthContext } from "../../context/AuthContext";
@@ -13,8 +13,10 @@ const Navbar = () => {
   const [errorMsg, setErrorMsg] = useState("");
   const [successMsg, setSuccessMsg] = useState("");
   const [loading, setLoading] = useState(false);
+  const [loggingOut, setLoggingOut] = useState(false);
 
   const { user, username, logout } = useContext(AuthContext);
+  const navigate = useNavigate();
 
   const closeModal = () => {
     setModalType(null);
@@ -74,8 +76,8 @@ const Navbar = () => {
             {
               id: userId,
               username: name.trim(),
-              email: email.trim()
-            }
+              email: email.trim(),
+            },
           ])
           .select();
 
@@ -91,19 +93,18 @@ const Navbar = () => {
 
       console.log("🎉 Registro completado exitosamente");
       setSuccessMsg("Registro realizado. Revisa tu correo para confirmar.");
-      
+
       // Limpiar el formulario después de 3 segundos
       setTimeout(() => {
         closeModal();
       }, 3000);
-
     } catch (err) {
       console.error("🔥 Error completo en registro:", err);
       console.error("🔥 Error message:", err.message);
       console.error("🔥 Error stack:", err.stack);
-      
+
       let errorMessage = "Error inesperado.";
-      
+
       if (err.message?.includes("User already registered")) {
         errorMessage = "Este email ya está registrado. Intenta iniciar sesión.";
       } else if (err.message?.includes("Password should be at least 6 characters")) {
@@ -113,7 +114,7 @@ const Navbar = () => {
       } else {
         errorMessage = err.message || "Error inesperado.";
       }
-      
+
       setErrorMsg(errorMessage);
     } finally {
       console.log("🏁 Finalizando registro, loading = false");
@@ -134,8 +135,7 @@ const Navbar = () => {
         email: email.trim(),
         password,
       });
-console.log(data)
-     
+      console.log(data);
 
       if (error) {
         console.error("❌ Error en login:", error);
@@ -144,19 +144,18 @@ console.log(data)
 
       console.log("🎉 Login exitoso");
       setSuccessMsg("Login correcto");
-      
+
       // Cerrar modal después de login exitoso
       setTimeout(() => {
         closeModal();
       }, 1000);
-
     } catch (err) {
       console.error("🔥 Error completo en login:", err);
       console.error("🔥 Error message:", err.message);
-      
+
       // Mejorar los mensajes de error
       let errorMessage = "Error inesperado al iniciar sesión.";
-      
+
       if (err.message.includes("Invalid login credentials")) {
         errorMessage = "Credenciales incorrectas. Verifica tu email y contraseña.";
       } else if (err.message.includes("Email not confirmed")) {
@@ -166,7 +165,7 @@ console.log(data)
       } else {
         errorMessage = err.message || "Error inesperado al iniciar sesión.";
       }
-      
+
       setErrorMsg(errorMessage);
     } finally {
       console.log("🏁 Finalizando login, loading = false");
@@ -176,7 +175,7 @@ console.log(data)
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-    
+
     // Validaciones básicas
     if (!email.trim() || !password.trim()) {
       setErrorMsg("Email y contraseña son requeridos");
@@ -195,9 +194,27 @@ console.log(data)
     }
   };
 
+  // ✅ Handler de logout con logs y redirección a "/"
+  const handleLogout = async () => {
+    try {
+      setLoggingOut(true); // empieza carga
+      console.log("🚪 Cerrando sesión desde Navbar...");
+      await logout();
+      console.log("✅ Sesión cerrada; redirigiendo a /");
+      navigate("/", { replace: true });
+    } catch (err) {
+      console.error("❌ Error en logout:", err?.message || err);
+    } finally {
+      setLoggingOut(false); // termina carga
+    }
+  };
+  
+
+  
+
   return (
     <>
-      <nav className="bg-transparent py-3 relative z-20">
+      <nav className="bg-transparent py-3 z-50 relative">
         <div className="flex justify-between items-center px-6">
           <Link to="/">
             <img src={logomooncat} className="w-10 me-10" alt="Logo" />
@@ -224,14 +241,18 @@ console.log(data)
                 </>
               ) : (
                 <>
-                  <li className="text-white mx-3">
-                    Welcome, {username || "User"}!
-                  </li>
                   <li
-                    className="text-white hover:text-green-400 cursor-pointer mx-3"
-                    onClick={logout}
+                    className="text-white hover:text-green-400 cursor-pointer transition flex items-center"
+                    onClick={!loggingOut ? handleLogout : undefined}
                   >
-                    LOGOUT
+                    {loggingOut ? (
+                      <div className="w-5 h-5 border-2 border-white border-t-transparent rounded-full animate-spin"></div>
+                    ) : (
+                      <h3 className=" text-white  titulo text-2xl uppercase hover:text-green-400">
+                        {" "}
+                        LOGOUT
+                      </h3>
+                    )}
                   </li>
                 </>
               )}

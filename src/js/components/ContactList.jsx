@@ -18,7 +18,7 @@ function ContactList() {
             </div>
 
             {/* Contenido */}
-            <div className="relative z-10 flex flex-col items-center justify-center h-full mt-30">
+            <div className="relative z-10 flex flex-col items-center justify-center h-full mt-10">
                 <h1 className="titulo text-white text-5xl mb-8 pointer-events-auto">CONTACT LIST</h1>
             </div>
                 <ProjectNavigation/>
