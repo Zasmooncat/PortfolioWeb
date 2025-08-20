@@ -8,7 +8,7 @@ const API_KEY = import.meta.env.VITE_GNEWS_API_KEY;
 
 const TechnologyNews = () => {
   const [news, setNews] = useState([]);
-  const [query, setQuery] = useState("desarrollo web OR robótica OR audiovisual OR touchdesigner"); // búsqueda inicial
+  const [query, setQuery] = useState("tecnologia"); // búsqueda inicial
   const [inputValue, setInputValue] = useState(""); // valor del input
   const navigate = useNavigate();
 
@@ -63,7 +63,7 @@ const TechnologyNews = () => {
         {/* Input de búsqueda */}
         <form
           onSubmit={handleSearch}
-          className="flex justify-center mb-6 gap-2 pointer-events-auto"
+          className="flex justify-center m-16 gap-2 pointer-events-auto"
         >
           <input
             type="text"
@@ -74,30 +74,32 @@ const TechnologyNews = () => {
           />
           <button
             type="submit"
-            className="bg-red-600 hover:bg-red-700 px-4 py-2 rounded-lg transition"
+            className="bg-green-600 hover:bg-green-700 cursor-pointer px-4 py-2 rounded-lg transition"
           >
             Buscar
           </button>
         </form>
 
-        <div className="md:w-10/12 mx-auto grid gap-6 md:grid-cols-2 lg:grid-cols-3">
+        <div className="md:w-8/12 mx-auto grid  md:grid-cols-2 lg:grid-cols-3">
           {news.map((article, index) => (
             <a
               key={index}
               href={article.url}
               target="_blank"
               rel="noopener noreferrer"
-              className="bg-neutral-800/50 hover:bg-neutral-800 p-4 rounded-xl transition duration-300 shadow-lg"
+              className="bg-neutral-800/50 hover:bg-neutral-700 p-4 transition duration-300"
             >
               {article.image && (
                 <img
                   src={article.image}
                   alt={article.title}
-                  className="w-full h-48 object-cover rounded-md mb-4"
+                  className="w-full h-48 object-cover mb-4"
                 />
               )}
-              <h3 className="text-lg font-semibold">{article.title}</h3>
-              <p className="text-sm mt-2 line-clamp-2">{article.description}</p>
+              <h3 className="titulo text-lg font-semibold">{article.title}</h3>
+              <p className="titulo text-gray-400 text-sm mt-2 line-clamp-2">
+                {article.description}
+              </p>
             </a>
           ))}
         </div>

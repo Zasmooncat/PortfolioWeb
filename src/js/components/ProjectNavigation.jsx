@@ -6,14 +6,17 @@ const projects = [
     "/counter",
     "/chrono",
     "/countdown",
-    "/todo",
     "/calculator",
     "/cards",
     "/memegenerator",
     "/weather",
+    "/todo",
     "/contacts",
+    "/expenses",
+    "/calendar",
     "/noticias",
-    "/tictactoe",
+    
+    
     // ...otros
 ];
 

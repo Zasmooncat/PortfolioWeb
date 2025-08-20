@@ -8,7 +8,7 @@ import injectContext, { Context } from "./store/appContext";
 import { AuthProvider, AuthContext } from '../context/AuthContext';
 import Navbar from "./components/navbar"; // ← corregido
 import Sidebar from "./components/Sidebar";
-
+import Info from "./views/info";
 import Home from "./views/home";
 import Projects from "./views/projects";
 import Contact from "./views/contact";
@@ -25,11 +25,15 @@ import TicTacToeView from "./views/TicTacToe";
 import TechnologyNews from "./components/TechnologyNews";
 import ContactList from "./components/ContactList";
 import ExpensesTracker from "./components/ExpensesTracker";
+import Calendar from "./components/Calendar";
+import { useLocation } from "react-router-dom";
+
 
 // Componente interno que usa el AuthContext
 const AppContent = () => {
   const { user, username, loading } = useContext(AuthContext);
-
+  const location = useLocation(); 
+  const hideSidebarRoutes = ["/videoart"];
   console.log("🖥️ AppContent render - user:", user?.email || "null");
   console.log("🖥️ AppContent render - username:", username);
   console.log("🖥️ AppContent render - loading:", loading);
@@ -46,35 +50,22 @@ const AppContent = () => {
     return () => clearTimeout(timer);
   }, []);
 
-  // Mostrar loading solo si está cargando Y no se ha alcanzado el timeout
-  // if (loading && !timeoutReached) {
-  //   return (
-  //     <div className="flex items-center justify-center h-screen bg-gray-900">
-  //       <div className="text-center">
-  //         <div className="text-white text-xl mb-4">Cargando...</div>
-  //         <div className="text-gray-400 text-sm">Conectando con el servidor...</div>
-  //         {/* Spinner visual */}
-  //         <div className="mt-4">
-  //           <div className="animate-spin rounded-full h-8 w-8 border-b-2 border-green-400 mx-auto"></div>
-  //         </div>
-  //       </div>
-  //     </div>
-  //   );
-  // }
+
 
   return (
     <div className="App">
       <Navbar />
 
       {/* Mostrar sidebar solo si el usuario está logueado */}
-      {user && <Sidebar />}
+      {user && !hideSidebarRoutes.includes(location.pathname) && <Sidebar />}
 
       {/* Ajustar el margen del contenido principal si hay sidebar */}
-<main className={`min-h-screen transition-all duration-300 ${user ? 'md:ml-20' : ''}`}>
+<main className={`min-h-screen transition-all duration-300 `}>
         <Routes>
           <Route path="/" element={<Home />} />
           <Route path="/projects" element={<Projects />} />
           <Route path="/contact" element={<Contact />} />
+          <Route path="/info" element={<Info />} />
           <Route path="/videoart" element={<VideoArt />} />
           <Route path="/counter" element={<Counter />} />
           <Route path="/chrono" element={<Chrono />} />
@@ -88,6 +79,7 @@ const AppContent = () => {
           <Route path="/noticias" element={<TechnologyNews />} />
           <Route path="/expenses" element={<ExpensesTracker />} />
           <Route path="/contacts" element={<ContactList />} />
+          <Route path="/calendar" element={<Calendar />} />
 
           <Route path="*" element={<h1 className="text-white p-8">Not found!</h1>} />
         </Routes>
