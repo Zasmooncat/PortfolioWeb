@@ -51,7 +51,7 @@ function Chrono() {
             </div>
 
             {/* Contenido */}
-            <div className="relative z-10 flex flex-col items-center justify-center h-full mt-30">
+            <div className="relative z-10 flex flex-col items-center justify-center h-full mt-10">
                 <p className="titulo text-center text-white text-5xl mb-10">
                     C H R O N O M E T E R
                 </p>

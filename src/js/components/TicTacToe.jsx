@@ -42,7 +42,7 @@ const TicTacToe = () => {
 
     return (
         <div className="text-white flex flex-col items-center">
-            <h2 className="titulo text-center text-white text-5xl mb-10">Tic Tac Toe</h2>
+            <h2 className="titulo text-white text-5xl mb-15">TIC TAC TOE</h2>
             <div className="grid grid-cols-3 gap-2 mb-4">
                 {board.map((value, i) => (
                     <button
@@ -56,7 +56,7 @@ const TicTacToe = () => {
                 ))}
             </div>
             {winner ? (
-    <p className="text-xl font-bold mb-2 flex items-center gap-2">
+    <p className="text-xl p-4 font-bold mb-2 flex items-center gap-2">
         Ganador:
         {winner === "X" ? (
             <FaTimes className="text-red-500 text-3xl" />
@@ -65,7 +65,7 @@ const TicTacToe = () => {
         )}
     </p>
 ) : (
-    <p className="mb-2 text-xl flex items-center gap-2">
+    <p className="mb-2 p-4 text-xl flex items-center gap-2">
         Turno:
         {isXNext ? (
             <FaTimes className="text-red-500 text-3xl" />
@@ -77,9 +77,9 @@ const TicTacToe = () => {
 
             <button
                 onClick={resetGame}
-                className="bg-green-500 hover:bg-green-600 px-4 py-1 rounded font-bold mt-4"
+                className="border-2 titulo text-2xl hover:bg-green-600 px-4 py-1 cursor-pointer  mt-4"
             >
-                Reiniciar
+                REINICIAR
             </button>
             <ProjectNavigation />
         </div>

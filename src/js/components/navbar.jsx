@@ -214,7 +214,7 @@ const Navbar = () => {
 
   return (
     <>
-      <nav className="bg-transparent py-3 z-50 relative">
+      <nav className="bg-gradient-to-r from-transparent from-10% via-transparent via-20% md:via-80% to-black to-90% fixed top-0 left-0 right-0 py-1 z-50">
         <div className="flex justify-between items-center px-6">
           <Link to="/">
             <img src={logomooncat} className="w-10 me-10" alt="Logo" />
@@ -260,9 +260,11 @@ const Navbar = () => {
           </ul>
         </div>
       </nav>
+      <div className="h-16"></div>
 
       {modalType && !user && (
-        <div className="fixed inset-0 flex items-center justify-center bg-black bg-opacity-70 z-50">
+        <div className=" fixed inset-0 flex items-center justify-center 
+                  bg-black/40 bg-opacity-70 backdrop-blur-sm z-50">
           <div className="bg-white p-8 rounded-lg shadow-lg w-96">
             <form onSubmit={handleSubmit} autoComplete="on">
               {modalType === "login" ? (

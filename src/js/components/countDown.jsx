@@ -200,7 +200,7 @@ const CountDown = () => {
                     <div className="ms-7">
 
 
-                        <div className="grid grid-cols-3 mt-20 ">
+                        <div className="grid grid-cols-3 mt-10 ">
                             <div
                                 className={`digito hours text-7xl md:text-9xl lg:text-9xl font-extrabold ${isTenSecondsLeft ? "animate-blink text-red-600" : "text-white"
                                     }`}

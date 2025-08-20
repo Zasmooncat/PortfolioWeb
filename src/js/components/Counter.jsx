@@ -24,22 +24,23 @@ function Counter() {
             </div>
 
             {/* Contenido */}
-            <div className="relative z-10 flex flex-col items-center justify-center h-full mt-30">
+            <div className="relative z-10 flex flex-col items-center justify-center h-full mt-10">
                 <h1 className="titulo text-white text-5xl mb-8 pointer-events-auto">CONTADOR</h1>
                 <p className="text-9xl text-green-500 mb-6 font-extrabold pointer-events-auto">{counter}</p>
 
                 <div className="mb-6 pointer-events-auto">
-                    <button
-                        className="text-white p-3 text-5xl me-4 hover:text-green-300 hover:cursor-pointer"
-                        onClick={handleClickAdd}
-                    >
-                        +
-                    </button>
+                    
                     <button
                         className="text-white p-3 text-5xl hover:text-purple-500 hover:cursor-pointer"
                         onClick={handleClickSubtract}
                     >
                         -
+                    </button>
+                    <button
+                        className="text-white p-3 text-5xl ms-4 hover:text-green-300 hover:cursor-pointer"
+                        onClick={handleClickAdd}
+                    >
+                        +
                     </button>
                 </div>
 
