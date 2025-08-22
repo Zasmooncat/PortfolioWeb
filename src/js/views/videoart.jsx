@@ -1,28 +1,79 @@
+// src/js/components/VideoArt.jsx
 import React from "react";
-import video1 from "../../video/acid_palmeras.mp4"
-import video2 from "../../video/TDMovieOut.0.mp4"
+import { motion } from "framer-motion";
 
-import video3 from "../../video/dithercam.mp4"
-import video4 from "../../video/movieout.3.mp4"
-import video5 from "../../video/movieout.5.mp4"
-import video6 from "../../video/moviet.9.mp4"
-import video7 from "../../video/TDMovieOut.7.mp4"
-
-import video8 from "../../video/TDMovieOut.4.mp4"
-import video9 from "../../video/BranchOfLife1.mp4"
-
-
-
-const videos = [video1, video2, video3, video4, video5, video6, video7, video8, video9
+// Lista de videos en la carpeta public/video
+const videos = [
+    "/video/acid_palmeras.mov",
+    "/video/liquid_red.mov",
+    "/video/ondas_greenish.mov",
+    "/video/red_hole.mov",
+    "/video/dithercolors.mov",
+    "/video/noeglitch.mov",
+    "/video/pinkgreenwaves.mov",
+    "/video/jewelMooncat.mov",
+    "/video/branch_clouds.mov",
+    
 ];
+
+// Variants para animación fade-in con stagger
+const containerVariants = {
+    hidden: { opacity: 0 },
+    visible: {
+        opacity: 1,
+        transition: {
+            staggerChildren: 0.2,
+            delayChildren: 0.3
+        }
+    }
+};
+
+const itemVariants = {
+    hidden: { opacity: 0, y: 20 },
+    visible: { opacity: 1, y: 0, transition: { duration: 0.6, ease: "easeOut" } }
+};
 
 const VideoArt = () => {
     return (
-        <div className="video-container">
-            {videos.map((video, index) => (
-                <video key={index} src={video} autoPlay loop muted />
-            ))}
-        </div>
+        <>
+            {/* Video de fondo */}
+            <video
+                className="fixed top-0 left-0 w-full h-full object-cover z-0"
+                src="/video/movieout.5.mp4"
+                autoPlay
+                loop
+                muted
+                playsInline
+            ></video>
+
+            {/* Overlay para contraste */}
+            <div className="fixed inset-0 bg-cyan-950/40 z-10"></div>
+
+            {/* Grid de videos */}
+            <motion.div
+                className="relative z-20 grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-3 gap-4 p-4"
+                variants={containerVariants}
+                initial="hidden"
+                animate="visible"
+            >
+                {videos.map((video, index) => (
+                    <motion.div
+                        key={index}
+                        variants={itemVariants}
+                        className="w-full rounded-lg shadow-lg overflow-hidden"
+                    >
+                        <video
+                            src={video}
+                            autoPlay
+                            loop
+                            muted
+                            playsInline
+                            className="w-full"
+                        />
+                    </motion.div>
+                ))}
+            </motion.div>
+        </>
     );
 };
 

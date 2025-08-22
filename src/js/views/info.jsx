@@ -10,7 +10,7 @@ const Info = () => {
       {/* Video de fondo */}
       <video
         className="fixed w-full h-full object-cover"
-        src="../src/video/movieout.5.mp4"
+        src="/video/movieout.5.mp4"
         autoPlay
         loop
         muted

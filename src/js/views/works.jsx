@@ -38,7 +38,7 @@ export default function Works() {
       {/* Fondo decorativo */}
       <video
         className="fixed w-full h-full object-cover"
-        src="../src/video/movieout.5.mp4" // 👉 aquí cambias el link de tu video
+        src="/video/movieout.5.mp4" // 👉 aquí cambias el link de tu video
         autoPlay
         loop
         muted
