@@ -5,7 +5,7 @@ import React, { useContext } from 'react';
 import { Link } from 'react-router-dom';
 import { motion } from 'framer-motion';
 import { AuthContext } from '../../context/AuthContext';
-import videoBackground from '../../video/movieout.5.mp4';
+import videoBackground from '/video/movieout.5.mp4';
 import reactlogo from '../../img/react-1.webp';
 import tdlogo from '../../img/icontd.webp';
 import infoicon from '../../img/info.png';
