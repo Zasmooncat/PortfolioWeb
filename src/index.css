@@ -1,14 +1,24 @@
 @import "tailwindcss";
 
+
 body{
   background-color: black;
+  transition: background-color 0.2s ease-in-out;
 }
+
 
 .titulo{
   font-family: "Smooch Sans", serif;
   font-optical-sizing: auto;;
   font-style: normal;
+} 
+
+.titulo-name{
+  font-family: "Michroma", serif;
+  font-optical-sizing: auto;;
+  font-style: normal;
 }
+
 
 
 .video-background {

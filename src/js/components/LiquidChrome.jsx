@@ -11,12 +11,17 @@ export const LiquidChrome = ({
   ...props
 }) => {
   const containerRef = useRef(null);
+  const rendererRef = useRef(null);
+  const meshRef = useRef(null);
+  const programRef = useRef(null);
+  const animationIdRef = useRef(null);
 
   useEffect(() => {
     if (!containerRef.current) return;
 
     const container = containerRef.current;
     const renderer = new Renderer({ antialias: true });
+    rendererRef.current = renderer;
     const gl = renderer.gl;
     gl.clearColor(1, 1, 1, 1);
 
@@ -94,10 +99,13 @@ export const LiquidChrome = ({
         uMouse: { value: new Float32Array([0, 0]) },
       },
     });
+    programRef.current = program;
 
     const mesh = new Mesh(gl, { geometry, program });
+    meshRef.current = mesh;
 
     function resize() {
+      if (!renderer || !program) return;
       renderer.setSize(window.innerWidth, window.innerHeight);
       const resUniform = program.uniforms.uResolution.value;
       resUniform[0] = gl.canvas.width;
@@ -109,6 +117,7 @@ export const LiquidChrome = ({
     resize();
 
     function handleMouseMove(event) {
+      if (!program) return;
       const x = event.clientX / window.innerWidth;
       const y = 1 - event.clientY / window.innerHeight;
       const mouseUniform = program.uniforms.uMouse.value;
@@ -117,6 +126,7 @@ export const LiquidChrome = ({
     }
 
     function handleTouchMove(event) {
+      if (!program) return;
       if (event.touches.length > 0) {
         const touch = event.touches[0];
         const x = touch.clientX / window.innerWidth;
@@ -132,27 +142,92 @@ export const LiquidChrome = ({
       window.addEventListener("touchmove", handleTouchMove);
     }
 
-    let animationId;
     function update(t) {
-      animationId = requestAnimationFrame(update);
+      if (!renderer || !mesh || !program) return;
+      animationIdRef.current = requestAnimationFrame(update);
       program.uniforms.uTime.value = t * 0.001 * speed;
       renderer.render({ scene: mesh });
     }
-    animationId = requestAnimationFrame(update);
+    animationIdRef.current = requestAnimationFrame(update);
 
-    container.appendChild(gl.canvas);
+    // Añadir el canvas con transición inicial
+    if (gl.canvas) {
+      gl.canvas.style.transition = 'opacity 2s ease-in';
+      gl.canvas.style.opacity = '0';
+      container.appendChild(gl.canvas);
+      
+      // Fade in suave
+      setTimeout(() => {
+        if (gl.canvas) {
+          gl.canvas.style.opacity = '1';
+        }
+      }, 10);
+    }
 
+    // Cleanup suave mejorado
     return () => {
-      cancelAnimationFrame(animationId);
+      // 1. Cancelar animación primero
+      if (animationIdRef.current) {
+        cancelAnimationFrame(animationIdRef.current);
+        animationIdRef.current = null;
+      }
+
+      // 2. Remover event listeners
       window.removeEventListener("resize", resize);
       if (interactive) {
         window.removeEventListener("mousemove", handleMouseMove);
         window.removeEventListener("touchmove", handleTouchMove);
       }
-      if (gl.canvas.parentElement) {
-        gl.canvas.parentElement.removeChild(gl.canvas);
+
+      // 3. Fade out suave del canvas antes de limpiar WebGL
+      if (gl.canvas && gl.canvas.parentElement) {
+        gl.canvas.style.transition = 'opacity 0.2s ease-out';
+        gl.canvas.style.opacity = '0';
+        
+        // Cleanup WebGL después del fade out
+        setTimeout(() => {
+          try {
+            // Limpiar recursos WebGL
+            if (meshRef.current) {
+              // Limpiar geometría si tiene método de cleanup
+              if (meshRef.current.geometry && meshRef.current.geometry.dispose) {
+                meshRef.current.geometry.dispose();
+              }
+              meshRef.current = null;
+            }
+
+            if (programRef.current) {
+              // Limpiar programa de shaders si tiene método de cleanup
+              if (programRef.current.dispose) {
+                programRef.current.dispose();
+              }
+              programRef.current = null;
+            }
+
+            // Perder contexto WebGL de forma controlada
+            const loseContextExt = gl.getExtension("WEBGL_lose_context");
+            if (loseContextExt) {
+              loseContextExt.loseContext();
+            }
+
+            // Remover canvas del DOM
+            if (gl.canvas.parentElement) {
+              gl.canvas.parentElement.removeChild(gl.canvas);
+            }
+          } catch (error) {
+            console.warn("Error durante cleanup de WebGL:", error);
+            // Fallback: remover canvas inmediatamente
+            if (gl.canvas && gl.canvas.parentElement) {
+              gl.canvas.parentElement.removeChild(gl.canvas);
+            }
+          }
+
+          // Limpiar referencia del renderer al final
+          if (rendererRef.current) {
+            rendererRef.current = null;
+          }
+        }, 200); // Esperar el tiempo del fade out
       }
-      gl.getExtension("WEBGL_lose_context")?.loseContext();
     };
   }, [baseColor, speed, amplitude, frequencyX, frequencyY, interactive]);
 
@@ -160,6 +235,10 @@ export const LiquidChrome = ({
     <div
       ref={containerRef}
       className="fixed top-0 left-0 w-full h-screen z-[-1]"
+      style={{
+        transition: 'opacity 0.3s ease-out',
+        willChange: 'opacity' // Optimización para animaciones suaves
+      }}
       {...props}
     />
   );

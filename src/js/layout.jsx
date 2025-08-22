@@ -26,6 +26,7 @@ import TechnologyNews from "./components/TechnologyNews";
 import ContactList from "./components/ContactList";
 import ExpensesTracker from "./components/ExpensesTracker";
 import Calendar from "./components/Calendar";
+import Works from "./views/works"; // Asegúrate de que la ruta es correcta
 import { useLocation } from "react-router-dom";
 
 
@@ -33,7 +34,7 @@ import { useLocation } from "react-router-dom";
 const AppContent = () => {
   const { user, username, loading } = useContext(AuthContext);
   const location = useLocation(); 
-  const hideSidebarRoutes = ["/videoart"];
+  const hideSidebarRoutes = ["/videoart","/info"];
   console.log("🖥️ AppContent render - user:", user?.email || "null");
   console.log("🖥️ AppContent render - username:", username);
   console.log("🖥️ AppContent render - loading:", loading);
@@ -60,7 +61,7 @@ const AppContent = () => {
       {user && !hideSidebarRoutes.includes(location.pathname) && <Sidebar />}
 
       {/* Ajustar el margen del contenido principal si hay sidebar */}
-<main className={`min-h-screen transition-all duration-300 `}>
+      <main className={`min-h-screen transition-all duration-300 `}>
         <Routes>
           <Route path="/" element={<Home />} />
           <Route path="/projects" element={<Projects />} />
@@ -80,7 +81,7 @@ const AppContent = () => {
           <Route path="/expenses" element={<ExpensesTracker />} />
           <Route path="/contacts" element={<ContactList />} />
           <Route path="/calendar" element={<Calendar />} />
-
+          <Route path="/works" element={<Works />} />
           <Route path="*" element={<h1 className="text-white p-8">Not found!</h1>} />
         </Routes>
       </main>

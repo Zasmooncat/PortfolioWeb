@@ -5,7 +5,7 @@ module.exports = {
     "./src/**/*.{js,jsx,ts,tsx}",
   ],
   theme: {
-     extend: {
+    extend: {
       keyframes: {
         fadeIn: {
           "0%": { opacity: "0" },
@@ -13,10 +13,10 @@ module.exports = {
         },
       },
       animation: {
-        fadeIn: "fadeIn 0.8s ease-in-out",
+        fadeIn: "fadeIn 2s ease-in-out forwards",
       },
+     
     },
   },
   plugins: [require('@tailwindcss/line-clamp')],
 }
-

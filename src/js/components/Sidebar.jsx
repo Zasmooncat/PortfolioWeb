@@ -29,10 +29,10 @@ const Sidebar = () => {
   initial={{ x: -250, opacity: 0 }} // empieza oculto a la izquierda
   animate={{ x: 0, opacity: 1 }}   // entra a su posición
   transition={{ duration: 0.6, ease: "easeOut" }}
-  className="hidden md:flex fixed top-23 rounded-r-4xl left-0 w-50 h-144 bg-black/50 pt-2 text-white shadow-lg flex-col z-100"
+  className="hidden md:flex fixed top-23 rounded-r-4xl left-0 w-50 h-144 bg-gray-800/50 pt-2 text-white shadow-lg flex-col z-100 backdrop-blur-sm"
 >
   <div className="px-8 py-2 border-b border-gray-700 mb-2">
-    <p className="titulo text-2xl text-green-400 uppercase">
+    <p className="titulo-name text-cyan-400 uppercase">
       {user.user_metadata.name || "User"}
     </p>
   </div>
@@ -46,8 +46,8 @@ const Sidebar = () => {
               flex titulo text-xl uppercase px-2 space-x-3 py-3 border-gray-700 transition-colors duration-200
               ${
                 location.pathname === route.path
-                  ? "text-green-400"
-                  : "text-gray-300 hover:bg-black hover:text-green-400"
+                  ? "text-cyan-400"
+                  : "text-gray-300 hover:bg-black hover:text-cyan-300"
               }`}
           >
             <span className="font-medium">{"· " + route.label}</span>
@@ -62,7 +62,7 @@ const Sidebar = () => {
       <div className="md:hidden flex flex-col items-center justify-center ">
         <button
           onClick={() => setIsOpen(!isOpen)}
-          className="flex items-center justify-center p-4 text-white bg-black/50  text-5xl focus:outline-none transition-colors duration-200 hover:text-green-600 rounded-full z-60"
+          className="flex items-center justify-center pb-5 text-white  text-5xl focus:outline-none transition-colors duration-200 hover:text-cyan-400 z-60"
         >
           {isOpen ? <X size={40} /> : <Menu size={40} />}
         </button>
@@ -75,7 +75,7 @@ const Sidebar = () => {
     overflow-hidden transition-all duration-500 ease-in-out
     ${isOpen ? "max-h-[500px] opacity-100" : "max-h-0 opacity-0"}`}
 >
-  <p className="text-green-400 titulo text-2xl border-b border-gray-700 p-5 flex flex-col items-center justify-center uppercase">
+  <p className="text-cyan-400 titulo-name border-b border-gray-700 p-5 flex flex-col items-center justify-center uppercase">
     {user.user_metadata.name || "User"}
   </p>
   {sidebarRoutes.map((route) => (
@@ -84,11 +84,11 @@ const Sidebar = () => {
       to={route.path}
       onClick={() => setIsOpen(false)} // cierra al seleccionar
       className={`
-        z-5 flex flex-col items-center justify-center space-y-2 titulo text-xl uppercase px-2 py-3 rounded-lg transition-colors duration-200
+        z-5 flex flex-col items-center justify-center space-y-2 titulo text-xl uppercase px-2 py-3 transition-colors duration-200
         ${
           location.pathname === route.path
-            ? "bg-green-600 text-white"
-            : "text-gray-300 hover:bg-gray-800 hover:text-green-400"
+            ? "text-cyan-400"
+            : "text-gray-300 hover:text-cyan-300"
         }`}
     >
       {route.label}
