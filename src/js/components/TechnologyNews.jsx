@@ -53,6 +53,8 @@ const TechnologyNews = () => {
           hoverFillColor="#911"
         />
       </div>
+       {/* Overlay para mejorar contraste */}
+      <div className="fixed inset-0 bg-cyan-950/40"></div>
 
       {/* Contenido */}
       <div className="relative z-10">
@@ -74,7 +76,7 @@ const TechnologyNews = () => {
           />
           <button
             type="submit"
-            className="bg-green-600 hover:bg-green-700 cursor-pointer px-4 py-2 rounded-lg transition"
+            className="bg-cyan-600 hover:bg-cyan-700 cursor-pointer px-4 py-2 rounded-lg transition"
           >
             Buscar
           </button>
@@ -87,7 +89,7 @@ const TechnologyNews = () => {
               href={article.url}
               target="_blank"
               rel="noopener noreferrer"
-              className="bg-neutral-800/50 hover:bg-neutral-700 p-4 transition duration-300"
+              className="bg-gray-800/50 hover:bg-cyan-950 p-4 transition duration-300"
             >
               {article.image && (
                 <img
@@ -96,8 +98,8 @@ const TechnologyNews = () => {
                   className="w-full h-48 object-cover mb-4"
                 />
               )}
-              <h3 className="titulo text-lg font-semibold">{article.title}</h3>
-              <p className="titulo text-gray-400 text-sm mt-2 line-clamp-2">
+              <h3 className="titulo text-2xl font-semibold">{article.title}</h3>
+              <p className="titulo text-gray-400  mt-2 line-clamp-2">
                 {article.description}
               </p>
             </a>

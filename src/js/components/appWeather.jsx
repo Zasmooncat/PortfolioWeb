@@ -73,9 +73,13 @@ const AppWeather = () => {
                     hoverFillColor="#911"
                 />
             </div>
-        <div className="container m-auto">
-            <h1 className="titulo text-center text-white text-7xl">EL TIEMPO</h1>
-            <div className="seccion1 bg-gradient-to-b from-gray-400/50 to-gray-800/50 p-8 w-[95%] md:w-[50%] lg:w-[30%] border-white">
+
+             {/* Overlay para mejorar contraste */}
+      <div className="fixed inset-0 bg-cyan-950/40 "></div>
+
+        <div className="container  m-auto">
+            <h1 className="titulo text-center text-white text-5xl">EL TIEMPO</h1>
+            <div className="seccion1 rounded-xl bg-gradient-to-b from-gray-400/50 to-gray-800/50 p-8 w-[95%] md:w-[50%] lg:w-[30%] z-50">
                 <form className="flex flex-col m-auto" onSubmit={handleSubmit}>
                     <div className="form-group flex flex-col">
                        
@@ -102,7 +106,7 @@ const AppWeather = () => {
                         
                         <input type="text" className="form-control bg-white w-[100%] p-2 " id="city" name="city" placeholder="Escribe el nombre de la ciudad" onChange={handleChange} value={searchWeather.city} />
                     </div>
-                    <button className="boton bg-gray-800 text-white hover:text-green-200 hover:bg-gray-950 border-2 my-6 mx-4 p-2 rounded-4xl">Consultar</button>
+                    <button className="boton bg-gray-800 text-white hover:text-cyan-200 hover:bg-gray-950 border-2 my-6 mx-4 p-2 rounded-4xl">Consultar</button>
                 </form>
             </div>
             <div className="seccion2 w-[95%] md:w-[50%] lg:w-[30%] bg-black rounded-4xl p-4 ">
@@ -112,9 +116,9 @@ const AppWeather = () => {
                     <p className="error-message">No existe ninguna ciudad con ese nombre en {lastCountry}</p>
                 ) : (
                     <>
-                    <div className="flex">
+                    <div className="flex flex-row justify-center">
 
-                        <div className="tempPanel flex flex-col justify-center items-center mb-20">
+                        <div className="tempPanel z-5 flex flex-col justify-center items-center mb-20">
                             <p className="temp  mx-5 text-red-500 text-6xl">{Math.ceil(weather?.main?.temp)}ºC</p>
                             <div className="">
                                 <p className="tempicon">
@@ -123,7 +127,7 @@ const AppWeather = () => {
                                 </p>
                             </div>
                         </div>
-                        <div className="">
+                        <div className="z-50">
                             <h2 className="infotitulo text-white text-4xl mb-4">{weather?.name || "des"}</h2>
                             <div className="info">
                                 <p className="my-1 text-white">{weatherDescription || "sin información"}</p>

@@ -214,7 +214,7 @@ const Navbar = () => {
 
   return (
     <>
-      <nav className="bg-gradient-to-r from-transparent from-10% via-transparent via-20% md:via-80% to-black to-90% fixed top-0 left-0 right-0 py-1 z-50">
+      <nav className="bg-gradient-to-r from-transparent from-10% via-transparent via-20% md:via-80% to-cyan-950/50 to-90% fixed top-0 left-0 right-0 py-1 z-50">
         <div className="flex justify-between items-center px-6">
           <Link to="/">
             <img src={logomooncat} className="w-10 me-10" alt="Logo" />
@@ -227,13 +227,13 @@ const Navbar = () => {
               {!user ? (
                 <>
                   <li
-                    className="text-white hover:text-green-400 cursor-pointer mx-3"
+                    className="text-white hover:text-cyan-400 cursor-pointer mx-3"
                     onClick={() => setModalType("register")}
                   >
                     REGISTER
                   </li>
                   <li
-                    className="text-white hover:text-green-400 cursor-pointer mx-3"
+                    className="text-white hover:text-cyan-400 cursor-pointer mx-3"
                     onClick={() => setModalType("login")}
                   >
                     LOGIN
@@ -242,13 +242,13 @@ const Navbar = () => {
               ) : (
                 <>
                   <li
-                    className="text-white hover:text-green-400 cursor-pointer transition flex items-center"
+                    className="text-white hover:text-cyan-400 cursor-pointer transition flex items-center"
                     onClick={!loggingOut ? handleLogout : undefined}
                   >
                     {loggingOut ? (
                       <div className="w-5 h-5 border-2 border-white border-t-transparent rounded-full animate-spin"></div>
                     ) : (
-                      <h3 className=" text-white  titulo text-2xl uppercase hover:text-green-400">
+                      <h3 className=" text-white  titulo text-2xl uppercase hover:text-cyan-400">
                         {" "}
                         LOGOUT
                       </h3>
@@ -263,121 +263,156 @@ const Navbar = () => {
       <div className="h-16"></div>
 
       {modalType && !user && (
-        <div className=" fixed inset-0 flex items-center justify-center 
+  <div className="fixed inset-0 flex items-center justify-center 
                   bg-black/40 bg-opacity-70 backdrop-blur-sm z-50">
-          <div className="bg-white p-8 rounded-lg shadow-lg w-96">
-            <form onSubmit={handleSubmit} autoComplete="on">
-              {modalType === "login" ? (
-                <>
-                  <h2 className="text-2xl font-bold mb-4">Iniciar Sesión</h2>
-                  <input
-                    type="email"
-                    placeholder="Email"
-                    className="w-full p-2 mb-3 border rounded"
-                    value={email}
-                    onChange={(e) => setEmail(e.target.value)}
-                    required
-                    autoComplete="email"
-                  />
-                  <input
-                    type="password"
-                    placeholder="Contraseña"
-                    className="w-full p-2 mb-3 border rounded"
-                    value={password}
-                    onChange={(e) => setPassword(e.target.value)}
-                    required
-                    autoComplete="current-password"
-                  />
-                  {errorMsg && (
-                    <div className="text-red-600 text-sm mb-2 p-2 bg-red-50 rounded">
-                      {errorMsg}
-                    </div>
-                  )}
-                  {successMsg && (
-                    <div className="text-green-600 text-sm mb-2 p-2 bg-green-50 rounded">
-                      {successMsg}
-                    </div>
-                  )}
-                  <div className="flex justify-between items-center">
-                    <button
-                      type="button"
-                      className="bg-gray-400 hover:bg-gray-600 text-white px-4 py-2 rounded"
-                      onClick={closeModal}
-                    >
-                      Cancelar
-                    </button>
-                    <button
-                      type="submit"
-                      className="bg-black hover:bg-green-500 text-white px-4 py-2 rounded"
-                      disabled={loading}
-                    >
-                      {loading ? "Cargando..." : "Iniciar Sesión"}
-                    </button>
-                  </div>
-                </>
-              ) : (
-                <>
-                  <h2 className="text-2xl font-bold mb-4">Registrarse</h2>
-                  <input
-                    type="text"
-                    placeholder="Nombre"
-                    className="w-full p-2 mb-3 border rounded"
-                    value={name}
-                    onChange={(e) => setName(e.target.value)}
-                    required
-                    autoComplete="name"
-                  />
-                  <input
-                    type="email"
-                    placeholder="Email"
-                    className="w-full p-2 mb-3 border rounded"
-                    value={email}
-                    onChange={(e) => setEmail(e.target.value)}
-                    required
-                    autoComplete="email"
-                  />
-                  <input
-                    type="password"
-                    placeholder="Contraseña (mínimo 6 caracteres)"
-                    className="w-full p-2 mb-3 border rounded"
-                    value={password}
-                    onChange={(e) => setPassword(e.target.value)}
-                    required
-                    minLength="6"
-                    autoComplete="new-password"
-                  />
-                  {errorMsg && (
-                    <div className="text-red-600 text-sm mb-2 p-2 bg-red-50 rounded">
-                      {errorMsg}
-                    </div>
-                  )}
-                  {successMsg && (
-                    <div className="text-green-600 text-sm mb-2 p-2 bg-green-50 rounded">
-                      {successMsg}
-                    </div>
-                  )}
-                  <div className="flex justify-between items-center">
-                    <button
-                      type="button"
-                      className="bg-gray-400 hover:bg-gray-600 text-white px-4 py-2 rounded"
-                      onClick={closeModal}
-                    >
-                      Cancelar
-                    </button>
-                    <button
-                      type="submit"
-                      className="bg-black hover:bg-green-500 text-white px-4 py-2 rounded"
-                      disabled={loading}
-                    >
-                      {loading ? "Registrando..." : "Registrarse"}
-                    </button>
-                  </div>
-                </>
-              )}
-            </form>
-          </div>
-        </div>
-      )}
+    <div className="bg-white p-8 rounded-lg shadow-lg w-96">
+      <form onSubmit={handleSubmit} autoComplete="on">
+        {modalType === "login" ? (
+          <>
+            <h2 className="text-2xl font-bold mb-4">Login</h2>
+            {/* inputs login */}
+            <input
+              type="email"
+              placeholder="Email"
+              className="w-full p-2 mb-3 border rounded"
+              value={email}
+              onChange={(e) => setEmail(e.target.value)}
+              required
+              autoComplete="email"
+            />
+            <input
+              type="password"
+              placeholder="Password"
+              className="w-full p-2 mb-3 border rounded"
+              value={password}
+              onChange={(e) => setPassword(e.target.value)}
+              required
+              autoComplete="current-password"
+            />
+
+            {/* mensajes */}
+            {errorMsg && (
+              <div className="text-red-600 text-sm mb-2 p-2 bg-red-50 rounded">
+                {errorMsg}
+              </div>
+            )}
+            {successMsg && (
+              <div className="text-cyan-600 text-sm mb-2 p-2 bg-cyan-50 rounded">
+                {successMsg}
+              </div>
+            )}
+
+            {/* botones */}
+            <div className="flex justify-between items-center">
+              <button
+                type="button"
+                className="bg-gray-400 hover:bg-gray-600 text-white px-4 py-2 rounded"
+                onClick={closeModal}
+              >
+                Cancel
+              </button>
+              <button
+                type="submit"
+                className="bg-black hover:bg-cyan-500 text-white px-4 py-2 rounded"
+                disabled={loading}
+              >
+                {loading ? "Loading..." : "Login"}
+              </button>
+            </div>
+
+            {/* link para ir a registro */}
+            <p className="mt-4 text-center text-sm">
+              Don't have an account yet?{" "}
+              <button
+                type="button"
+                className="text-blue-600 hover:underline"
+                onClick={() => setModalType("register")}
+              >
+                Register
+              </button>
+            </p>
+          </>
+        ) : (
+          <>
+            <h2 className="text-2xl font-bold mb-4">Register</h2>
+            {/* inputs registro */}
+            <input
+              type="text"
+              placeholder="Name"
+              className="w-full p-2 mb-3 border rounded"
+              value={name}
+              onChange={(e) => setName(e.target.value)}
+              required
+              autoComplete="name"
+            />
+            <input
+              type="email"
+              placeholder="Email"
+              className="w-full p-2 mb-3 border rounded"
+              value={email}
+              onChange={(e) => setEmail(e.target.value)}
+              required
+              autoComplete="email"
+            />
+            <input
+              type="password"
+              placeholder="Password"
+              className="w-full p-2 mb-3 border rounded"
+              value={password}
+              onChange={(e) => setPassword(e.target.value)}
+              required
+              minLength="6"
+              autoComplete="new-password"
+            />
+
+            {/* mensajes */}
+            {errorMsg && (
+              <div className="text-red-600 text-sm mb-2 p-2 bg-red-50 rounded">
+                {errorMsg}
+              </div>
+            )}
+            {successMsg && (
+              <div className="text-cyan-600 text-sm mb-2 p-2 bg-cyan-50 rounded">
+                {successMsg}
+              </div>
+            )}
+
+            {/* botones */}
+            <div className="flex justify-between items-center">
+              <button
+                type="button"
+                className="bg-gray-400 hover:bg-gray-600 text-white px-4 py-2 rounded"
+                onClick={closeModal}
+              >
+                Cancel
+              </button>
+              <button
+                type="submit"
+                className="bg-black hover:bg-cyan-500 text-white px-4 py-2 rounded"
+                disabled={loading}
+              >
+                {loading ? "Registering..." : "Register"}
+              </button>
+            </div>
+
+            {/* link para ir a login */}
+            <p className="mt-4 text-center text-sm">
+              Already have an account?{" "}
+              <button
+                type="button"
+                className="text-blue-600 hover:underline"
+                onClick={() => setModalType("login")}
+              >
+                Login
+              </button>
+            </p>
+          </>
+        )}
+      </form>
+    </div>
+  </div>
+)}
+
     </>
   );
 };

@@ -42,7 +42,7 @@ function ProjectNavigation({ hidePrev = false }) {
             {!hidePrev && (
                 <button
                     onClick={goPrev}
-                    className="fixed bottom-4 left-4 z-50 bg-black border text-white px-2 py-2 rounded shadow hover:bg-green-700"
+                    className="fixed bottom-4 left-4 z-50 bg-black border text-white px-2 py-2 rounded shadow hover:bg-cyan-700"
                 >
                     <FaCaretLeft className="text-2xl" />
                 </button>
@@ -50,7 +50,7 @@ function ProjectNavigation({ hidePrev = false }) {
 
             <button
                 onClick={goNext}
-                className="fixed bottom-4 right-4 z-50 bg-black border text-white px-2 py-2 rounded shadow hover:bg-green-700"
+                className="fixed bottom-4 right-4 z-50 bg-black border text-white px-2 py-2 rounded shadow hover:bg-cyan-700"
             >
                 <FaCaretRight className="text-2xl" />
             </button>

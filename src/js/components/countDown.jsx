@@ -147,6 +147,8 @@ const CountDown = () => {
                     hoverFillColor="#911"
                 />
             </div>
+                          <div className="fixed inset-0 bg-cyan-950/40 "></div>
+
 
             {/* Contenido interactivo */}
             <div className="relative z-10 flex flex-col items-center justify-center h-full">
@@ -182,13 +184,13 @@ const CountDown = () => {
                     </div>
                     <div>
                         <button
-                            className="titulo text-white px-3 border-3 rounded text-3xl hover:text-red-600 hover:cursor-pointer"
+                            className="titulo text-white px-3 border-3 rounded text-3xl hover:text-cyan-400 hover:cursor-pointer"
                             onClick={toggleCountDown}
                         >
                             {isRunning ? (isPaused ? "RESUME" : "PAUSE") : "START"}
                         </button>
                         <button
-                            className="titulo text-white px-3 border-3 rounded text-3xl hover:text-red-600 hover:cursor-pointer ml-3"
+                            className="titulo text-white px-3 border-3 rounded text-3xl hover:text-cyan-700 hover:cursor-pointer ml-3"
                             onClick={resetCountDown}
                         >
                             RESET

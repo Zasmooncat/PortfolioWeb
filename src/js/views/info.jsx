@@ -1,87 +1,132 @@
 // src/js/components/Info.jsx
 import React from "react";
+import { Link } from "react-router";
+import { motion } from "framer-motion";
+import fotocyan from "../../img/zasfotocyan.png";
 
 const Info = () => {
   return (
-    <div className="min-h-screen bg-gray-900 text-white py-12 px-6">
-      <div className="max-w-4xl mx-auto bg-gray-800 rounded-2xl shadow-lg p-10">
-        {/* Header */}
-        <header className="flex flex-col md:flex-row md:items-center md:justify-between border-b border-gray-700 pb-6 mb-6">
-          <div>
-            <h1 className="text-4xl font-bold">Miguel Angel Pardo Bargues</h1>
-            <p className="text-lg text-gray-400">Desarrollador Web Fullstack Diseño UI UX</p>
-          </div>
-          <div className="mt-4 md:mt-0 text-gray-300">
-            <p>Email: zasmomoxipol@gmail.com</p>
-            <p>Tel: +34 635 863 012</p>
-            <p>Valencia, España</p>
-            <p>
-              <a href="https://github.com/zasmooncat" className="hover:text-green-400">
-                GitHub
-              </a>{" "}
-              |{" "}
-              <a href="https://linkedin.com/in/zasmooncat" className="hover:text-green-400">
-                LinkedIn
-              </a>
-            </p>
-          </div>
-        </header>
+    <div className="absolute top-0 inset-0 overflow-y-auto text-white bg-black">
+      {/* Video de fondo */}
+      <video
+        className="fixed w-full h-full object-cover"
+        src="../src/video/movieout.5.mp4"
+        autoPlay
+        loop
+        muted
+        playsInline
+      ></video>
 
-        {/* About */}
-        <section className="mb-8">
-          <h2 className="text-2xl font-semibold mb-3">Sobre mí</h2>
-          <p className="text-gray-300 leading-relaxed">
-            Breve descripción personal: tu perfil, motivación y objetivos. Aquí
-            puedes hablar de tu pasión por la tecnología, proyectos personales o
-            lo que te define como profesional.
-          </p>
-        </section>
+      {/* Overlay */}
+      <div className="fixed inset-0 bg-cyan-950/40"></div>
 
-        {/* Experience */}
-        <section className="mb-8">
-          <h2 className="text-2xl font-semibold mb-3">Experiencia</h2>
-          <div className="space-y-4">
-            <div>
-              <h3 className="text-xl font-bold">Puesto de trabajo</h3>
-              <p className="text-gray-400 italic">Empresa | 2020 - 2022</p>
-              <p className="text-gray-300">
-                Breve descripción de tus funciones, proyectos destacados y logros
-                obtenidos.
+      {/* Contenido con animación */}
+      <motion.div
+        initial={{ opacity: 0, y: 30 }}
+        animate={{ opacity: 1, y: 0 }}
+        transition={{ duration: 1.2, ease: "easeOut" }}
+        className="relative z-10 p-4 md:pt-12 md:px-6 mt-10 min-h-screen"
+      >
+        <div className="max-w-4xl mx-auto bg-gradient-to-br from-black/50 to-neutral-900/50 shadow-lg p-4 md:p-10">
+          {/* Header */}
+          <motion.header
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ delay: 0.3, duration: 1 }}
+            className="flex flex-col md:flex-row md:items-center border-b border-gray-700 pb-6 mb-6"
+          >
+            <div className="mb-4 md:mb-0">
+              <h1 className="text-2xl md:text-4xl titulo-name font-bold">
+                <p>Miguel Angel</p>
+                <p>Pardo Bargues</p>
+              </h1>
+              <p className="text-base md:text-lg mt-2 italic text-cyan-300">
+                Web designer/developer.
               </p>
             </div>
-            <div>
-              <h3 className="text-xl font-bold">Otro puesto de trabajo</h3>
-              <p className="text-gray-400 italic">Otra empresa | 2018 - 2020</p>
-              <p className="text-gray-300">
-                Explica responsabilidades y resultados, de manera clara y concisa.
+            <div className="text-sm md:text-base md:ms-33 text-gray-300">
+              <p>Email: zasmomoxipol@gmail.com</p>
+              <p>Tel: +34 635 863 012</p>
+              <p>Valencia, España</p>
+              <p className="mt-2">
+                <a
+                  href="https://github.com/zasmooncat"
+                  className="text-gray-400 hover:text-cyan-400"
+                >
+                  GitHub
+                </a>{" "}
+                |{" "}
+                <a
+                  href="https://linkedin.com/in/zasmooncat"
+                  className="text-gray-400 hover:text-cyan-400"
+                >
+                  LinkedIn
+                </a>
               </p>
             </div>
-          </div>
-        </section>
+          </motion.header>
 
-        {/* Education */}
-        <section className="mb-8">
-          <h2 className="text-2xl font-semibold mb-3">Educación</h2>
-          <div>
-            <h3 className="text-xl font-bold">Título / Curso</h3>
-            <p className="text-gray-400 italic">Institución | Año</p>
-            <p className="text-gray-300">Descripción breve de los estudios.</p>
-          </div>
-        </section>
+          {/* seccion foto y descripcion */}
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ delay: 0.6, duration: 1 }}
+            className="flex flex-col md:flex-row gap-6"
+          >
+            {/* foto */}
+            <section className="flex-shrink-0">
+              <img
+                src={fotocyan}
+                alt="foto"
+                className="w-full max-w-xs md:max-w-sm lg:max-w-md mx-auto md:mx-0 opacity-70 rounded-lg"
+              />
+            </section>
 
-        {/* Skills */}
-        <section>
-          <h2 className="text-2xl font-semibold mb-3">Habilidades</h2>
-          <ul className="grid grid-cols-2 md:grid-cols-3 gap-2 text-gray-300">
-            <li className="bg-gray-700 rounded-lg px-3 py-1">React</li>
-            <li className="bg-gray-700 rounded-lg px-3 py-1">JavaScript</li>
-            <li className="bg-gray-700 rounded-lg px-3 py-1">Python</li>
-            <li className="bg-gray-700 rounded-lg px-3 py-1">SQL</li>
-            <li className="bg-gray-700 rounded-lg px-3 py-1">Git/GitHub</li>
-            <li className="bg-gray-700 rounded-lg px-3 py-1">TailwindCSS</li>
-          </ul>
-        </section>
-      </div>
+            {/* About */}
+            <section className="flex-1">
+              <h2 className="titulo-name text-cyan-200 font-semibold mb-4">
+                ABOUT ME
+              </h2>
+
+              <p className="text-gray-200 text-sm md:text-base leading-relaxed mb-8">
+                Always looking for new ways to express my creativity and sharing
+                my work with the world. Web design and development bring me the
+                opportunity to investigate a new world of possibilities to share
+                my art through useful and functional applications. I love
+                learning new ways to improve my skills and create better user
+                experiences, that combines art, design and technology.
+              </p>
+
+              {/* lista de links */}
+              <ul className="grid grid-cols-1 list-disc ms-4 sm:grid-cols-2 gap-4 titulo-name">
+                <li className="text-white hover:text-cyan-400 cursor-pointer leading-relaxed p-2 bg-black/20 rounded-lg transition-colors duration-300">
+                  <Link to="/projects" className="block">
+                    REACT DEMOS
+                  </Link>
+                </li>
+                <li className="text-white hover:text-cyan-400 cursor-pointer leading-relaxed p-2 bg-black/20 rounded-lg transition-colors duration-300">
+                  <Link to="/videoart" className="block">
+                    VIDEO
+                  </Link>
+                </li>
+                <li className="text-white hover:text-cyan-400 cursor-pointer leading-relaxed p-2 bg-black/20 rounded-lg transition-colors duration-300">
+                  <Link to="/works" className="block">
+                    WORKS
+                  </Link>
+                </li>
+                <li className="text-white hover:text-cyan-400 cursor-pointer leading-relaxed p-2 bg-black/20 rounded-lg transition-colors duration-300">
+                  <a
+                    href="https://www.dropbox.com/scl/fi/4ohnt8lsh0shs4iur3xsq/Miguel-Angel-Pardo-Bargues-FlowCV-Resume-20250822.pdf?rlkey=tvwh7cmqwpz9ixvis16nflabx&st=50edsntw&dl=0"
+                    className="block"
+                  >
+                    RESUME
+                  </a>
+                </li>
+              </ul>
+            </section>
+          </motion.div>
+        </div>
+      </motion.div>
     </div>
   );
 };

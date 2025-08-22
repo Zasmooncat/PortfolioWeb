@@ -48,19 +48,22 @@ const MemeGenerator = () => {
             hoverFillColor="#471"
           />
         </div>
+
+        <div className="fixed inset-0 bg-cyan-950/40 "></div>
+
         <div className="relative min-h-screen w-full">
           <p className="titulo text-center text-white text-5xl mt-10 mb-10">
             MEME GENERATOR
           </p>
 
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-10 justify-items-center items-center md:w-3/5 mx-auto">
-            <div className="left w-[50%] flex flex-col items-center">
-              <p className="text-gray-400">Select Image</p>
+          <div className="grid grid-cols-1 gap-10 bg-gray-800/60 md:grid-cols-2 md:relative justify-items-center md:h-180 md:w-280 mx-auto rounded-xl overflow-hidden">
+            <div className="  flex flex-col items-center md:mt-20">
+              <p className="text-gray-400 mt-2">Select Image</p>
               {/* Miniaturas del slider */}
               <div className="flex items-center  mt-5">
                 <button
                   onClick={handlePrev}
-                  className="text-white text-2xl bg-black/50 px-3 py-2 rounded hover:bg-black"
+                  className="text-white mx-3 text-xl rounded-full bg-gray-700/50 px-3 py-2 rounded hover:bg-black"
                 >
                   ◀
                 </button>
@@ -69,23 +72,23 @@ const MemeGenerator = () => {
                   <img
                     src={selectedImage}
                     alt="Meme preview"
-                    className="w-32 h-32 grayscale-70 object-cover border-2 border-white rounded"
+                    className="w-40 h-40 grayscale-70 object-cover border-2 border-white rounded"
                   />
                 )}
 
                 <button
                   onClick={handleNext}
-                  className="text-white text-2xl bg-black/50 px-3 py-2 rounded hover:bg-black"
+                  className="text-white mx-3 text-xl rounded-full bg-gray-700/50 px-3 py-2 rounded hover:bg-black"
                 >
                   ▶
                 </button>
               </div>
 
               {/* Inputs */}
-              <div className="inputs flex flex-col mt-5 gap-5">
+              <div className="inputs flex flex-col mt-12 gap-5">
                 <div className="">
                   <input
-                    className="bg-black border-2 w-60 border-white placeholder-gray-500 px-3 py-1 rounded text-white"
+                    className="bg-gray-200  w-60 placeholder-gray-500 px-3 py-1 rounded "
                     type="text"
                     id="top"
                     value={topText}
@@ -96,7 +99,7 @@ const MemeGenerator = () => {
 
                 <div className="flex flex-col">
                   <input
-                    className="bg-black border-2 w-60 border-white placeholder-gray-500 px-3 py-1 rounded text-white"
+                    className="bg-gray-200 w-60 placeholder-gray-500 px-3 py-1 rounded"
                     type="text"
                     id="bottom"
                     value={bottomText}
@@ -107,19 +110,19 @@ const MemeGenerator = () => {
               </div>
             </div>
 
-            <div className="">
+            <div className="w-[80%] h-150 md:w-1/2  md:absolute md:right-4  ">
               {selectedImage && (
-                <div className="selected-meme-img relative w-[500px] h-[600px] overflow-hidden flex justify-center items-center border-4 border-white mb-20">
-                  <p className="absolute top-5 w-[90%] text-center text-white text-6xl font-bold uppercase break-words leading-tight drop-shadow-[0px_0px_6px_rgba(0,0,0,1)]">
+                <div className="selected-meme-img relative w-full  md:w-150   m-auto overflow-hidden mt-5 ">
+                  <p className=" absolute top-5 w-[100%]  text-center text-white text-6xl font-bold uppercase  drop-shadow-[0px_0px_6px_rgba(0,0,0,1)]">
                     {topText}
                   </p>
-                  <p className="absolute bottom-5 w-[90%] text-center text-white text-6xl font-bold uppercase drop-shadow-[0px_0px_6px_rgba(0,0,0,1)] break-words leading-tight">
+                  <p className="absolute bottom-5 w-[100%] text-center text-white text-6xl font-bold uppercase drop-shadow-[0px_0px_6px_rgba(0,0,0,1)] ">
                     {bottomText}
                   </p>
                   <img
                     src={selectedImage}
                     alt="Selected meme"
-                    className=" w-full h-full object-cover  "
+                    className=" w-full h-110 md:h-170 object-cover  "
                   />
                 </div>
               )}

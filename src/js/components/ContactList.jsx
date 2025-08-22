@@ -172,8 +172,8 @@ const handleSave = async (e) => {
     const Spinner = () => (
         <div className="flex items-center justify-center py-12">
             <div className="relative">
-                <div className="w-12 h-12 border-4 border-gray-600 border-t-green-500 rounded-full animate-spin"></div>
-                <div className="absolute inset-0 w-12 h-12 border-4 border-transparent border-r-green-300 rounded-full animate-spin" style={{animationDirection: 'reverse', animationDuration: '1.5s'}}></div>
+                <div className="w-12 h-12 border-4 border-gray-600 border-t-cyan-500 rounded-full animate-spin"></div>
+                <div className="absolute inset-0 w-12 h-12 border-4 border-transparent border-r-cyan-300 rounded-full animate-spin" style={{animationDirection: 'reverse', animationDuration: '1.5s'}}></div>
             </div>
         </div>
     );
@@ -190,15 +190,25 @@ const handleSave = async (e) => {
             hoverFillColor="#911"
           />
         </div>
+              <div className="fixed inset-0 bg-cyan-950/40 "></div>
+
 
         {/* Contenido */}
         <div className="relative z-10 flex flex-col items-center justify-center h-full mt-10">
-          <h1 className="titulo text-white text-5xl mb-8 pointer-events-auto">
+          <h1 className="titulo text-white text-5xl mb-4 pointer-events-auto">
             CONTACT LIST
           </h1>
+           {/* Indicador de modo */}
+          {!user && (
+            <div className="text-center mb-4">
+              <p className="text-cyan-500 text-sm inline-block px-4 py-2 rounded-lg">
+                Login to save contacts.
+              </p>
+            </div>
+          )}
 
           {/* Lista de contactos */}
-          <div className="w-full md:w-2/4 bg-linear-to-br from-neutral-700 to-neutral-600/40 px-2 rounded-lg shadow-md ">
+          <div className="w-full md:w-2/4 bg-linear-to-br from-cyan-950/30 to-neutral-600/40 px-2 rounded-lg shadow-md ">
             {loading ? (
               <Spinner />
             ) : contacts.length === 0 ? (
@@ -221,7 +231,7 @@ const handleSave = async (e) => {
                           {c.first_name} {c.last_name}
                         </span>
                         <br />
-                        <p className="text-green-400 titulo text-xl">
+                        <p className="text-cyan-400 text-sm py-1">
                           {c.email}
                         </p>
                         <p className="text-sm">{c.phone}</p>
@@ -230,13 +240,13 @@ const handleSave = async (e) => {
                     <div className="flex flex-col gap-2">
                       <button
                         onClick={() => openModal(c)}
-                        className=" hover:text-yellow-600 text-white  px-3 py-1"
+                        className=" hover:text-yellow-600 text-white px-3 py-1"
                       >
                         <Pencil />
                       </button>
                       <button
                         onClick={() => handleDelete(c.id)}
-                        className="hover:text-red-700 text-white px-3 py-1 rounded"
+                        className="hover:text-red-700 text-white px-3 py-1"
                       >
                         <Trash2 />
                       </button>
@@ -250,7 +260,7 @@ const handleSave = async (e) => {
           {/* Botón añadir */}
           <button
             onClick={() => openModal()}
-            className="bg-radial-[at_50%_75%] from-green-300 via-green-600 to-green-900 to-90% text-2xl py-4 px-6 rounded-full cursor-pointer hover:bg-radial-[at_50%_75%] hover:from-green-400 hover:via-green-700 hover:to-green-900 hover:to-90% hover:text-2xl hover:bg-gradient-to-br text-green-800 font-bold hover:text-green-100 transition duration-300 m-10"
+            className="bg-gradient-to-br from-cyan-300 via-cyan-600 to-cyan-900  hover:from-cyan-400 hover:via-cyan-700 hover:to-cyan-900 text-cyan-900 font-bold hover:text-cyan-100 transition duration-300 shadow-lg hover:shadow-xl text-2xl py-2 px-4 rounded-full cursor-pointer m-10"
           >
             +
           </button>
@@ -312,7 +322,7 @@ const handleSave = async (e) => {
                   </button>
                   <button
                     type="submit"
-                    className="bg-green-600 hover:bg-green-700 text-white px-4 py-2 rounded"
+                    className="bg-cyan-600 hover:bg-cyan-700 text-white px-4 py-2 rounded"
                   >
                     Guardar
                   </button>
