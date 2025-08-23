@@ -181,7 +181,7 @@ function Projects() {
             </motion.div>
           </Link>
 
-          <Link to="/noticias" className="hover:cursor-pointer">
+          <Link to="/expenses" className="hover:cursor-pointer">
             <motion.div 
             variants={itemVariants}
             className="text-white w-65 h-65 flex flex-col items-center justify-center bg-gray-950/40 backdrop-blur-md p-5 hover:text-black hover:bg-white transition relative">

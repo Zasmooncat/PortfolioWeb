@@ -26,8 +26,9 @@ import TechnologyNews from "./components/TechnologyNews";
 import ContactList from "./components/ContactList";
 import ExpensesTracker from "./components/ExpensesTracker";
 import Calendar from "./components/Calendar";
-import Works from "./views/works"; // Asegúrate de que la ruta es correcta
+import Works from "./views/works"; 
 import { useLocation } from "react-router-dom";
+import ScrollToTop from "./components/ScrollToTop";
 
 
 // Componente interno que usa el AuthContext
@@ -55,6 +56,7 @@ const AppContent = () => {
 
   return (
     <div className="App">
+      <ScrollToTop smooth={true} />
       <Navbar />
 
       {/* Mostrar sidebar solo si el usuario está logueado */}
