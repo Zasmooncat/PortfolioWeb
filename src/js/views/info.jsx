@@ -2,7 +2,7 @@
 import React from "react";
 import { Link } from "react-router";
 import { motion } from "framer-motion";
-import fotocyan from "../../img/zasfotocyan.png";
+import fotocyan from "/img/zasfotocyan.png";
 
 const Info = () => {
   return (

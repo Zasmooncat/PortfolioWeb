@@ -6,10 +6,10 @@ import { Link } from 'react-router-dom';
 import { motion } from 'framer-motion';
 import { AuthContext } from '../../context/AuthContext';
 import videoBackground from '/video/movieout.5.mp4';
-import reactlogo from '../../img/react-1.webp';
-import tdlogo from '../../img/icontd.webp';
-import infoicon from '../../img/info.png';
-import gearicon from '../../img/gear-vector-icon-image-style-is-a-flat-blue-and-gray-icon-symbol.png';
+import reactlogo from '/img/react-1.webp';
+import tdlogo from '/img/iconTD.webp';
+import infoicon from '/img/info.png';
+import gearicon from '/img/gear-vector-icon-image-style-is-a-flat-blue-and-gray-icon-symbol.png';
 
 function Home() {
   const { user } = useContext(AuthContext);
