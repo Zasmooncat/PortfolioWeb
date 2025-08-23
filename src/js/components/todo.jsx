@@ -223,7 +223,7 @@ function Todo() {
             onChange={(e) => setTodo(e.target.value)}
             placeholder="New Task"
             onKeyPress={handleKeyPress}
-            className="bg-neutral-900 border border-gray-500 w-90 placeholder:text-gray-400 rounded-xl mt-7 text-cyan-200 p-2 mb-10"
+            className="bg-neutral-900 border border-gray-500 w-80 placeholder:text-gray-400 rounded-xl mt-7 text-cyan-200 p-2 mb-10"
           />
         </div>
         <button
@@ -247,7 +247,7 @@ function Todo() {
               todos.map((task, index) => (
                 <div
                   key={task.id}
-                  className={`rounded-2xl p-4 text-white relative w-90 h-48 md:w-90 bg-linear-to-br from-neutral-800/80 to-neutral-600/40
+                  className={`rounded-2xl p-4 text-white relative w-80 h-48 md:w-90 bg-linear-to-br from-neutral-800/80 to-neutral-600/40
                     
                     ${
                       task.completed
