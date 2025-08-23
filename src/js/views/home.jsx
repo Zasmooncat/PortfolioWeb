@@ -122,7 +122,7 @@ const contentVariants = {
                 whileHover={{ scale: 1.05 }}
                 className="text-white w-70 h-70 flex flex-col bg-black/10 backdrop-blur-sm hover:text-black hover:bg-white transition"
               >
-                <p className="titulo-name font-michroma ext-xl m-3">INFO </p>
+                <p className="titulo-name font-michroma text-xl m-3">INFO </p>
                 <img src={infoicon} alt="" className="m-auto w-40 " />
               </motion.div>
             </Link>
