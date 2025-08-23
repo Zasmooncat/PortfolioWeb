@@ -31,6 +31,9 @@ function RandomCards() {
         
         return () => window.removeEventListener('resize', checkMobile);
     }, []);
+    useEffect(() => {
+    window.scrollTo(0, 0);
+}, []);
 
     const generateCard = (isInitial = false) => {
         setIsFlipping(true);
