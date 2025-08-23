@@ -37,7 +37,7 @@ export default function Works() {
         <div className="relative min-h-screen w-full bg-black text-white overflow-hidden">
             {/* Fondo decorativo */}
             <video
-                className="fixed w-full h-full object-cover"
+                className="fixed w-full h-full object-cover top-0"
                 src="/video/movieout.5.mp4" // 👉 aquí cambias el link de tu video
                 autoPlay
                 loop

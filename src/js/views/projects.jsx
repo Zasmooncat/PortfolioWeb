@@ -44,7 +44,7 @@ function Projects() {
 
       <div className="relative z-10 mt-5 m-3">
         <motion.div
-          className={`animate-fadeIn ml-13 backdrop-blur-md md:mx-auto mt-10 w-12/15 grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-8 ${user ? "md:ml-55" : ""
+          className={`animate-fadeIn   mx-auto mt-10 w-12/15 grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6 ${user ? "md:ml-55" : ""
             }`
           }
           initial="hidden"
@@ -57,7 +57,7 @@ function Projects() {
             
               <motion.div 
               variants={itemVariants}
-              className="text-white w-65 h-65 flex flex-col items-center justify-center bg-gray-950/40 backdrop-blur-md p-5 hover:text-black hover:bg-white transition relative">
+              className="text-white mx-auto  w-65 h-65 flex flex-col items-center justify-center bg-gray-950/40 backdrop-blur-md p-5 hover:text-black hover:bg-white transition relative">
                 <p className="titulo-name top-0 left-0 text-xl absolute p-5">
                   SIMPLE COUNTER
                 </p>
@@ -72,7 +72,7 @@ function Projects() {
           <Link to="/chrono" className="hover:cursor-pointer">
             <motion.div 
             variants={itemVariants}
-            className="text-white w-65 h-65 flex flex-col items-center justify-center bg-gray-950/40 backdrop-blur-md p-5 hover:text-black hover:bg-white transition relative">
+            className="text-white mx-auto w-65 h-65 flex flex-col items-center justify-center bg-gray-950/40 backdrop-blur-md p-5 hover:text-black hover:bg-white transition relative">
               
               <p className="titulo-name top-0 left-0 text-xl absolute p-5">
                 CHRONOMETER
@@ -87,7 +87,7 @@ function Projects() {
           <Link to="/countdown" className="hover:cursor-pointer">
             <motion.div 
             variants={itemVariants}
-            className="text-white w-65 h-65 flex flex-col items-center justify-center bg-gray-950/40 backdrop-blur-md p-5 hover:text-black hover:bg-white transition relative">
+            className="text-white mx-auto w-65 h-65 flex flex-col items-center justify-center bg-gray-950/40 backdrop-blur-md p-5 hover:text-black hover:bg-white transition relative">
               <p className="titulo-name top-0 left-0 text-xl absolute p-5">COUNT DOWN</p>
               <p className=" text-sm text-gray-400 p-5 top-[30%] bottom-2 absolute mt-5 left-0">
                 Set the time and press start. Timer will start counting down
@@ -101,7 +101,7 @@ function Projects() {
           <Link to="/calculator" className="hover:cursor-pointer">
             <motion.div
             variants={itemVariants}
-            className="text-white w-65 h-65 flex flex-col items-center justify-center bg-gray-950/40 backdrop-blur-md p-5 hover:text-black hover:bg-white transition relative">
+            className="text-white mx-auto w-65 h-65 flex flex-col items-center justify-center bg-gray-950/40 backdrop-blur-md p-5 hover:text-black hover:bg-white transition relative">
               {/* Cambié el p interno por span */}
               <p className="titulo-name top-0 left-0 text-xl absolute p-5">
                 CALCULATOR
@@ -116,7 +116,7 @@ function Projects() {
           <Link to="/cards" className="hover:cursor-pointer">
             <motion.div 
             variants={itemVariants}
-            className="text-white w-65 h-65 flex flex-col items-center justify-center bg-gray-950/40 backdrop-blur-md p-5 hover:text-black hover:bg-white transition relative">
+            className="text-white mx-auto w-65 h-65 flex flex-col items-center justify-center bg-gray-950/40 backdrop-blur-md p-5 hover:text-black hover:bg-white transition relative">
               <p className="titulo-name top-0 left-0 text-xl absolute p-5">
                 RANDOM CARDS
               </p>
@@ -130,7 +130,7 @@ function Projects() {
           <Link to="/memegenerator" className="hover:cursor-pointer">
             <motion.div 
             variants={itemVariants}
-            className="text-white w-65 h-65 flex flex-col items-center justify-center bg-gray-950/40 backdrop-blur-md p-5 hover:text-black hover:bg-white transition relative">
+            className="text-white mx-auto w-65 h-65 flex flex-col items-center justify-center bg-gray-950/40 backdrop-blur-md p-5 hover:text-black hover:bg-white transition relative">
               <p className="titulo-name top-0 left-0 text-xl absolute p-5">
                 MEME GENERATOR
               </p>
@@ -143,7 +143,7 @@ function Projects() {
           <Link to="/calendar" className="hover:cursor-pointer">
             <motion.div 
             variants={itemVariants}
-            className="text-white w-65 h-65 flex flex-col items-center justify-center bg-gray-950/40 backdrop-blur-md p-5 hover:text-black hover:bg-white transition relative">
+            className="text-white mx-auto w-65 h-65 flex flex-col items-center justify-center bg-gray-950/40 backdrop-blur-md p-5 hover:text-black hover:bg-white transition relative">
               <p className="titulo-name top-0 left-0 text-xl absolute p-5">
                 CALENDAR
               </p>
@@ -156,7 +156,7 @@ function Projects() {
           <Link to="/todo" className="hover:cursor-pointer">
             <motion.div 
             variants={itemVariants}
-            className="text-white w-65 h-65 flex flex-col items-center justify-center bg-gray-950/40 backdrop-blur-md p-5 hover:text-black hover:bg-white transition relative">
+            className="text-white mx-auto w-65 h-65 flex flex-col items-center justify-center bg-gray-950/40 backdrop-blur-md p-5 hover:text-black hover:bg-white transition relative">
               <p className="titulo-name top-0 left-0 text-xl absolute p-5">TO DO LIST</p>
               <p className=" text-sm text-gray-400 p-5 top-[30%] bottom-2 absolute mt-5 left-0">
                 Just write your task and press enter. Your task will appear in
@@ -170,7 +170,7 @@ function Projects() {
           <Link to="/contacts" className="hover:cursor-pointer">
             <motion.div 
             variants={itemVariants}
-            className="text-white w-65 h-65 flex flex-col items-center justify-center bg-gray-950/40 backdrop-blur-md p-5 hover:text-black hover:bg-white transition relative">
+            className="text-white mx-auto w-65 h-65 flex flex-col items-center justify-center bg-gray-950/40 backdrop-blur-md p-5 hover:text-black hover:bg-white transition relative">
               {/* Cambié el p interno por span */}
               <p className="titulo-name top-0 left-0 text-xl absolute p-5">
                 <span>CONTACT LIST</span>
@@ -184,7 +184,7 @@ function Projects() {
           <Link to="/expenses" className="hover:cursor-pointer">
             <motion.div 
             variants={itemVariants}
-            className="text-white w-65 h-65 flex flex-col items-center justify-center bg-gray-950/40 backdrop-blur-md p-5 hover:text-black hover:bg-white transition relative">
+            className="text-white mx-auto w-65 h-65 flex flex-col items-center justify-center bg-gray-950/40 backdrop-blur-md p-5 hover:text-black hover:bg-white transition relative">
               <p className="titulo-name top-0 left-0 text-xl absolute p-5">
                 EXPENSES TRACKER
               </p>
@@ -198,7 +198,7 @@ function Projects() {
           <Link to="/weather" className="hover:cursor-pointer">
             <motion.div 
             variants={itemVariants}
-            className="text-white w-65 h-65 flex flex-col items-center justify-center bg-gray-950/40 backdrop-blur-md p-5 hover:text-black hover:bg-white transition relative">
+            className="text-white mx-auto w-65 h-65 flex flex-col items-center justify-center bg-gray-950/40 backdrop-blur-md p-5 hover:text-black hover:bg-white transition relative">
               {/* Cambié el p interno por span */}
               <p className="titulo-name top-0 left-0 text-xl absolute p-5">
                 APP WEATHER
@@ -213,7 +213,7 @@ function Projects() {
           <Link to="/noticias" className="hover:cursor-pointer">
             <motion.div 
             variants={itemVariants}
-            className="text-white w-65 h-65 flex flex-col items-center justify-center bg-gray-950/40 backdrop-blur-md p-5 hover:text-black hover:bg-white transition relative">
+            className="text-white mx-auto w-65 h-65 flex flex-col items-center justify-center bg-gray-950/40 backdrop-blur-md p-5 hover:text-black hover:bg-white transition relative">
               <p className="titulo-name top-0 left-0 text-xl absolute p-5">
                 NEWS SEARCH ENGINE
               </p>

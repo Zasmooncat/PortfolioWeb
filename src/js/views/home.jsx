@@ -59,7 +59,7 @@ const contentVariants = {
       >
         {/* 🎬 Video con fade-in */}
         <motion.video
-          className="fixed w-full h-full object-cover"
+          className="fixed w-full h-full object-cover top-0"
           src={videoBackground}
           autoPlay
           loop

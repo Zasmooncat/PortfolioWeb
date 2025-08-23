@@ -147,19 +147,18 @@ const CountDown = () => {
                     hoverFillColor="#911"
                 />
             </div>
-        <div className="fixed inset-0 bg-cyan-950/40 "></div>
-
+            <div className="fixed inset-0 bg-cyan-950/40 "></div>
 
             {/* Contenido interactivo */}
             <div className="relative z-10 flex flex-col items-center justify-center h-full">
-                <div className="container">
-                    <p className="titulo font-smooch text-center text-white text-5xl mt-5 mb-5">
+                <div className="flex flex-col items-center justify-center">
+                    <p className="titulo font-smooch text-center text-white text-5xl mt-1 mb-5">
                         COUNT DOWN
                     </p>
-                    <label htmlFor="number" className="text-white me-3">
+                    <label htmlFor="number" className="text-white mb-3">
                         Set Start Point
                     </label>
-                    <div>
+                    <div className="mb-8">
                         <input
                             placeholder="hours"
                             type="number"
@@ -197,28 +196,30 @@ const CountDown = () => {
                         </button>
                     </div>
 
-
-
-                    <div className="ms-7">
-
-
-                        <div className="grid grid-cols-3 mt-10 ">
+                    <div className="w-full flex justify-center md:w-full mx-auto">
+                        <div className="grid grid-cols-3 mt-10 gap-4">
                             <div
-                                className={`digito hours text-7xl md:text-9xl lg:text-9xl font-extrabold ${isTenSecondsLeft ? "animate-blink text-red-600" : "text-white"
+                                className={` text-7xl md:text-9xl lg:text-9xl font-extrabold ${isTenSecondsLeft
+                                        ? "animate-blink text-red-600"
+                                        : "text-white"
                                     }`}
                             >
                                 {displayHours}
                             </div>
                             {/* <p className="text-white text-7xl md:text-9xl lg:text-9xl mb-3">:</p> */}
                             <div
-                                className={`digito mins text-7xl md:text-9xl lg:text-9xl font-extrabold ${isTenSecondsLeft ? "animate-blink text-red-600" : "text-white"
+                                className={` text-7xl md:text-9xl lg:text-9xl font-extrabold ${isTenSecondsLeft
+                                        ? "animate-blink text-red-600"
+                                        : "text-white"
                                     }`}
                             >
                                 {displayMins}
                             </div>
                             {/* <p className="text-white text-7xl md:text-9xl lg:text-9xl mb-3">:</p> */}
                             <div
-                                className={` secs text-7xl md:text-9xl lg:text-9xl font-extrabold ${isTenSecondsLeft ? "animate-blink text-red-600" : "text-white"
+                                className={` secs text-7xl md:text-9xl lg:text-9xl font-extrabold ${isTenSecondsLeft
+                                        ? "animate-blink text-red-600"
+                                        : "text-white"
                                     }`}
                             >
                                 {displaySecs}
