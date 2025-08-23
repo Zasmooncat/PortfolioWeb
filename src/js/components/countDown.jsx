@@ -147,7 +147,7 @@ const CountDown = () => {
                     hoverFillColor="#911"
                 />
             </div>
-                          <div className="fixed inset-0 bg-cyan-950/40 "></div>
+        <div className="fixed inset-0 bg-cyan-950/40 "></div>
 
 
             {/* Contenido interactivo */}
@@ -218,7 +218,7 @@ const CountDown = () => {
                             </div>
                             {/* <p className="text-white text-7xl md:text-9xl lg:text-9xl mb-3">:</p> */}
                             <div
-                                className={`digito secs text-7xl md:text-9xl lg:text-9xl font-extrabold ${isTenSecondsLeft ? "animate-blink text-red-600" : "text-white"
+                                className={` secs text-7xl md:text-9xl lg:text-9xl font-extrabold ${isTenSecondsLeft ? "animate-blink text-red-600" : "text-white"
                                     }`}
                             >
                                 {displaySecs}
