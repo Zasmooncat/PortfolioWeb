@@ -3,16 +3,16 @@ import React, { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import Squares from "./Squares"; 
 import ProjectNavigation from "../components/ProjectNavigation"; 
+import { motion } from "framer-motion"; // 👈 importamos framer-motion
 
 const API_KEY = import.meta.env.VITE_GNEWS_API_KEY;
 
 const TechnologyNews = () => {
   const [news, setNews] = useState([]);
-  const [query, setQuery] = useState("tecnologia"); // búsqueda inicial
-  const [inputValue, setInputValue] = useState(""); // valor del input
+  const [query, setQuery] = useState("tecnologia");
+  const [inputValue, setInputValue] = useState("");
   const navigate = useNavigate();
 
-  // Función para cargar noticias según la query
   const fetchNews = async (searchQuery) => {
     try {
       const response = await fetch(
@@ -20,25 +20,22 @@ const TechnologyNews = () => {
       );
 
       const data = await response.json();
-      console.log("DATA:", data);
       setNews(data.articles || []);
     } catch (error) {
       console.error("Error al cargar noticias:", error);
     }
   };
 
-  // Cargar noticias al inicio con la query por defecto
   useEffect(() => {
     fetchNews(query);
   }, []);
 
-  // Handler al enviar el input
   const handleSearch = (e) => {
     e.preventDefault();
     if (inputValue.trim() === "") return;
     setQuery(inputValue);
     fetchNews(inputValue);
-    setInputValue(""); // limpiar el input
+    setInputValue("");
   };
 
   return (
@@ -53,19 +50,20 @@ const TechnologyNews = () => {
           hoverFillColor="#911"
         />
       </div>
-       {/* Overlay para mejorar contraste */}
+
+      {/* Overlay */}
       <div className="fixed inset-0 bg-cyan-950/40"></div>
 
       {/* Contenido */}
       <div className="relative z-10">
-        <h1 className="titulo text-center text-white text-5xl mb-8 pointer-events-auto">
+        <h1 className="titulo text-center text-white text-5xl mb-8">
           NEWS SEARCH ENGINE
         </h1>
 
-        {/* Input de búsqueda */}
+        {/* Input */}
         <form
           onSubmit={handleSearch}
-          className="flex justify-center m-16 gap-2 pointer-events-auto"
+          className="flex justify-center m-16 gap-2"
         >
           <input
             type="text"
@@ -82,27 +80,33 @@ const TechnologyNews = () => {
           </button>
         </form>
 
-        <div className="md:w-8/12 mx-auto grid  md:grid-cols-2 lg:grid-cols-3">
+        {/* Noticias con animación */}
+        <div className="md:w-8/12 mx-auto grid md:grid-cols-2 lg:grid-cols-3 gap-4">
           {news.map((article, index) => (
-            <a
+            <motion.a
               key={index}
               href={article.url}
               target="_blank"
               rel="noopener noreferrer"
-              className="bg-gray-800/50 hover:bg-cyan-950 p-4 transition duration-300"
+              className="bg-gray-800/50 hover:bg-cyan-950 p-4 rounded-lg transition duration-300"
+              initial={{ opacity: 0, y: 0 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.6, delay: index * 0.1 }}
             >
               {article.image && (
                 <img
                   src={article.image}
                   alt={article.title}
-                  className="w-full h-48 object-cover mb-4"
+                  className="w-full h-48 object-cover mb-4 rounded-lg"
                 />
               )}
-              <h3 className="titulo font-smooch text-2xl font-semibold">{article.title}</h3>
-              <p className="titulo font-smooch text-gray-400  mt-2 line-clamp-2">
+              <h3 className="titulo font-smooch text-2xl font-semibold">
+                {article.title}
+              </h3>
+              <p className="titulo font-smooch text-gray-400 mt-2 line-clamp-2">
                 {article.description}
               </p>
-            </a>
+            </motion.a>
           ))}
         </div>
 
