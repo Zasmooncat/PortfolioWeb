@@ -153,7 +153,7 @@ const CountDown = () => {
             {/* Contenido interactivo */}
             <div className="relative z-10 flex flex-col items-center justify-center h-full">
                 <div className="container">
-                    <p className="titulo text-center text-white text-5xl mt-5 mb-5">
+                    <p className="titulo font-smooch text-center text-white text-5xl mt-5 mb-5">
                         COUNT DOWN
                     </p>
                     <label htmlFor="number" className="text-white me-3">
@@ -184,13 +184,13 @@ const CountDown = () => {
                     </div>
                     <div>
                         <button
-                            className="titulo text-white px-3 border-3 rounded text-3xl hover:text-cyan-400 hover:cursor-pointer"
+                            className="titulo font-smooch font-smooch text-white px-3 border-3 rounded text-3xl hover:text-cyan-400 hover:cursor-pointer"
                             onClick={toggleCountDown}
                         >
                             {isRunning ? (isPaused ? "RESUME" : "PAUSE") : "START"}
                         </button>
                         <button
-                            className="titulo text-white px-3 border-3 rounded text-3xl hover:text-cyan-700 hover:cursor-pointer ml-3"
+                            className="titulo font-smooch text-white px-3 border-3 rounded text-3xl hover:text-cyan-700 hover:cursor-pointer ml-3"
                             onClick={resetCountDown}
                         >
                             RESET

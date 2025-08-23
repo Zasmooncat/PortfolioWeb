@@ -154,7 +154,7 @@ function ExpensesTracker() {
 
       {/* Contenido */}
       
-          <h1 className="titulo text-white  text-center mb-5 text-5xl mt-5">EXPENSES TRACKER</h1>
+          <h1 className="titulo font-smooch text-white  text-center mb-5 text-5xl mt-5">EXPENSES TRACKER</h1>
 
       <div className="relative z-10 flex flex-col items-center pb-10 md:w-7/12 mx-auto bg-linear-to-br from-gray-700/60 to-neutral-90000/40 rounded-xl">
 

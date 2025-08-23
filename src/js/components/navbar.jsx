@@ -248,7 +248,7 @@ const Navbar = () => {
                     {loggingOut ? (
                       <div className="w-5 h-5 border-2 border-white border-t-transparent rounded-full animate-spin"></div>
                     ) : (
-                      <h3 className=" text-white  titulo text-2xl uppercase hover:text-cyan-400">
+                      <h3 className=" text-white  titulo font-smooch text-2xl uppercase hover:text-cyan-400">
                         {" "}
                         LOGOUT
                       </h3>

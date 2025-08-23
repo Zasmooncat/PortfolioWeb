@@ -203,7 +203,7 @@ function Todo() {
           user ? "md:ml-10" : ""
         }`}
       >
-        <h1 className="titulo text-center text-white text-5xl mt-8">
+        <h1 className="titulo font-smooch text-center text-white text-5xl mt-8">
           TO DO LIST
         </h1>
 

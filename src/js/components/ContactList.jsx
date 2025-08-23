@@ -195,7 +195,7 @@ const handleSave = async (e) => {
 
         {/* Contenido */}
         <div className="relative z-10 flex flex-col items-center justify-center h-full mt-10">
-          <h1 className="titulo text-white text-5xl mb-4 pointer-events-auto">
+          <h1 className="titulo font-smooch text-white text-5xl mb-4 pointer-events-auto">
             CONTACT LIST
           </h1>
            {/* Indicador de modo */}

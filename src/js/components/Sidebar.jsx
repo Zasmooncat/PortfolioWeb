@@ -75,7 +75,7 @@ const Sidebar = () => {
     overflow-hidden transition-all duration-500 ease-in-out
     ${isOpen ? "max-h-[500px] opacity-100" : "max-h-0 opacity-0"}`}
 >
-  <p className="text-cyan-400 titulo-name border-b border-gray-700 p-5 flex flex-col items-center justify-center uppercase">
+  <p className="text-cyan-400 titulo-name font-michroma border-b border-gray-700 p-5 flex flex-col items-center justify-center uppercase">
     {user.user_metadata.name || "User"}
   </p>
   {sidebarRoutes.map((route) => (
@@ -84,7 +84,7 @@ const Sidebar = () => {
       to={route.path}
       onClick={() => setIsOpen(false)} // cierra al seleccionar
       className={`
-        z-5 flex flex-col items-center justify-center space-y-2 titulo text-xl uppercase px-2 py-3 transition-colors duration-200
+        z-5 flex flex-col items-center justify-center space-y-2 titulo font-smooch text-xl uppercase px-2 py-3 transition-colors duration-200
         ${
           location.pathname === route.path
             ? "text-cyan-400"

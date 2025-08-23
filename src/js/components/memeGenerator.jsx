@@ -52,7 +52,7 @@ const MemeGenerator = () => {
         <div className="fixed inset-0 bg-cyan-950/40 "></div>
 
         <div className="relative min-h-screen w-full">
-          <p className="titulo text-center text-white text-5xl mt-10 mb-10">
+          <p className="titulo font-smooch text-center text-white text-5xl mt-10 mb-10">
             MEME GENERATOR
           </p>
 
@@ -112,7 +112,7 @@ const MemeGenerator = () => {
 
             <div className="w-[80%] h-150 md:w-1/2  md:absolute md:right-4  ">
               {selectedImage && (
-                <div className="selected-meme-img relative w-full  md:w-150   m-auto overflow-hidden mt-5 ">
+                <div className="selected-meme-img font-anton relative w-full  md:w-150   m-auto overflow-hidden mt-5 ">
                   <p className=" absolute top-5 w-[100%]  text-center text-white text-6xl font-bold uppercase  drop-shadow-[0px_0px_6px_rgba(0,0,0,1)]">
                     {topText}
                   </p>

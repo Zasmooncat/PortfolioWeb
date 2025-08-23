@@ -98,8 +98,8 @@ const TechnologyNews = () => {
                   className="w-full h-48 object-cover mb-4"
                 />
               )}
-              <h3 className="titulo text-2xl font-semibold">{article.title}</h3>
-              <p className="titulo text-gray-400  mt-2 line-clamp-2">
+              <h3 className="titulo font-smooch text-2xl font-semibold">{article.title}</h3>
+              <p className="titulo font-smooch text-gray-400  mt-2 line-clamp-2">
                 {article.description}
               </p>
             </a>

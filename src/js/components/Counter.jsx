@@ -27,7 +27,7 @@ function Counter() {
 
         {/* Contenido */}
         <div className="relative z-10 flex flex-col items-center justify-center h-full mt-10">
-          <h1 className="titulo text-white text-5xl mb-8 pointer-events-auto">
+          <h1 className="titulo font-smooch text-white text-5xl mb-8 pointer-events-auto">
             CONTADOR
           </h1>
           <div className="bg-linear-to-br from-gray-600/50 to-gray-800/40 w-40 md:w-2/11 flex justify-center items-center py-10 rounded-2xl">
@@ -52,7 +52,7 @@ function Counter() {
           </div>
 
           <button
-            className="titulo bg-gradient-to-br from-cyan-300 via-cyan-600 to-cyan-900 py-2 font-semibold px-6 rounded-2xl cursor-pointer hover:from-cyan-400 hover:via-cyan-700 hover:to-cyan-900 text-cyan-100 hover:text-cyan-100 transition duration-100 shadow-lg hover:shadow-xl text-2xl py-2 px-4  mb-10 pointer-events-auto"
+            className="titulo font-smooch bg-gradient-to-br from-cyan-300 via-cyan-600 to-cyan-900 py-2 font-semibold px-6 rounded-2xl cursor-pointer hover:from-cyan-400 hover:via-cyan-700 hover:to-cyan-900 text-cyan-100 hover:text-cyan-100 transition duration-100 shadow-lg hover:shadow-xl text-2xl py-2 px-4  mb-10 pointer-events-auto"
             onClick={handleClickReset}
           >
             RESET
