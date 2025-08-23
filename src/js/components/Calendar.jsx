@@ -282,7 +282,8 @@ const Calendar = () => {
               <div className="flex md:ml-98 items-center mb-4">
                 <button
                   onClick={handlePrevMonth}
-                  className="hover:text-cyan-500 z-5 border py-1 px-2 rounded"
+                              className="bg-gradient-to-br from-cyan-300 via-cyan-600 to-cyan-900  hover:from-cyan-400 hover:via-cyan-700 hover:to-cyan-900 text-cyan-900 font-bold hover:text-cyan-100 transition duration-300 shadow-lg hover:shadow-xl text-2xl py- px-2 rounded cursor-pointer"
+
                 >
                   ←
                 </button>
@@ -292,7 +293,8 @@ const Calendar = () => {
                 </h2>
                 <button
                   onClick={handleNextMonth}
-                  className="hover:text-cyan-500 border py-1 z-5 px-2 rounded"
+                              className="bg-gradient-to-br from-cyan-300 via-cyan-600 to-cyan-900  hover:from-cyan-400 hover:via-cyan-700 hover:to-cyan-900 text-cyan-900 font-bold hover:text-cyan-100 transition duration-300 shadow-lg hover:shadow-xl text-2xl py- px-2 rounded cursor-pointer"
+
                 >
                   →
                 </button>

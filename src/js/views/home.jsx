@@ -16,13 +16,13 @@ function Home() {
 
   // 🔥 Variantes para animar hijos en secuencia
   const containerVariants = {
-    hidden: { opacity: 0 },
+    hidden: { opacity: 1 },
     visible: {
       opacity: 1,
       transition: {
         duration: 0.1,
         when: "beforeChildren",
-        staggerChildren: 0.1,
+        staggerChildren: 0.051,
       },
     },
   };
