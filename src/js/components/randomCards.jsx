@@ -109,7 +109,7 @@ function RandomCards() {
 
             {/* ✅ Contenido */}
             <div className="relative z-10 flex flex-col items-center">
-                <h1 className="titulo font-smooch text-center text-white text-5xl mt-10">
+                <h1 className="titulo font-smooch text-center text-white text-5xl mt-1">
                     RANDOM CARDS
                 </h1>
 

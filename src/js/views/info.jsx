@@ -6,7 +6,7 @@ import fotocyan from "/img/zasfotocyan.png";
 
 const Info = () => {
   return (
-    <div className="absolute top-0 inset-0 overflow-y-auto text-white bg-black">
+    <div className="fixed top-0 inset-0 overflow-y-auto text-white bg-black">
       {/* Video de fondo */}
       <video
         className="fixed w-full h-full object-cover"
@@ -27,7 +27,7 @@ const Info = () => {
         transition={{ duration: 1.2, ease: "easeOut" }}
         className="relative z-10 p-4 md:pt-12 md:px-6 mt-10 min-h-screen"
       >
-        <div className="max-w-4xl mx-auto bg-gradient-to-br from-black/50 to-neutral-900/50 shadow-lg p-4 md:p-10">
+        <div className="max-w-4xl my-auto mx-auto bg-gradient-to-br from-black/50 to-neutral-900/50 shadow-lg p-4 md:p-10">
           {/* Header */}
           <motion.header
             initial={{ opacity: 0, y: 20 }}

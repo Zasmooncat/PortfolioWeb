@@ -40,7 +40,7 @@ function Chrono() {
     return (
         <>
             {/* Fondo animado */}
-            <div className="absolute top-0 left-0 w-full h-full z-0 pointer-events-none">
+            <div className="fixed top-0 left-0 w-full h-full z-0 pointer-events-none">
                 <Squares
                     speed={0.2}
                     squareSize={70}
@@ -86,15 +86,15 @@ function Chrono() {
 
                     <button
                         onClick={clickonreset}
-                        className="titulo  font-smooch w-50 rounded-2xl text-white px-4 py-2  text-3xl bg-linear-to-b from-cyan-400 via-cyan-600 to-cyan-950 text-2xl mt-5 mb-5 transition-all duration-200 hover:cursor-pointer"
+                        className="titulo  font-smooch w-50 rounded-2xl text-white py-2  text-3xl bg-linear-to-b from-cyan-400 via-cyan-600 to-cyan-950 text-2xl mt-5 transition-all duration-200 hover:cursor-pointer"
                     >
                         RESET
                     </button>
                 </div>
 
-                <div className="mt-10">
+                
                     <ProjectNavigation />
-                </div>
+                
             </div>
         </>
     );
