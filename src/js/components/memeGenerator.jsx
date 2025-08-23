@@ -2,7 +2,7 @@ import React, { useState, useEffect } from "react";
 import ProjectNavigation from "../components/ProjectNavigation";
 import Squares from "./Squares";
 
-const images = import.meta.glob("/img/memeimg/*.{png,jpg,jpeg,gif,webp}");
+const images = import.meta.glob("../assets/memeimg/*.{png,jpg,jpeg,gif,webp}");
 
 const loadImages = async () => {
     const imageUrls = [];
