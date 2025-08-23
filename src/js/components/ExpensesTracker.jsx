@@ -162,13 +162,13 @@ function ExpensesTracker() {
 
       {!user && (
             <div className="text-center mb-4">
-              <p className="text-cyan-500 text-sm inline-block px-4 py-2 rounded-lg">
+              <p className="text-cyan-500 text-sm inline-block  rounded-lg">
                 Login to save expenses.
               </p>
             </div>
           )}
        
-        <div className="flex flex-col items-center mt-15 w-full">
+        <div className="flex flex-col items-center mt-5 md:mt-10 w-full">
           {/* Inputs en fila */}
           <div className="flex flex-col lg:flex-row gap-4 w-full justify-center items-center mb-6">
             {/* Fecha */}

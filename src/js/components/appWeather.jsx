@@ -103,7 +103,7 @@ const AppWeather = () => {
                             <option value="VE">Venezuela</option>
                             <option value="BR">Brasil</option>
                             <option value="US">Estados Unidos</option>
-                            <option value="CN">Canadá</option>
+                            <option value="CA">Canadá</option>
                             <option value="AU">Australia</option>
                             <option value="JP">Japón</option>
                         </select>
