@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
 import Squares from "./Squares"; // Ajusta la ruta si está en otra carpeta
 import ProjectNavigation from "../components/ProjectNavigation"; // Ajusta la ruta
-import traseraCard from "../../img/carta.png"; // Asegúrate de que la ruta es correcta
+import traseraCard from "/img/carta.png"; // Asegúrate de que la ruta es correcta
 
 function RandomCards() {
     const [count, setCount] = useState(10);

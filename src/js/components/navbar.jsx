@@ -2,7 +2,7 @@
 import React, { useState, useContext } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import { supabase } from "../../supabase/client";
-import logomooncat from "../../img/logomooncat.png";
+import logomooncat from "/img/logomooncat.png";
 import { AuthContext } from "../../context/AuthContext";
 
 const Navbar = () => {
