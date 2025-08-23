@@ -138,7 +138,7 @@ const CountDown = () => {
     return (
         <>
             {/* Fondo animado SIN eventos */}
-            <div className="absolute top-0 left-0 w-full h-full z-0 pointer-events-none">
+            <div className="fixed top-0 left-0 w-full h-full z-0 pointer-events-none">
                 <Squares
                     speed={0.2}
                     squareSize={70}

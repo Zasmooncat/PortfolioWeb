@@ -114,11 +114,7 @@ function RandomCards() {
                 </h1>
 
                 {/* ✅ Mensaje para móviles */}
-                {isMobile && !isInitialRender && (
-                    <div className="text-center text-white text-lg mt-6 mb-2 animate-pulse">
-                        Touch to generate new card
-                    </div>
-                )}
+               
 
                 {/* ✅ Contenedor de la carta con animación 3D */}
                 <div className="carta container mx-auto mt-10 perspective-1000">
