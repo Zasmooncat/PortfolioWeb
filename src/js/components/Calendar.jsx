@@ -262,20 +262,20 @@ const Calendar = () => {
         <div className="fixed inset-0 bg-cyan-950/40"></div>
 
         <div className="relative z-10">
-          <p className="titulo font-smooch text-center mt-5 text-white text-5xl mb-5">
+          <p className="titulo font-smooch text-center mt-2 text-white text-5xl mb-1">
             CALENDAR
           </p>
 
           {/* Indicador de modo */}
           {!user && (
             <div className="text-center mb-4">
-              <p className="text-cyan-500 text-sm inline-block px-4 py-2 rounded-lg">
+              <p className="text-cyan-500 text-sm inline-block rounded-lg">
                 Login to save events.
               </p>
             </div>
           )}
 
-          <div className="p-6 md:ml-50 text-white rounded-lg shadow-lg w-full max-w-6xl mx-auto flex flex-col md:flex-row gap-6">
+          <div className="px-5 md:ml-50 text-white rounded-lg shadow-lg w-full max-w-6xl mx-auto flex flex-col md:flex-row gap-6">
             {/* Calendario */}
             <div className="flex-2">
               {/* Header */}
