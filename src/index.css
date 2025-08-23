@@ -1,10 +1,17 @@
 @import "tailwindcss";
 
-
-body{
+/* FORZAR CARGA DE FUENTES */
+body::before {
+  content: '';
+  font-family: 'Anton', 'Michroma', 'Smooch Sans';
+  position: absolute;
+  left: -9999px;
   background-color: black;
   transition: background-color 0.2s ease-in-out;
 }
+
+
+
 
 
 /* .titulo{
