@@ -9,6 +9,7 @@ function RandomCards() {
     const [palo, setPalo] = useState({ palo: "♦", color: "red" });
     const [isFlipping, setIsFlipping] = useState(false);
     const [isInitialRender, setIsInitialRender] = useState(true);
+    const [isMobile, setIsMobile] = useState(false);
 
     const palos = [
         { palo: "♦", color: "red" },
@@ -18,6 +19,18 @@ function RandomCards() {
     ];
 
     const valores = ["A", "2", "3", "4", "5", "6", "7", "8", "9", "J", "Q", "K"];
+
+    // Detectar si es móvil
+    useEffect(() => {
+        const checkMobile = () => {
+            setIsMobile(window.innerWidth <= 768);
+        };
+        
+        checkMobile();
+        window.addEventListener('resize', checkMobile);
+        
+        return () => window.removeEventListener('resize', checkMobile);
+    }, []);
 
     const generateCard = (isInitial = false) => {
         setIsFlipping(true);
@@ -43,6 +56,12 @@ function RandomCards() {
         
         if (!isInitial) {
             setCount(10);
+        }
+    };
+
+    const handleCardClick = () => {
+        if (isMobile && !isFlipping) {
+            generateCard(false);
         }
     };
 
@@ -91,15 +110,29 @@ function RandomCards() {
                     RANDOM CARDS
                 </h1>
 
+                {/* ✅ Mensaje para móviles */}
+                {isMobile && !isInitialRender && (
+                    <div className="text-center text-white text-lg mt-6 mb-2 animate-pulse">
+                        Touch to generate new card
+                    </div>
+                )}
+
                 {/* ✅ Contenedor de la carta con animación 3D */}
                 <div className="carta container mx-auto mt-10 perspective-1000">
                     <div 
-                        className={`card-flip-container ${isFlipping ? 'flipping' : ''} ${isInitialRender ? 'initial-state' : ''}`}
+                        className={`card-flip-container ${isFlipping ? 'flipping' : ''} ${isInitialRender ? 'initial-state' : ''} ${
+                            isMobile ? 'cursor-pointer select-none' : ''
+                        }`}
                         style={{
                             transformStyle: 'preserve-3d',
                             transition: 'transform 0.3s ease-in-out',
                             transform: isFlipping ? 'rotateY(-180deg)' : 'rotateY(0deg)',
                             opacity: isInitialRender ? 0 : 1
+                        }}
+                        onClick={handleCardClick}
+                        onTouchEnd={(e) => {
+                            e.preventDefault(); // Prevenir doble tap
+                            handleCardClick();
                         }}
                     >
                         {/* Cara frontal de la carta */}
@@ -153,17 +186,23 @@ function RandomCards() {
                     {count}
                 </div>
 
-                <button
-                    onClick={() => generateCard(false)}
-                    disabled={isFlipping} // Deshabilitar durante la animación
-                    className={`titulo font-smooch rounded mx-auto w-70 text-white px-2 py-1 bg-linear-to-b from-cyan-400 via-cyan-600 to-cyan-950 text-2xl mt-5 mb-10 transition-all duration-200 ${
-                        isFlipping 
-                            ? 'opacity-50 cursor-not-allowed' 
-                            : 'hover:bg-linear-to-b hover:from-cyan-600 hover:via-cyan-800 hover:to-cyan-950/50 hover:cursor-pointer  '
-                    }`}
-                >
-                    {isFlipping ? 'FLIPPING...' : 'GENERATE NEW CARD'}
-                </button>
+                {/* ✅ Botón solo visible en desktop */}
+                {!isMobile && (
+                    <button
+                        onClick={() => generateCard(false)}
+                        disabled={isFlipping} // Deshabilitar durante la animación
+                        className={`titulo font-smooch rounded mx-auto w-70 text-white px-2 py-1 bg-linear-to-b from-cyan-400 via-cyan-600 to-cyan-950 text-2xl mt-5 mb-10 transition-all duration-200 ${
+                            isFlipping 
+                                ? 'opacity-50 cursor-not-allowed' 
+                                : 'hover:bg-linear-to-b hover:from-cyan-600 hover:via-cyan-800 hover:to-cyan-950/50 hover:cursor-pointer'
+                        }`}
+                    >
+                        {isFlipping ? 'FLIPPING...' : 'GENERATE NEW CARD'}
+                    </button>
+                )}
+
+                {/* ✅ Espaciado adicional en móvil para compensar la ausencia del botón */}
+                {isMobile && <div className="mb-10"></div>}
             </div>
 
             {/* ✅ Botones de navegación siempre visibles */}
@@ -231,6 +270,17 @@ function RandomCards() {
                 
                 .initial-state::after {
                     opacity: 0 !important;
+                }
+
+                /* Efecto hover sutil en móvil para indicar interactividad */
+                @media (max-width: 768px) {
+                    .card-flip-container:active {
+                        transform: scale(0.98) !important;
+                    }
+                    
+                    .card-flip-container.flipping:active {
+                        transform: rotateY(180deg) scale(0.78) !important;
+                    }
                 }
             `}</style>
         </div>
