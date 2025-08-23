@@ -8,13 +8,13 @@ body{
 
 
 .titulo{
-  font-family: "Smooch Sans", serif !important;
+  
   font-optical-sizing: auto;;
   font-style: normal;
 } 
 
 .titulo-name{
-  font-family: "Michroma", serif !important;
+  
   font-optical-sizing: auto;;
   font-style: normal;
 }
@@ -75,7 +75,7 @@ body{
 }
 
 .selected-meme-img{
-  font-family: "Anton", serif !important;
+  
   font-weight: 400;
   font-style: normal;
 

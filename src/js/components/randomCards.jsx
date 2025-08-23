@@ -87,7 +87,7 @@ function RandomCards() {
 
             {/* ✅ Contenido */}
             <div className="relative z-10 flex flex-col items-center">
-                <h1 className="titulo text-center text-white text-5xl mt-10">
+                <h1 className="titulo font-smooch text-center text-white text-5xl mt-10">
                     RANDOM CARDS
                 </h1>
 
@@ -156,7 +156,7 @@ function RandomCards() {
                 <button
                     onClick={() => generateCard(false)}
                     disabled={isFlipping} // Deshabilitar durante la animación
-                    className={`titulo rounded mx-auto w-70 text-white px-2 py-1 bg-linear-to-b from-cyan-400 via-cyan-600 to-cyan-950 text-2xl mt-5 mb-10 transition-all duration-200 ${
+                    className={`titulo font-smooch rounded mx-auto w-70 text-white px-2 py-1 bg-linear-to-b from-cyan-400 via-cyan-600 to-cyan-950 text-2xl mt-5 mb-10 transition-all duration-200 ${
                         isFlipping 
                             ? 'opacity-50 cursor-not-allowed' 
                             : 'hover:bg-linear-to-b hover:from-cyan-600 hover:via-cyan-800 hover:to-cyan-950/50 hover:cursor-pointer  '

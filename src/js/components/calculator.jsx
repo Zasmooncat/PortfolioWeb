@@ -40,7 +40,7 @@ const Calculator = () => {
             {/* Overlay para mejorar contraste */}
             <div className="fixed inset-0 bg-cyan-950/40 z-0 pointer-events-none"></div>
 
-            <p className="titulo relative z-20 text-center text-white text-5xl ">
+            <p className="titulo font-smooch relative z-20 text-center text-white text-5xl ">
                 C A L C U L A T O R
             </p>
 

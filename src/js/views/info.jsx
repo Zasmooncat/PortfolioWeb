@@ -36,7 +36,7 @@ const Info = () => {
             className="flex flex-col md:flex-row md:items-center border-b border-gray-700 pb-6 mb-6"
           >
             <div className="mb-4 md:mb-0">
-              <h1 className="text-2xl md:text-4xl titulo-name font-bold">
+              <h1 className="text-2xl md:text-4xl titulo-name font-michroma font-bold">
                 <p>Miguel Angel</p>
                 <p>Pardo Bargues</p>
               </h1>
@@ -84,7 +84,7 @@ const Info = () => {
 
             {/* About */}
             <section className="flex-1">
-              <h2 className="titulo-name text-cyan-200 font-semibold mb-4">
+              <h2 className="titulo-name font-michroma text-cyan-200 font-semibold mb-4">
                 ABOUT ME
               </h2>
 
@@ -98,7 +98,7 @@ const Info = () => {
               </p>
 
               {/* lista de links */}
-              <ul className="grid grid-cols-1 list-disc ms-4 sm:grid-cols-2 gap-4 titulo-name">
+              <ul className="grid grid-cols-1 list-disc ms-4 sm:grid-cols-2 gap-4 titulo-name font-michroma">
                 <li className="text-white hover:text-cyan-400 cursor-pointer leading-relaxed p-2 bg-black/20 rounded-lg transition-colors duration-300">
                   <Link to="/projects" className="block">
                     REACT DEMOS

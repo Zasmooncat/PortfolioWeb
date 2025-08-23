@@ -54,7 +54,7 @@ function Chrono() {
 
         {/* Contenido */}
         <div className="relative z-10 flex flex-col items-center justify-center h-full mt-10">
-          <p className="titulo text-center text-white text-5xl mb-10">
+          <p className="titulo font-smooch text-center text-white text-5xl mb-10">
             C H R O N O M E T E R
           </p>
 
@@ -86,7 +86,7 @@ function Chrono() {
 
             <button
               onClick={clickonreset}
-              className="titulo w-50 rounded-2xl text-white px-4 py-2  text-3xl bg-linear-to-b from-cyan-400 via-cyan-600 to-cyan-950 text-2xl mt-5 mb-5 transition-all duration-200 hover:cursor-pointer"
+              className="titulo  font-smooch w-50 rounded-2xl text-white px-4 py-2  text-3xl bg-linear-to-b from-cyan-400 via-cyan-600 to-cyan-950 text-2xl mt-5 mb-5 transition-all duration-200 hover:cursor-pointer"
             >
               RESET
             </button>

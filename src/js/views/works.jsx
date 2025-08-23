@@ -55,7 +55,7 @@ export default function Works() {
         transition={{ duration: 1 }}
       >
         {/* Título */}
-        <h1 className="text-4xl titulo-name font-bold mb-12 tracking-tight text-center">
+        <h1 className="text-4xl titulo-name font-michroma font-bold mb-12 tracking-tight text-center">
           Works
         </h1>
 
@@ -68,7 +68,7 @@ export default function Works() {
               whileHover={{ scale: 1.02 }}
             >
               <div>
-                <h2 className="text-3xl titulo font-semibold mb-3">
+                <h2 className="text-3xl titulo font-smooch font-semibold mb-3">
                   {project.title}
                 </h2>
                 <p className="text-gray-300 text-sm mb-4">

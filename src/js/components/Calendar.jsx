@@ -262,7 +262,7 @@ const Calendar = () => {
         <div className="fixed inset-0 bg-cyan-950/40"></div>
 
         <div className="relative z-10">
-          <p className="titulo text-center mt-5 text-white text-5xl mb-5">
+          <p className="titulo font-smooch text-center mt-5 text-white text-5xl mb-5">
             CALENDAR
           </p>
 
@@ -301,7 +301,7 @@ const Calendar = () => {
               {/* Días de la semana */}
               <div className="grid grid-cols-7 text-center z-5 mt-8">
                 {["Mon", "Tue", "Wed", "Thu", "Fri", "Sat", "Sun"].map((d) => (
-                  <div key={d} className="titulo uppercase text-2xl">
+                  <div key={d} className="titulo font-smooch uppercase text-2xl">
                     {d}
                   </div>
                 ))}
@@ -365,7 +365,7 @@ const Calendar = () => {
 
             {/* Eventos */}
             <div className="flex-1 md:mt-24 bg-linear-to-br from-cyan-800/40 to-gray-700/30 rounded-2xl p-2">
-              <div className="flex justify-center titulo-name text-cyan-200 mb-3 mt-2">
+              <div className="flex justify-center titulo-name font-michroma text-cyan-200 mb-3 mt-2">
                 <h1>EVENTOS</h1>
               </div>
               {selectedDate && (
@@ -404,7 +404,7 @@ const Calendar = () => {
           {showModal && (
             <div className="fixed inset-0 bg-black/60 flex items-center justify-center z-50">
               <div className="bg-neutral-900 p-6 rounded-lg w-full max-w-md">
-                <h3 className="text-2xl uppercase titulo text-gray-300 text-center mb-4">
+                <h3 className="text-2xl uppercase titulo font-smooch text-gray-300 text-center mb-4">
                   Añadir evento el día {modalDate}
                 </h3>
                 

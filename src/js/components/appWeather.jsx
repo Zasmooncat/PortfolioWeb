@@ -78,7 +78,7 @@ const AppWeather = () => {
       <div className="fixed inset-0 bg-cyan-950/40 "></div>
 
         <div className="container  m-auto">
-            <h1 className="titulo text-center text-white text-5xl">EL TIEMPO</h1>
+            <h1 className="titulo font-smooch text-center text-white text-5xl">EL TIEMPO</h1>
             <div className="seccion1 rounded-xl bg-gradient-to-b from-gray-400/50 to-gray-800/50 p-8 w-[95%] md:w-[50%] lg:w-[30%] z-50">
                 <form className="flex flex-col m-auto" onSubmit={handleSubmit}>
                     <div className="form-group flex flex-col">

@@ -83,7 +83,7 @@ const contentVariants = {
                 whileHover={{ scale: 1.05 }}
                 className="text-white w-70 h-70 flex flex-col items-center justify-center bg-black/10 backdrop-blur-sm hover:text-black hover:bg-white transition"
               >
-                <p className="titulo-name flex justify-center text-xl m-3">
+                <p className="titulo-name font-michroma flex justify-center text-xl m-3">
                   REACT DEMO PROJECTS
                 </p>
                 <img src={reactlogo} alt="" className="react m-auto" />
@@ -96,7 +96,7 @@ const contentVariants = {
                 whileHover={{ scale: 1.05 }}
                 className="text-white w-70 h-70 flex flex-col items-center justify-center bg-black/10 backdrop-blur-sm hover:text-black hover:bg-white transition"
               >
-                <p className="titulo-name flex justify-center m-3 text-xl">
+                <p className="titulo-name font-michroma flex justify-center m-3 text-xl">
                   GENERATIVE VIDEO-ART
                 </p>
                 <img src={tdlogo} alt="" className="m-auto w-20" />
@@ -111,7 +111,7 @@ const contentVariants = {
                 whileHover={{ scale: 1.05 }}
                 className="text-white w-70 h-70 flex flex-col bg-black/10 backdrop-blur-sm hover:text-black hover:bg-white transition"
               >
-                <p className="titulo-name text-xl m-3">WORKS</p>
+                <p className="titulo-name font-michroma text-xl m-3">WORKS</p>
                 <img src={gearicon} alt="" className="m-auto w-25" />
               </motion.div>
             </Link>
@@ -122,7 +122,7 @@ const contentVariants = {
                 whileHover={{ scale: 1.05 }}
                 className="text-white w-70 h-70 flex flex-col bg-black/10 backdrop-blur-sm hover:text-black hover:bg-white transition"
               >
-                <p className="titulo-name text-xl m-3">INFO </p>
+                <p className="titulo-name font-michroma ext-xl m-3">INFO </p>
                 <img src={infoicon} alt="" className="m-auto w-40 " />
               </motion.div>
             </Link>
