@@ -37,26 +37,16 @@ function ProjectNavigation({ hidePrev = false }) {
         }
     };
 
-    // Configuración swipe
+    // Configuración para gestos de swipe
     const handlers = useSwipeable({
-        onSwipedLeft: () => {
-            console.log("👉 Swipe left detected → siguiente");
-            goNext();
-        },
-        onSwipedRight: () => {
-            console.log("👈 Swipe right detected → anterior");
-            goPrev();
-        },
-        preventScrollOnSwipe: true, // recomendado
-        trackTouch: true,
-        trackMouse: false, // si quieres probar en desktop ponlo en true
+        onSwipedLeft: () => goNext(),   // swipe hacia la izquierda → siguiente
+        onSwipedRight: () => goPrev(), // swipe hacia la derecha → anterior
+        preventDefaultTouchmoveEvent: true,
+        trackMouse: false, // solo táctil
     });
 
     return (
-        <div
-            {...handlers}
-            className="fixed inset-0 z-40" // <- ocupa toda la pantalla para detectar swipe
-        >
+        <div {...handlers} className="w-full h-full">
             {!hidePrev && (
                 <button
                     onClick={goPrev}

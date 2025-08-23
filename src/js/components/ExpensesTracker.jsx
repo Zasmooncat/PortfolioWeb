@@ -173,13 +173,13 @@ function ExpensesTracker() {
           <div className="flex flex-col lg:flex-row gap-4 w-full justify-center items-center mb-6">
             {/* Fecha */}
             <div className="flex flex-col">
-              <input id="date" type="date" name="date" value={form.date} onChange={handleChange} className="bg-gray-300 p-2 w-[85%] lg:w-33 rounded border placeholder-gray-400" required />
+              <input id="date" type="date" name="date" value={form.date} onChange={handleChange} className="bg-gray-300 p-2 w-90 lg:w-33 rounded border placeholder-gray-400" required />
             </div>
 
             {/* Categoria */}
             <div className="flex flex-col ">
               <Listbox value={form.category} onChange={val => setForm({...form, category: val})}>
-                <div className="relative w-[85%] lg:w-33">
+                <div className="relative w-90 lg:w-33">
                   <Listbox.Button className="relative w-full cursor-pointer bg-gray-300 rounded border border-gray-300 p-2 text-left">
                     <span className="flex items-center gap-2">
                       {form.category && <span className={`w-3 h-3 rounded-full ${categories.find(c=>c.name===form.category)?.color}`}></span>}
@@ -207,7 +207,7 @@ function ExpensesTracker() {
 
             {/* Descripción */}
             <div className="flex flex-col">
-              <input id="description" type="text" name="description" placeholder="Description" value={form.description} onChange={handleChange} className="bg-gray-300 p-2 rounded border border-gray-300 w-[85%]  lg:w-50" required />
+              <input id="description" type="text" name="description" placeholder="Description" value={form.description} onChange={handleChange} className="bg-gray-300 p-2 rounded border border-gray-300 w-90  lg:w-50" required />
             </div>
 
             {/* Método de pago */}
@@ -216,7 +216,7 @@ function ExpensesTracker() {
                 name="paymentMethod"
                 value={form.paymentMethod}
                 onChange={handleChange}
-                className="bg-gray-300 p-2.5 rounded border border-gray-300 text-black w-[85%] lg:w-35"
+                className="bg-gray-300 p-2.5 rounded border border-gray-300 text-black w-90 lg:w-35"
               >
                 <option value="Pay Method">Pay Method</option>
                 <option value="Cash">Cash</option>
