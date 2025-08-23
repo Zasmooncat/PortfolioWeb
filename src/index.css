@@ -7,17 +7,17 @@ body{
 }
 
 
-.titulo{
-  
+/* .titulo{
+  font-family: "Smooch Sans", serif !important;
   font-optical-sizing: auto;;
   font-style: normal;
-} 
+}  */
 
-.titulo-name{
-  
+/* .titulo-name{
+  font-family: "Michroma", serif !important;
   font-optical-sizing: auto;;
   font-style: normal;
-}
+} */
 
 
 
@@ -74,13 +74,13 @@ body{
   font-family: 'Times New Roman', Times, serif;
 }
 
-.selected-meme-img{
-  
+/* .selected-meme-img{
+  font-family: "Anton", serif !important;
   font-weight: 400;
   font-style: normal;
+} */
 
 
-}
 
 .navbar {
   position: fixed;
