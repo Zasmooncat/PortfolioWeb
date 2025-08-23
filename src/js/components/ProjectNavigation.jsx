@@ -1,6 +1,8 @@
+// src/components/ProjectNavigation.jsx
 import React from "react";
 import { useNavigate, useLocation } from "react-router-dom";
 import { FaCaretLeft, FaCaretRight } from "react-icons/fa";
+import { useSwipeable } from "react-swipeable";
 
 const projects = [
     "/counter",
@@ -15,8 +17,6 @@ const projects = [
     "/expenses",
     "/calendar",
     "/noticias",
-    
-    
     // ...otros
 ];
 
@@ -37,8 +37,16 @@ function ProjectNavigation({ hidePrev = false }) {
         }
     };
 
+    // Configuración para gestos de swipe
+    const handlers = useSwipeable({
+        onSwipedLeft: () => goNext(),   // swipe hacia la izquierda → siguiente
+        onSwipedRight: () => goPrev(), // swipe hacia la derecha → anterior
+        preventDefaultTouchmoveEvent: true,
+        trackMouse: false, // solo táctil
+    });
+
     return (
-        <>
+        <div {...handlers} className="w-full h-full">
             {!hidePrev && (
                 <button
                     onClick={goPrev}
@@ -54,7 +62,7 @@ function ProjectNavigation({ hidePrev = false }) {
             >
                 <FaCaretRight className="text-2xl" />
             </button>
-        </>
+        </div>
     );
 }
 

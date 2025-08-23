@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import '@fortawesome/fontawesome-free/css/all.min.css';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faSun, faCloudSun, faCloud, faCloudShowersHeavy, faCloudRain, faBolt, faSnowflake, faSmog } from '@fortawesome/free-solid-svg-icons';
@@ -9,10 +9,16 @@ import Squares from "./Squares"; // Asegúrate que la ruta es correcta
 
 const URL_BASE = "https://api.openweathermap.org/data/2.5/weather?&appid=08f90cb685ac696606f04d9cafa1ddc4&units=metric&lang=es";
 
+ 
+
 const AppWeather = () => {
     const [searchWeather, setSearchWeather] = useState({ city: "", country: "" });
     const [weather, setWeather] = useState(null);
     const [lastCountry, setLastCountry] = useState("");
+
+    useEffect(() => {
+    window.scrollTo(0, 0);
+}, []);
 
     const handleChange = (event) => {
         setSearchWeather({ ...searchWeather, [event.target.name]: event.target.value });
