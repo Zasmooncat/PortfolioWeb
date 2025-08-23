@@ -45,7 +45,7 @@ const Calculator = () => {
             </p>
 
             <div className="m-auto w-[90%] md:w-1/2 lg:w-1/4 h-180 rounded-4xl relative ">
-                <div className=" w-[97%] mx-auto bg-linear-to-br from-cyan-800/30 to-gray-800/20  rounded p-4 mt-10 mb-5 h-25 md:h-35 relative">
+                <div className=" w-[97%] mx-auto bg-linear-to-br from-cyan-800/30 to-gray-800/20  rounded p-4 mt-2 mb-5 h-25 md:h-35 relative">
                     <p className="digitos  text-end text-white text-5xl absolute top-10 right-3">
                         {input || "0"}
                     </p>
