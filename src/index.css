@@ -185,3 +185,28 @@ canvas {
     opacity: 1;
   }
 }
+
+html * .titulo,
+html body * .titulo,
+[class*="titulo"] {
+  font-family: "Smooch Sans", serif !important;
+  font-weight: normal !important;
+  font-style: normal !important;
+}
+
+html * .titulo-name,
+html body * .titulo-name,
+[class*="titulo-name"] {
+  font-family: "Michroma", serif !important;
+  font-weight: normal !important;
+  font-style: normal !important;
+}
+
+html * .selected-meme-img,
+html body * .selected-meme-img,
+html * .selected-meme-img *,
+[class*="selected-meme-img"] * {
+  font-family: "Anton", serif !important;
+  font-weight: normal !important;
+  font-style: normal !important;
+}
