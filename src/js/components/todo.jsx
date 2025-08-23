@@ -209,7 +209,7 @@ function Todo() {
 
         {!user && (
             <div className="text-center mb-4">
-              <p className="text-cyan-500 text-sm inline-block px-4 py-2 rounded-lg">
+              <p className="text-cyan-500 text-sm inline-block rounded-lg">
                 Login to save tasks.
               </p>
             </div>
@@ -223,7 +223,7 @@ function Todo() {
             onChange={(e) => setTodo(e.target.value)}
             placeholder="New Task"
             onKeyPress={handleKeyPress}
-            className="bg-neutral-900 border border-gray-500 w-80 placeholder:text-gray-400 rounded-xl mt-7 text-cyan-200 p-2 mb-10"
+            className="bg-neutral-900 border border-gray-500 w-80 placeholder:text-gray-400 rounded-xl mt-2 text-cyan-200 p-2 mb-6"
           />
         </div>
         <button
