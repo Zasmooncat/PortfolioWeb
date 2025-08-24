@@ -69,7 +69,7 @@ const MemeGenerator = () => {
           {/* Image Carousel */}
           <div className="mb-8">
             {/* Mobile Navigation - Buttons above image */}
-            <div className="flex justify-center gap-4 mb-4 md:hidden">
+            <div className="flex justify-between gap-4 mb-4 md:hidden">
               <button
                 onClick={handlePrev}
                 className="text-white bg-gray-700/70 hover:bg-gray-600 px-2 py-1 flex rounded-full transition-colors"
