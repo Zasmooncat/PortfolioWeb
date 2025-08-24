@@ -152,7 +152,7 @@ const CountDown = () => {
             {/* Contenido interactivo */}
             <div className="relative z-10 flex flex-col items-center justify-center h-full">
                 <div className="flex flex-col items-center justify-center">
-                    <p className="titulo font-smooch text-center text-white text-5xl mt-1 mb-5">
+                    <p className="titulo font-smooch text-center text-white text-5xl mt-10 mb-5">
                         COUNT DOWN
                     </p>
                     <label htmlFor="number" className="text-white mb-3">

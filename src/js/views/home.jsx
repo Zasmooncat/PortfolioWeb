@@ -81,7 +81,7 @@ const contentVariants = {
               <motion.div
                 variants={contentVariants}
                 whileHover={{ scale: 1.05 }}
-                className="text-white w-70 h-70 flex flex-col items-center justify-center bg-black/10 backdrop-blur-sm hover:text-black hover:bg-white transition"
+                className="text-white w-70 h-70 flex flex-col items-center justify-center bg-gray-950/10 backdrop-blur-sm hover:text-black hover:bg-white transition"
               >
                 <p className="titulo-name font-michroma flex justify-center text-xl m-3">
                   REACT DEMO PROJECTS
