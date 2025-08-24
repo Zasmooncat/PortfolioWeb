@@ -2,137 +2,205 @@ import React, { useState, useEffect } from "react";
 import ProjectNavigation from "../components/ProjectNavigation";
 import Squares from "./Squares";
 
-const images = import.meta.glob("/src/assets/memeimg/*.{png,jpg,jpeg,gif,webp}");
 
-const loadImages = async () => {
-    const imageUrls = [];
-    for (const path in images) {
-        const module = await images[path]();
-        imageUrls.push(module.default);
-    }
-    return imageUrls;
-};
+const imageNames = [
+  "chill.jpeg",
+  "disociado.jpg",
+  "dog.webp",
+  "fire.webp",
+  "fray.jpg",
+  "geek.jpg",
+  "Grumpy-Cat.jpg",
+  "images.jpeg",
+  "impaktado.jpg",
+  "mirada.gif",
+  "ninyawtf.webp",
+  "ninyofist.webp",
+  "sheldon.jpeg",
+  "so.webp",
+  "think.webp",
+  "willy.jpeg",
+  "wtf.jpg",
+  "ylosabes.webp"
+  // Agrega más nombres según las imágenes que tengas
+];
 
 const MemeGenerator = () => {
-    const [memeImages, setMemeImages] = useState([]);
-    const [currentIndex, setCurrentIndex] = useState(0);
-    const [topText, setTopText] = useState("");
-    const [bottomText, setBottomText] = useState("");
+  const [currentIndex, setCurrentIndex] = useState(0);
+  const [topText, setTopText] = useState("");
+  const [bottomText, setBottomText] = useState("");
 
-    useEffect(() => {
-        loadImages().then(setMemeImages);
-    }, []);
+  const handlePrev = () => {
+    setCurrentIndex((prev) =>
+      prev === 0 ? imageNames.length - 1 : prev - 1
+    );
+  };
 
-    const handlePrev = () => {
-        setCurrentIndex((prev) =>
-            prev === 0 ? memeImages.length - 1 : prev - 1
-        );
-    };
+  const handleNext = () => {
+    setCurrentIndex((prev) =>
+      prev === imageNames.length - 1 ? 0 : prev + 1
+    );
+  };
 
-    const handleNext = () => {
-        setCurrentIndex((prev) =>
-            prev === memeImages.length - 1 ? 0 : prev + 1
-        );
-    };
+  const currentImageUrl = `/img/memeimg/${imageNames[currentIndex]}`;
 
-    const selectedImage = memeImages[currentIndex];
+  return (
+    <>
+      <div className="fixed top-0 left-0 w-full h-full z-0 pointer-events-none">
+        <Squares
+          speed={0.2}
+          squareSize={70}
+          direction="diagonal"
+          borderColor="#fff3"
+          hoverFillColor="#471"
+        />
+      </div>
 
-    return (
-      <>
-        <div className="fixed top-0 left-0 w-full h-full z-0 pointer-events-none">
-          <Squares
-            speed={0.2}
-            squareSize={70}
-            direction="diagonal"
-            borderColor="#fff3"
-            hoverFillColor="#471"
-          />
-        </div>
+      <div className="fixed inset-0 bg-cyan-950/40"></div>
 
-        <div className="fixed inset-0 bg-cyan-950/40 "></div>
+      <div className="relative min-h-screen w-full flex flex-col items-center justify-center px-4">
+        <h1 className="font-smooch titulo text-center text-white text-5xl mb-4">
+          MEME GENERATOR
+        </h1>
 
-        <div className="relative min-h-screen w-full">
-          <p className="titulo font-smooch text-center text-white text-5xl mt-10 mb-10">
-            MEME GENERATOR
-          </p>
+        {/* Carousel Container */}
+        <div className="bg-gray-800/60 rounded-xl p-8 max-w-4xl w-full">
 
-          <div className="grid grid-cols-1 gap-10 bg-gray-800/60 md:grid-cols-2 md:relative justify-items-center md:h-180 md:w-280 mx-auto rounded-xl overflow-hidden">
-            <div className="  flex flex-col items-center md:mt-20">
-              <p className="text-gray-400 mt-2">Select Image</p>
-              {/* Miniaturas del slider */}
-              <div className="flex items-center  mt-5">
-                <button
-                  onClick={handlePrev}
-                  className="text-white mx-3 text-xl rounded-full bg-gray-700/50 px-3 py-2 rounded hover:bg-black"
-                >
-                  ◀
-                </button>
-
-                {selectedImage && (
-                  <img
-                    src={selectedImage}
-                    alt="Meme preview"
-                    className="w-40 h-40 grayscale-70 object-cover border-2 border-white rounded"
-                  />
-                )}
-
-                <button
-                  onClick={handleNext}
-                  className="text-white mx-3 text-xl rounded-full bg-gray-700/50 px-3 py-2 rounded hover:bg-black"
-                >
-                  ▶
-                </button>
-              </div>
-
-              {/* Inputs */}
-              <div className="inputs flex flex-col mt-12 gap-5">
-                <div className="">
-                  <input
-                    className="bg-gray-200  w-60 placeholder-gray-500 px-3 py-1 rounded "
-                    type="text"
-                    id="top"
-                    value={topText}
-                    onChange={(e) => setTopText(e.target.value)}
-                    placeholder="Text top"
-                  />
-                </div>
-
-                <div className="flex flex-col">
-                  <input
-                    className="bg-gray-200 w-60 placeholder-gray-500 px-3 py-1 rounded"
-                    type="text"
-                    id="bottom"
-                    value={bottomText}
-                    onChange={(e) => setBottomText(e.target.value)}
-                    placeholder="Text bottom"
-                  />
-                </div>
-              </div>
+          {/* Image Carousel */}
+          <div className="mb-8">
+            {/* Mobile Navigation - Buttons above image */}
+            <div className="flex justify-center gap-4 mb-4 md:hidden">
+              <button
+                onClick={handlePrev}
+                className="text-white bg-gray-700/70 hover:bg-gray-600 px-2 py-1 flex rounded-full transition-colors"
+              >
+                ◀
+              </button>
+              <button
+                onClick={handleNext}
+                className="text-white bg-gray-700/70 hover:bg-gray-600 px-2 py-1 flex rounded-full transition-colors"
+              >
+                ▶
+              </button>
             </div>
 
-            <div className="w-[80%] h-150 md:w-1/2  md:absolute md:right-4  ">
-              {selectedImage && (
-                <div className="selected-meme-img font-anton relative w-full  md:w-150   m-auto overflow-hidden mt-5 ">
-                  <p className=" absolute top-5 w-[100%]  text-center text-white text-6xl font-bold uppercase  drop-shadow-[0px_0px_6px_rgba(0,0,0,1)]">
+            {/* Desktop Navigation - Buttons on sides */}
+            <div className="hidden md:flex items-center justify-center">
+              <button
+                onClick={handlePrev}
+                className="text-white mx-4 text-2xl bg-gray-700/70 hover:bg-gray-600 px-4 py-3 rounded-full transition-colors"
+              >
+                ◀
+              </button>
+
+              <div className="relative">
+                <img
+                  src={currentImageUrl}
+                  alt="Meme template"
+                  className="w-96 h-96 object-cover rounded-lg border-2 border-white"
+                  onError={(e) => {
+                    console.log("Error loading image:", currentImageUrl);
+                    e.target.src = "https://via.placeholder.com/400x400/666/fff?text=Image+Not+Found";
+                  }}
+                />
+
+                {/* Top Text Overlay */}
+                {topText && (
+                  <div className="absolute top-4 left-0 right-0 px-4">
+                    <p className="text-white text-2xl md:text-3xl font-bold uppercase text-center drop-shadow-[0px_0px_8px_rgba(0,0,0,1)] leading-tight">
+                      {topText}
+                    </p>
+                  </div>
+                )}
+
+                {/* Bottom Text Overlay */}
+                {bottomText && (
+                  <div className="absolute bottom-4 left-0 right-0 px-4">
+                    <p className="text-white text-2xl md:text-3xl font-bold uppercase text-center drop-shadow-[0px_0px_8px_rgba(0,0,0,1)] leading-tight">
+                      {bottomText}
+                    </p>
+                  </div>
+                )}
+              </div>
+
+              <button
+                onClick={handleNext}
+                className="text-white mx-4 text-2xl bg-gray-700/70 hover:bg-gray-600 px-4 py-3 rounded-full transition-colors"
+              >
+                ▶
+              </button>
+            </div>
+
+            {/* Mobile Image - Full width */}
+            <div className="md:hidden relative w-full">
+              <img
+                src={currentImageUrl}
+                alt="Meme template"
+                className="w-full aspect-square object-cover rounded-lg border-2 border-white"
+                onError={(e) => {
+                  console.log("Error loading image:", currentImageUrl);
+                  e.target.src = "https://via.placeholder.com/400x400/666/fff?text=Image+Not+Found";
+                }}
+              />
+
+              {/* Top Text Overlay - Mobile */}
+              {topText && (
+                <div className="absolute top-4 left-0 right-0 px-4">
+                  <p className="text-white text-2xl md:text-3xl font-bold uppercase text-center drop-shadow-[0px_0px_8px_rgba(0,0,0,1)] leading-tight">
                     {topText}
                   </p>
-                  <p className="absolute bottom-5 w-[100%] text-center text-white text-6xl font-bold uppercase drop-shadow-[0px_0px_6px_rgba(0,0,0,1)] ">
+                </div>
+              )}
+
+              {/* Bottom Text Overlay - Mobile */}
+              {bottomText && (
+                <div className="absolute bottom-4 left-0 right-0 px-4">
+                  <p className="text-white text-2xl md:text-3xl font-bold uppercase text-center drop-shadow-[0px_0px_8px_rgba(0,0,0,1)] leading-tight">
                     {bottomText}
                   </p>
-                  <img
-                    src={selectedImage}
-                    alt="Selected meme"
-                    className=" w-full h-110 md:h-170 object-cover  "
-                  />
                 </div>
               )}
             </div>
           </div>
 
-          <ProjectNavigation />
+          {/* Input Fields */}
+          <div className="flex flex-col sm:flex-row gap-4 justify-center items-center">
+            <div className="flex flex-col">
+              <label className="text-gray-300 mb-2 text-sm">Top Text</label>
+              <input
+                className="bg-gray-200 w-64 placeholder-gray-500 px-4 py-3 rounded-lg focus:outline-none focus:ring-2 focus:ring-cyan-400"
+                type="text"
+                value={topText}
+                onChange={(e) => setTopText(e.target.value)}
+                placeholder="Enter top text..."
+              />
+            </div>
+
+            <div className="flex flex-col">
+              <label className="text-gray-300 mb-2 text-sm">Bottom Text</label>
+              <input
+                className="bg-gray-200 w-64 placeholder-gray-500 px-4 py-3 rounded-lg focus:outline-none focus:ring-2 focus:ring-cyan-400"
+                type="text"
+                value={bottomText}
+                onChange={(e) => setBottomText(e.target.value)}
+                placeholder="Enter bottom text..."
+              />
+            </div>
+          </div>
+
+          {/* Image Counter */}
+          <div className="text-center mt-6">
+            <span className="text-gray-400 text-sm">
+              {currentIndex + 1} / {imageNames.length}
+            </span>
+          </div>
+
         </div>
-      </>
-    );
+
+        <ProjectNavigation />
+      </div>
+    </>
+  );
 };
 
 export default MemeGenerator;
