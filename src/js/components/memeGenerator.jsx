@@ -107,7 +107,7 @@ const MemeGenerator = () => {
                 {/* Top Text Overlay */}
                 {topText && (
                   <div className="absolute top-4 left-0 right-0 px-4">
-                    <p className="text-white text-2xl md:text-3xl font-bold uppercase text-center drop-shadow-[0px_0px_8px_rgba(0,0,0,1)] leading-tight">
+                    <p className="selected-meme-img text-white text-2xl md:text-3xl font-bold uppercase text-center drop-shadow-[0px_0px_8px_rgba(0,0,0,1)] leading-tight">
                       {topText}
                     </p>
                   </div>
@@ -116,7 +116,7 @@ const MemeGenerator = () => {
                 {/* Bottom Text Overlay */}
                 {bottomText && (
                   <div className="absolute bottom-4 left-0 right-0 px-4">
-                    <p className="text-white text-2xl md:text-3xl font-bold uppercase text-center drop-shadow-[0px_0px_8px_rgba(0,0,0,1)] leading-tight">
+                    <p className="selected-meme-img text-white text-2xl md:text-3xl font-bold uppercase text-center drop-shadow-[0px_0px_8px_rgba(0,0,0,1)] leading-tight">
                       {bottomText}
                     </p>
                   </div>

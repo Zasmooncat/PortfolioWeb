@@ -13,12 +13,21 @@ function ExpensesTracker() {
   const { user, isAuthenticated } = useContext(AuthContext);
   const [expenses, setExpenses] = useState([]);
   const [loading, setLoading] = useState(true);
+  
+  // 🔹 Función helper para obtener fecha local en formato YYYY-MM-DD
+  const getLocalDateString = (date = new Date()) => {
+    const year = date.getFullYear();
+    const month = String(date.getMonth() + 1).padStart(2, '0');
+    const day = String(date.getDate()).padStart(2, '0');
+    return `${year}-${month}-${day}`;
+  };
+
   const [form, setForm] = useState({
-    date: new Date().toISOString().split('T')[0], // Fecha actual por defecto
+    date: getLocalDateString(), // Usa la función helper
     category: "",
     description: "",
     amount: "",
-    paymentMethod: "Pay Method", // Cambiado a "Pay Method" por defecto
+    paymentMethod: "Pay Method",
   });
 
   const categories = [
@@ -63,7 +72,7 @@ function ExpensesTracker() {
   // 🔹 Añadir gasto
   const handleAddExpense = async (e) => {
     e.preventDefault();
-    console.log("Botón + presionado!", form); // ← Para debug
+    console.log("Botón + presionado!", form);
     if (!form.date || !form.description || !form.amount || !form.category || form.paymentMethod === "Pay Method") {
       console.log("Faltan campos requeridos o método de pago no seleccionado");
       return;
@@ -97,7 +106,14 @@ function ExpensesTracker() {
       setExpenses(prev => [localExpense, ...prev]);
     }
 
-    setForm({ date: new Date().toISOString().split('T')[0], category: "", description: "", amount: "", paymentMethod: "Pay Method" });
+    // Reset form con fecha local corregida
+    setForm({ 
+      date: getLocalDateString(), 
+      category: "", 
+      description: "", 
+      amount: "", 
+      paymentMethod: "Pay Method" 
+    });
   };
 
   // 🔹 Borrar gasto
@@ -121,7 +137,7 @@ function ExpensesTracker() {
     const now = new Date();
     return expenses
       .filter(exp => {
-        const expDate = new Date(exp.date);
+        const expDate = new Date(exp.date + 'T00:00:00'); // Evita problemas de zona horaria
         return expDate.getMonth() === now.getMonth() && expDate.getFullYear() === now.getFullYear();
       })
       .reduce((sum, exp) => sum + Number(exp.amount || 0), 0)
@@ -256,7 +272,9 @@ function ExpensesTracker() {
 
                   <div className="flex-1">
                     <p className="font-bold">{exp.description}</p>
-                    <p className="text-sm text-gray-400">{new Date(exp.date).toLocaleDateString()}</p>
+                    <p className="text-sm text-gray-400">
+                      {new Date(exp.date + 'T00:00:00').toLocaleDateString()}
+                    </p>
                     
                     <p className="text-sm mt-1 font-semibold">{exp.category}</p>
                   </div>
@@ -279,7 +297,7 @@ function ExpensesTracker() {
             Monthly Total: <p className="text-cyan-400 font-bold text-xl">€{monthlyTotal}</p>
             <p className="text-xs text-gray-400">
               ({expenses.filter(exp => {
-                const expDate = new Date(exp.date);
+                const expDate = new Date(exp.date + 'T00:00:00');
                 const now = new Date();
                 return expDate.getMonth() === now.getMonth() && expDate.getFullYear() === now.getFullYear();
               }).length} expenses this month)
