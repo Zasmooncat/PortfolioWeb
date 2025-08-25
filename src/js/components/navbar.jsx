@@ -238,7 +238,7 @@ const Navbar = () => {
                     REGISTER
                   </li>
                   <li
-                    className="text-sm text-white hover:text-cyan-400 cursor-pointer mx-3"
+                    className="text-sm text-white hover:text-cyan-400 cursor-pointer"
                     onClick={() => setModalType("login")}
                   >
                     LOGIN
