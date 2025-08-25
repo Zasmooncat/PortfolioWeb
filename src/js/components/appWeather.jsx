@@ -115,9 +115,9 @@ const AppWeather = () => {
                     <button className="boton bg-gray-800 text-white hover:text-cyan-200 hover:bg-gray-950 border-2 my-6 mx-4 p-2 rounded-4xl">Consultar</button>
                 </form>
             </div>
-            <div className="seccion2 w-[95%] md:w-[50%] lg:w-[30%] bg-black rounded-4xl p-4 ">
+            <div className="seccion2 w-[95%] md:w-[50%] lg:w-[30%]  rounded-2xl p-4 ">
                 {!weather ? (
-                    <div className=" flex justify-center bg-black text-white">Consulta el tiempo en tu ciudad</div>
+                    <div className=" flex justify-center text-white">Consulta el tiempo en tu ciudad</div>
                 ) : weather.cod === "404" ? (
                     <p className="error-message">No existe ninguna ciudad con ese nombre en {lastCountry}</p>
                 ) : (
