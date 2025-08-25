@@ -81,9 +81,9 @@ const AppWeather = () => {
             </div>
 
              {/* Overlay para mejorar contraste */}
-      <div className="fixed inset-0 bg-cyan-950/40 "></div>
+      <div className="fixed inset-0 bg-cyan-950/40 z-10"></div>
 
-        <div className="container  m-auto">
+        <div className="container  m-auto relative z-20">
             <h1 className="titulo font-smooch text-center text-white text-5xl">EL TIEMPO</h1>
             <div className="seccion1 rounded-xl bg-gradient-to-b from-gray-400/50 to-gray-800/50 p-8 w-[95%] md:w-[50%] lg:w-[30%] z-50">
                 <form className="flex flex-col m-auto" onSubmit={handleSubmit}>

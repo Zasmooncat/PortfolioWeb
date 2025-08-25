@@ -218,7 +218,7 @@ const Navbar = () => {
 
   return (
     <>
-      <nav className="bg-gradient-to-r from-transparent from-10% via-transparent via-20% md:via-80% to-cyan-950/50 to-90% fixed top-0 left-0 right-0 py-1 z-50">
+      <nav className="bg-gradient-to-r from-transparent from-10% via-transparent via-20% md:via-80% to-cyan-950/50 to-90% fixed top-0 left-0 right-0 py-1 z-30">
         <div className="flex justify-between items-center px-6">
           <Link to="/">
             <img src={logomooncat} className="w-10 me-10" alt="Logo" />
@@ -285,7 +285,7 @@ const Navbar = () => {
         {user && (
           <div
             className={`md:hidden bg-black/95 backdrop-blur-sm overflow-hidden transition-all duration-300 ease-in-out ${
-              mobileMenuOpen ? "max-h-[400px] opacity-100" : "max-h-0 opacity-0"
+              mobileMenuOpen ? "z-40 max-h-[400px] opacity-100" : "z-40 max-h-0 opacity-0"
             }`}
           >
             <div className="px-6 py-4 space-y-4">
