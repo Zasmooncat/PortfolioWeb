@@ -13,8 +13,10 @@ const Calendar = () => {
     const [events, setEvents] = useState([]);
     const [selectedDate, setSelectedDate] = useState(null);
     const [newEvent, setNewEvent] = useState({ title: "", description: "" });
-    const [showModal, setShowModal] = useState(false); 
+    const [showAddModal, setShowAddModal] = useState(false); 
+    const [showEventsModal, setShowEventsModal] = useState(false);
     const [modalDate, setModalDate] = useState(null);
+    const [editingEvent, setEditingEvent] = useState(null);
     const [loading, setLoading] = useState(false);
 
     const year = currentDate.getFullYear();
@@ -112,6 +114,21 @@ const Calendar = () => {
         setCurrentDate(new Date(year, month + 1, 1));
     };
 
+    // ✅ Manejar click en día del calendario
+    const handleDayClick = (formattedDate) => {
+        setSelectedDate(formattedDate);
+        setModalDate(formattedDate);
+        const dayEvents = getEventsForDay(formattedDate);
+        
+        if (dayEvents.length > 0) {
+            // Si hay eventos, mostrar modal de eventos
+            setShowEventsModal(true);
+        } else {
+            // Si no hay eventos, mostrar modal de añadir
+            setShowAddModal(true);
+        }
+    };
+
     // ✅ Guardar evento - Supabase si hay usuario, memoria si no
     const handleAddEvent = async () => {
         if (!modalDate || newEvent.title.trim() === "") {
@@ -201,7 +218,7 @@ const Calendar = () => {
             }
 
             setNewEvent({ title: "", description: "" });
-            setShowModal(false);
+            setShowAddModal(false);
             setModalDate(null);
 
         } catch (error) {
@@ -211,8 +228,47 @@ const Calendar = () => {
         }
     };
 
+    // ✅ Editar evento
+    const handleEditEvent = async (eventId) => {
+        if (!editingEvent || editingEvent.title.trim() === "") return;
+
+        try {
+            setLoading(true);
+
+            if (isAuthenticated && user) {
+                const { error } = await supabase
+                    .from('calendar_events')
+                    .update({
+                        title: editingEvent.title,
+                        description: editingEvent.description
+                    })
+                    .eq('id', eventId)
+                    .eq('user_id', user.id);
+
+                if (error) {
+                    console.error('Error editando evento:', error);
+                    return;
+                }
+            }
+
+            // Actualizar en el estado local
+            setEvents(events.map(event => 
+                event.id === eventId 
+                    ? { ...event, title: editingEvent.title, description: editingEvent.description }
+                    : event
+            ));
+
+            setEditingEvent(null);
+
+        } catch (error) {
+            console.error('Error editando evento:', error);
+        } finally {
+            setLoading(false);
+        }
+    };
+
     // ✅ Eliminar evento - Supabase si hay usuario, memoria si no
-    const handleDeleteEvent = async (eventId, eventIndex = null) => {
+    const handleDeleteEvent = async (eventId) => {
         try {
             setLoading(true);
 
@@ -228,12 +284,9 @@ const Calendar = () => {
                     console.error('Error eliminando evento:', error);
                     return;
                 }
-
-                setEvents(events.filter(event => event.id !== eventId));
-            } else {
-                // MODO LOCAL - eliminar por ID temporal
-                setEvents(events.filter(event => event.id !== eventId));
             }
+
+            setEvents(events.filter(event => event.id !== eventId));
 
         } catch (error) {
             console.error('Error eliminando evento:', error);
@@ -244,6 +297,15 @@ const Calendar = () => {
 
     const getEventsForDay = (formattedDate) => {
         return events.filter((ev) => ev.date === formattedDate);
+    };
+
+    const closeAllModals = () => {
+        setShowAddModal(false);
+        setShowEventsModal(false);
+        setEditingEvent(null);
+        setNewEvent({ title: "", description: "" });
+        setModalDate(null);
+        setSelectedDate(null);
     };
 
     return (
@@ -275,135 +337,75 @@ const Calendar = () => {
             </div>
           )}
 
-          <div className="px-5 md:ml-50 text-white rounded-lg shadow-lg w-full max-w-6xl mx-auto flex flex-col md:flex-row gap-6">
-            {/* Calendario */}
-            <div className="flex-2">
-              {/* Header */}
-              <div className="flex md:ml-98 items-center mb-4">
-                <button
-                  onClick={handlePrevMonth}
-                              className="bg-gradient-to-br from-cyan-300 via-cyan-600 to-cyan-900  hover:from-cyan-400 hover:via-cyan-700 hover:to-cyan-900 text-cyan-900 font-bold hover:text-cyan-100 transition duration-300 shadow-lg hover:shadow-xl text-2xl py- px-2 rounded cursor-pointer"
-
-                >
-                  ←
-                </button>
-                <h2 className="text-gray-300 mx-auto z-5 text-xl p-2 rounded-xl md:mx-5">
-                  {currentDate.toLocaleString("default", { month: "long" })}{" "}
-                  {year}
-                </h2>
-                <button
-                  onClick={handleNextMonth}
-                              className="bg-gradient-to-br from-cyan-300 via-cyan-600 to-cyan-900  hover:from-cyan-400 hover:via-cyan-700 hover:to-cyan-900 text-cyan-900 font-bold hover:text-cyan-100 transition duration-300 shadow-lg hover:shadow-xl text-2xl py- px-2 rounded cursor-pointer"
-
-                >
-                  →
-                </button>
-              </div>
-
-              {/* Días de la semana */}
-              <div className="grid grid-cols-7 text-center z-5 mt-8">
-                {["Mon", "Tue", "Wed", "Thu", "Fri", "Sat", "Sun"].map((d) => (
-                  <div key={d} className="titulo font-smooch uppercase text-2xl">
-                    {d}
-                  </div>
-                ))}
-              </div>
-
-              {/* Celdas */}
-              <div className="grid grid-cols-7 gap-2 mt-8">
-                {Array.from({ length: firstDay - 1 }).map((_, i) => (
-                  <div key={`empty-${i}`} />
-                ))}
-
-                {Array.from({ length: daysInMonth }).map((_, i) => {
-                  const day = i + 1;
-                  const formattedDate = formatDate(year, month, day);
-                  const dayEvents = getEventsForDay(formattedDate);
-
-                  let cellClasses = `relative h-15 md:h-20 p-2 cursor-pointer bg-linear-to-br from-cyan-900/80 rounded to-gray-900/50 `;
-                  if (formattedDate === todayStr) {
-                    cellClasses += "bg-cyan-400/80 ";
-                  } else if (selectedDate === formattedDate) {
-                    cellClasses += "bg-gray-400 ";
-                  } else {
-                    cellClasses += "bg-gray-700/40 hover:bg-gray-400 ";
-                  }
-
-                  return (
-                    <div
-                      key={day}
-                      className={cellClasses}
-                      onClick={(e) => {
-                        if (e.target.dataset.plus) return;
-                        setSelectedDate(formattedDate);
-                      }}
-                    >
-                      <span className="text-sm absolute md:text-xl md:font-bold">
-                        {day}
-                      </span>
-                      {dayEvents.length > 0 && (
-                        <div className="absolute bottom-1 left-1 text-xs text-gray-400">
-                          <span className="text-cyan-500">✦</span> {dayEvents.length}
-                        </div>
-                      )}
-
-                      {selectedDate === formattedDate && (
-                        <button
-                          data-plus="true"
-                          onClick={() => {
-                            setModalDate(formattedDate);
-                            setShowModal(true);
-                          }}
-                          className="absolute bottom-1 right-1 text-white w-2 h-2 md:w-5 md:h-5 md:text-xl hover:text-cyan-500 flex items-center justify-center"
-                        >
-                          +
-                        </button>
-                      )}
-                    </div>
-                  );
-                })}
-              </div>
+          <div className="px-5 text-white rounded-lg shadow-lg w-full max-w-4xl mx-auto">
+            {/* Header */}
+            <div className="flex justify-center items-center mb-4">
+              <button
+                onClick={handlePrevMonth}
+                className="bg-gradient-to-br from-cyan-300 via-cyan-600 to-cyan-900 hover:from-cyan-400 hover:via-cyan-700 hover:to-cyan-900 text-cyan-900 font-bold hover:text-cyan-100 transition duration-300 shadow-lg hover:shadow-xl text-2xl py-2 px-3 rounded cursor-pointer"
+              >
+                ◀
+              </button>
+              <h2 className="text-gray-300 mx-5 text-xl p-2 rounded-xl">
+                {currentDate.toLocaleString("default", { month: "long" })} {year}
+              </h2>
+              <button
+                onClick={handleNextMonth}
+                className="bg-gradient-to-br from-cyan-300 via-cyan-600 to-cyan-900 hover:from-cyan-400 hover:via-cyan-700 hover:to-cyan-900 text-cyan-900 font-bold hover:text-cyan-100 transition duration-300 shadow-lg hover:shadow-xl text-2xl py-2 px-3 rounded cursor-pointer"
+              >
+                ▶
+              </button>
             </div>
 
-            {/* Eventos */}
-            <div className="flex-1 md:mt-24 bg-linear-to-br from-cyan-800/40 to-gray-700/30 rounded-2xl p-2">
-              <div className="flex justify-center titulo-name font-michroma text-cyan-200 mb-3 mt-2">
-                <h1>EVENTOS</h1>
-              </div>
-              {selectedDate && (
-                <div>
-                  <h3 className="font-light text-white text-sm text-center mb-3">
-                    {selectedDate}
-                  </h3>
-                  {getEventsForDay(selectedDate).length === 0 ? (
-                    <p className="text-gray-400 flex justify-center md:mt-45 text-gray-400">
-                      No hay eventos
-                    </p>
-                  ) : (
-                    getEventsForDay(selectedDate).map((ev, idx) => (
-                      <div
-                        key={ev.id || idx}
-                        className="bg-linear-to-r from-cyan-800/40 to-gray-900/50 p-3 rounded mb-2 border-l-4 border-cyan-500 relative"
-                      >
-                        <p className="font-bold">{ev.title}</p>
-                        <p className="text-sm">{ev.description}</p>
-                        <button
-                          onClick={() => handleDeleteEvent(ev.id, idx)}
-                          className="absolute top-2 right-2 text-red-400 hover:text-red-600 text-sm"
-                          title="Eliminar evento"
-                        >
-                          ✕
-                        </button>
-                      </div>
-                    ))
-                  )}
+            {/* Días de la semana */}
+            <div className="grid grid-cols-7 text-center mt-8">
+              {["Mon", "Tue", "Wed", "Thu", "Fri", "Sat", "Sun"].map((d) => (
+                <div key={d} className="titulo font-smooch uppercase text-2xl">
+                  {d}
                 </div>
-              )}
+              ))}
+            </div>
+
+            {/* Celdas */}
+            <div className="grid grid-cols-7 gap-2 mt-8 mb-20">
+              {Array.from({ length: firstDay - 1 }).map((_, i) => (
+                <div key={`empty-${i}`} />
+              ))}
+
+              {Array.from({ length: daysInMonth }).map((_, i) => {
+                const day = i + 1;
+                const formattedDate = formatDate(year, month, day);
+                const dayEvents = getEventsForDay(formattedDate);
+
+                let cellClasses = `relative h-15 md:h-20 p-2 cursor-pointer bg-linear-to-br from-cyan-900/80 rounded to-gray-900/50 `;
+                if (formattedDate === todayStr) {
+                  cellClasses += "bg-cyan-400/80 ";
+                } else {
+                  cellClasses += "bg-gray-700/40 hover:bg-gray-400 ";
+                }
+
+                return (
+                  <div
+                    key={day}
+                    className={cellClasses}
+                    onClick={() => handleDayClick(formattedDate)}
+                  >
+                    <span className="text-sm absolute md:text-xl md:font-bold">
+                      {day}
+                    </span>
+                    {dayEvents.length > 0 && (
+                      <div className="absolute bottom-1 left-1 text-xs text-gray-400">
+                        <span className="text-cyan-500">✦</span> {dayEvents.length}
+                      </div>
+                    )}
+                  </div>
+                );
+              })}
             </div>
           </div>
 
           {/* Modal para añadir evento */}
-          {showModal && (
+          {showAddModal && (
             <div className="fixed inset-0 bg-black/60 flex items-center justify-center z-50">
               <div className="bg-neutral-900 p-6 rounded-lg w-full max-w-md">
                 <h3 className="text-2xl uppercase titulo font-smooch text-gray-300 text-center mb-4">
@@ -422,7 +424,7 @@ const Calendar = () => {
                 />
                 <textarea
                   placeholder="Descripción"
-                  className="w-full mb-2 p-2 rounded bg-neutral-700 text-white"
+                  className="w-full mb-4 p-2 rounded bg-neutral-700 text-white"
                   value={newEvent.description}
                   onChange={(e) =>
                     setNewEvent({ ...newEvent, description: e.target.value })
@@ -431,7 +433,7 @@ const Calendar = () => {
                 />
                 <div className="flex justify-end gap-2">
                   <button
-                    onClick={() => setShowModal(false)}
+                    onClick={closeAllModals}
                     className="px-4 py-2 rounded bg-gray-400 hover:bg-gray-700"
                     disabled={loading}
                   >
@@ -443,6 +445,108 @@ const Calendar = () => {
                     disabled={loading || !newEvent.title.trim()}
                   >
                     {loading ? 'Guardando...' : 'Guardar'}
+                  </button>
+                </div>
+              </div>
+            </div>
+          )}
+
+          {/* Modal para ver/editar eventos */}
+          {showEventsModal && (
+            <div className="fixed inset-0 bg-black/60 flex items-center justify-center z-50">
+              <div className="bg-neutral-900 p-6 rounded-lg w-full max-w-lg max-h-96 overflow-y-auto">
+                <h3 className="text-2xl uppercase titulo font-smooch text-gray-300 text-center mb-4">
+                  Eventos del {modalDate}
+                </h3>
+                
+                <div className="space-y-3 mb-4">
+                  {getEventsForDay(modalDate).map((event) => (
+                    <div key={event.id} className="bg-neutral-800 p-3 rounded border-l-4 border-cyan-500">
+                      {editingEvent && editingEvent.id === event.id ? (
+                        // Modo edición
+                        <div className="space-y-2">
+                          <input
+                            type="text"
+                            className="w-full p-2 rounded bg-neutral-700 text-white"
+                            value={editingEvent.title}
+                            onChange={(e) => setEditingEvent({...editingEvent, title: e.target.value})}
+                            disabled={loading}
+                          />
+                          <textarea
+                            className="w-full p-2 rounded bg-neutral-700 text-white"
+                            value={editingEvent.description}
+                            onChange={(e) => setEditingEvent({...editingEvent, description: e.target.value})}
+                            disabled={loading}
+                          />
+                          <div className="flex gap-2">
+                            <button
+                              onClick={() => handleEditEvent(event.id)}
+                              className="px-3 py-1 rounded bg-green-500 hover:bg-green-600 text-white text-sm"
+                              disabled={loading}
+                            >
+                              Guardar
+                            </button>
+                            <button
+                              onClick={() => setEditingEvent(null)}
+                              className="px-3 py-1 rounded bg-gray-500 hover:bg-gray-600 text-white text-sm"
+                              disabled={loading}
+                            >
+                              Cancelar
+                            </button>
+                          </div>
+                        </div>
+                      ) : (
+                        // Modo visualización
+                        <div>
+                          <div className="flex justify-between items-start">
+                            <div className="flex-1">
+                              <p className="font-bold text-white">{event.title}</p>
+                              <p className="text-sm text-gray-300">{event.description}</p>
+                            </div>
+                            <div className="flex gap-2 ml-2">
+                              <button
+                                onClick={() => setEditingEvent({id: event.id, title: event.title, description: event.description})}
+                                className="text-yellow-400 hover:text-yellow-600 text-sm"
+                                title="Editar"
+                                disabled={loading}
+                              >
+                                ✏️
+                              </button>
+                              <button
+                                onClick={() => handleDeleteEvent(event.id)}
+                                className="text-red-400 hover:text-red-600 text-sm"
+                                title="Eliminar"
+                                disabled={loading}
+                              >
+                                ✕
+                              </button>
+                            </div>
+                          </div>
+                        </div>
+                      )}
+                    </div>
+                  ))}
+                </div>
+
+                {/* Botón para añadir nuevo evento */}
+                <button
+                  onClick={() => {
+                    setShowEventsModal(false);
+                    setShowAddModal(true);
+                  }}
+            className="bg-gradient-to-br  from-cyan-300 via-cyan-600 to-cyan-900  hover:from-cyan-400 hover:via-cyan-700 hover:to-cyan-900 text-cyan-900 font-bold hover:text-cyan-100 transition duration-300 shadow-lg hover:shadow-xl text-2xl py-2 px-4 rounded-full cursor-pointer"
+                  disabled={loading}
+                >
+                  +
+                </button>
+
+                <div className="flex justify-center">
+                  <button
+                    onClick={closeAllModals}
+            className="bg-gradient-to-br  from-cyan-300 via-cyan-600 to-cyan-900  hover:from-cyan-400 hover:via-cyan-700 hover:to-cyan-900 text-cyan-900  hover:text-cyan-100 transition duration-300 shadow-lg hover:shadow-xl py-2 px-4 rounded-xl cursor-pointer"
+                    disabled={loading}
+                  >
+                    OK
                   </button>
                 </div>
               </div>
