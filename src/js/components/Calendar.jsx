@@ -394,7 +394,7 @@ const Calendar = () => {
                       {day}
                     </span>
                     {dayEvents.length > 0 && (
-                      <div className="absolute bottom-1 left-1 text-xs text-gray-400">
+                      <div className="absolute bottom-1 right-1 text-xs text-gray-400">
                         <span className="text-cyan-500">✦</span> {dayEvents.length}
                       </div>
                     )}
