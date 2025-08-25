@@ -75,7 +75,7 @@ const contentVariants = {
         />
 
         {/* Contenido */}
-        <div className={`mt-5 relative z-10 ${user ? 'md:ml-20' : ''}`}>
+        <div className={`mt-5 relative z-10 ${user ? 'md:ml-18' : ''}`}>
           <div className="m-auto flex flex-wrap justify-center">
             <Link to="/projects" className="hover:cursor-pointer m-2">
               <motion.div
