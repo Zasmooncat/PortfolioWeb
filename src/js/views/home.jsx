@@ -80,7 +80,7 @@ const contentVariants = {
             <Link to="/projects" className="hover:cursor-pointer m-2">
               <motion.div
                 variants={contentVariants}
-                whileHover={{ scale: 1.05 }}
+                
                 className="text-white w-70 h-70 flex flex-col items-center justify-center bg-gray-950/10 backdrop-blur-sm hover:text-black hover:bg-white transition"
               >
                 <p className="titulo-name font-michroma flex justify-center text-xl m-3">
@@ -93,7 +93,7 @@ const contentVariants = {
             <Link to="/videoart" className="hover:cursor-pointer m-2">
               <motion.div
                 variants={contentVariants}
-                whileHover={{ scale: 1.05 }}
+                
                 className="text-white w-70 h-70 flex flex-col items-center justify-center bg-black/10 backdrop-blur-sm hover:text-black hover:bg-white transition"
               >
                 <p className="titulo-name font-michroma flex justify-center m-3 text-xl">
@@ -108,7 +108,7 @@ const contentVariants = {
             <Link to="/works" className="hover:cursor-pointer m-2">
               <motion.div
                 variants={contentVariants}
-                whileHover={{ scale: 1.05 }}
+              
                 className="text-white w-70 h-70 flex flex-col bg-black/10 backdrop-blur-sm hover:text-black hover:bg-white transition"
               >
                 <p className="titulo-name font-michroma text-xl m-3">WORKS</p>
@@ -119,7 +119,7 @@ const contentVariants = {
             <Link to="/info" className="hover:cursor-pointer m-2">
               <motion.div
                 variants={contentVariants}
-                whileHover={{ scale: 1.05 }}
+               
                 className="text-white w-70 h-70 flex flex-col bg-black/10 backdrop-blur-sm hover:text-black hover:bg-white transition"
               >
                 <p className="titulo-name font-michroma text-xl m-3">INFO </p>
