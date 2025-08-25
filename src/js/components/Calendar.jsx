@@ -342,7 +342,7 @@ const Calendar = () => {
             <div className="flex justify-center items-center mb-4">
               <button
                 onClick={handlePrevMonth}
-                className="bg-gradient-to-br from-cyan-300 via-cyan-600 to-cyan-900 hover:from-cyan-400 hover:via-cyan-700 hover:to-cyan-900 text-cyan-900 font-bold hover:text-cyan-100 transition duration-300 shadow-lg hover:shadow-xl text-2xl py-2 px-3 rounded cursor-pointer"
+                className="bg-gradient-to-br from-cyan-300 via-cyan-600 to-cyan-900 hover:from-cyan-400 hover:via-cyan-700 hover:to-cyan-900 text-cyan-900 font-bold hover:text-cyan-100 transition duration-300 shadow-lg hover:shadow-xl text-2xl  px-2 rounded cursor-pointer"
               >
                 ◀
               </button>
@@ -351,7 +351,7 @@ const Calendar = () => {
               </h2>
               <button
                 onClick={handleNextMonth}
-                className="bg-gradient-to-br from-cyan-300 via-cyan-600 to-cyan-900 hover:from-cyan-400 hover:via-cyan-700 hover:to-cyan-900 text-cyan-900 font-bold hover:text-cyan-100 transition duration-300 shadow-lg hover:shadow-xl text-2xl py-2 px-3 rounded cursor-pointer"
+                className="bg-gradient-to-br from-cyan-300 via-cyan-600 to-cyan-900 hover:from-cyan-400 hover:via-cyan-700 hover:to-cyan-900 text-cyan-900 font-bold hover:text-cyan-100 transition duration-300 shadow-lg hover:shadow-xl text-2xl px-2 rounded cursor-pointer"
               >
                 ▶
               </button>
