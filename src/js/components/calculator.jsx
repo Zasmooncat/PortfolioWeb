@@ -59,7 +59,7 @@ const Calculator = () => {
                         ["1", "2", "3", "+"],
                         ["←", "0", ".", "="],
                     ].map((row, rowIndex) => (
-                        <div key={rowIndex} className="grid grid-cols-4  md:gap-4 md:mb-4">
+                        <div key={rowIndex} className="grid grid-cols-4  md:gap-4 md: mb-4 ">
                             {row.map((symbol) => (
                                 <button
                                     key={symbol}
