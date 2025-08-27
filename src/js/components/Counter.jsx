@@ -30,7 +30,7 @@ function Counter() {
           <h1 className="titulo font-smooch text-white text-5xl mb-8 pointer-events-auto">
             CONTADOR
           </h1>
-          <div className="bg-linear-to-br from-gray-600/50 to-gray-800/40 w-40 md:w-2/11 flex justify-center items-center py-10 rounded-2xl">
+          <div className="bg-linear-to-br from-gray-600/20 to-gray-800/40 w-40 md:w-2/11 flex justify-center items-center py-10 rounded-2xl">
             <p className="text-9xl rounded-2xl drop-shadow-lg/50 text-cyan-500 font-extrabold pointer-events-auto">
               {counter}
             </p>
