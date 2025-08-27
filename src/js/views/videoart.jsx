@@ -38,7 +38,8 @@ const itemVariants = {
 
 // Spinner
 const Spinner = () => (
-    <div className="flex items-center justify-center min-h-screen z-30 fixed inset-0 bg-cyan-950/80">
+    <div className="flex flex-col items-center justify-center min-h-screen z-30 fixed inset-0 bg-cyan-950/80">
+        <p className="text-cyan-300 animate-pulse">Loading videos. Please wait...</p>
         <div className="relative">
             <div className="w-12 h-12 border-4 border-gray-600 border-t-cyan-500 rounded-full animate-spin"></div>
             <div
@@ -77,7 +78,7 @@ const VideoArt = () => {
             <div className="fixed inset-0 bg-cyan-950/40 z-10"></div>
 
             {/* Spinner mientras cargan */}
-            {!allLoaded && <Spinner />}
+            {!allLoaded && <Spinner /> }
 
             {/* Grid de videos */}
             <motion.div
