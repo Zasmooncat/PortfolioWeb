@@ -7,13 +7,13 @@ const supabaseUrl = import.meta.env.VITE_SUPABASE_URL
 // ⚠️ En frontend NUNCA uses service_key. Debe ser el ANON.
 const supabaseAnonKey = import.meta.env.VITE_SUPABASE_ANON_KEY
 
-console.log("🔧 Configuración Supabase:");
-console.log("📍 URL:", supabaseUrl);
-console.log("🔑 ANON Key existe:", !!supabaseAnonKey);
-console.log(
-  "🔑 ANON Key preview:",
-  supabaseAnonKey ? `${supabaseAnonKey.substring(0, 20)}...` : 'MISSING'
-);
+// console.log("🔧 Configuración Supabase:");
+// console.log("📍 URL:", supabaseUrl);
+// console.log("🔑 ANON Key existe:", !!supabaseAnonKey);
+// console.log(
+//   "🔑 ANON Key preview:",
+//   supabaseAnonKey ? `${supabaseAnonKey.substring(0, 10)}...` : 'MISSING'
+// );
 
 if (!supabaseUrl || !supabaseAnonKey) {
   console.error('❌ Variables de entorno de Supabase no encontradas');
@@ -29,5 +29,5 @@ export const supabase = createClient(supabaseUrl, supabaseAnonKey, {
   },
 });
 
-console.log("✅ Cliente Supabase creado:", !!supabase);
+console.log("✅ Cliente creado:", !!supabase);
 

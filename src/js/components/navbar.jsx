@@ -59,7 +59,7 @@ const Navbar = () => {
         return;
       }
 
-      console.log("📧 Enviando petición de registro a Supabase...");
+      // console.log("📧 Enviando petición de registro a Supabase...");
 
       // Registrar en Auth con metadata
       const { data, error } = await supabase.auth.signUp({
@@ -84,7 +84,7 @@ const Navbar = () => {
 
       // Si el registro fue exitoso, intentar crear el perfil
       if (userId) {
-        console.log("💾 Creando perfil en tabla profiles...");
+        // console.log("💾 Creando perfil en tabla profiles...");
         const { data: profileData, error: profileError } = await supabase
           .from("profiles")
           .insert([
