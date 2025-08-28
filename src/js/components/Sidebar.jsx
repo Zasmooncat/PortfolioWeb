@@ -24,10 +24,10 @@ const Sidebar = () => {
       initial={{ x: -250, opacity: 0 }}
       animate={{ x: 0, opacity: 1 }}
       transition={{ duration: 0.6, ease: "easeOut" }}
-      className="hidden md:flex fixed top-23 rounded-r-4xl left-0 w-50 h-144 bg-linear-to-t from-gray-950/30 to-gray-800/50 pt-2 text-white shadow-lg flex-col z-100 backdrop-blur-sm"
+      className="hidden md:flex fixed top-23 rounded-r-xl left-0 w-50 h-144 bg-linear-to-t from-transparent to-gray-950/50 pt-2 text-white shadow-lg flex-col z-100 "
     >
       <div className="px-8 py-2 border-b border-gray-700 mb-2">
-        <p className="titulo-name text-cyan-400 uppercase">
+        <p className="titulo-name text-cyan-400 text-sm uppercase">
           {user.user_metadata.name || "User"}
         </p>
       </div>

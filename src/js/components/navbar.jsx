@@ -218,8 +218,8 @@ const Navbar = () => {
 
   return (
     <>
-      <nav className="bg-gradient-to-r from-transparent from-10% via-transparent via-20% md:via-80% to-cyan-950/50 to-90% fixed top-0 left-0 right-0 py-1 z-30">
-        <div className="flex justify-between items-center px-6">
+      <nav className="bg-gradient-to-r from-transparent from-10% via-transparent via-20% md:via-80% to-cyan-950/50 to-90% fixed top-0 left-0 right-0  z-30">
+        <div className="flex justify-between items-center px-5">
           <Link to="/">
             <img src={logomooncat} className="w-10 me-10" alt="Logo" />
           </Link>
@@ -270,7 +270,7 @@ const Navbar = () => {
                   <div className="md:hidden">
                     <button
                       onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
-                      className="text-white text-2xl focus:outline-none transition-colors duration-200 hover:text-cyan-400"
+                      className="text-white text-2xl focus:outline-none flex transition-colors duration-200 hover:text-cyan-400"
                     >
                       {mobileMenuOpen ? <X size={32} /> : <Menu size={32} />}
                     </button>
