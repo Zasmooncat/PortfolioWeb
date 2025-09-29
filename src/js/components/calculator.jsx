@@ -45,7 +45,7 @@ const Calculator = () => {
             </p>
 
             {/* Contenedor calculadora */}
-            <div className="m-auto w-[90%] md:w-1/2 lg:w-1/4 rounded-4xl relative flex flex-col gap-4">
+            <div className="m-auto w-[90%] max-w-[400px] md:w-1/2 lg:w-1/4 rounded-4xl relative flex flex-col gap-4">
                 
                 {/* Display */}
                 <div className="bg-gradient-to-br from-cyan-800/30 to-gray-800/20 rounded p-4 h-24 flex items-end justify-end">
