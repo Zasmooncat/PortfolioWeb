@@ -13,18 +13,16 @@ const TechnologyNews = () => {
   const [inputValue, setInputValue] = useState("");
   const navigate = useNavigate();
 
-  const fetchNews = async (searchQuery) => {
-    try {
-      const response = await fetch(
-        `https://gnews.io/api/v4/search?q=${encodeURIComponent(searchQuery)}&lang=es&max=9&token=${API_KEY}`
-      );
+const fetchNews = async (searchQuery) => {
+  try {
+    const response = await fetch(`/api/news?q=${encodeURIComponent(searchQuery)}`);
+    const data = await response.json();
+    setNews(data.articles || []);
+  } catch (error) {
+    console.error("Error al cargar noticias:", error);
+  }
+};
 
-      const data = await response.json();
-      setNews(data.articles || []);
-    } catch (error) {
-      console.error("Error al cargar noticias:", error);
-    }
-  };
 
   useEffect(() => {
     fetchNews(query);
