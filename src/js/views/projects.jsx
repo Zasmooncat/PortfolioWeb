@@ -53,7 +53,7 @@ function Projects() {
           variants={containerVariants}
         >
 
-
+              
           <Link to="/counter" className="hover:cursor-pointer">
             
               <motion.div 
