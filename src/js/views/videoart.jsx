@@ -1,6 +1,6 @@
 // src/js/components/VideoArt.jsx
 import React, { useState } from "react";
-import { motion } from "framer-motion";
+import { motion, AnimatePresence } from "framer-motion";
 
 // Lista de videos en la carpeta public/video
 const videos = [
@@ -39,7 +39,7 @@ const itemVariants = {
 // Spinner
 const Spinner = () => (
     <div className="flex flex-col items-center justify-center min-h-screen z-30 fixed inset-0 bg-cyan-950/80">
-        <p className="text-cyan-300 animate-pulse">Loading videos. Please wait...</p>
+        <p className="text-cyan-300 py-5 animate-pulse">Loading videos. Please wait...</p>
         <div className="relative">
             <div className="w-12 h-12 border-4 border-gray-600 border-t-cyan-500 rounded-full animate-spin"></div>
             <div
@@ -55,6 +55,7 @@ const Spinner = () => (
 
 const VideoArt = () => {
     const [loadedCount, setLoadedCount] = useState(0);
+    const [selectedVideo, setSelectedVideo] = useState(null);
 
     const handleLoaded = () => {
         setLoadedCount((prev) => prev + 1);
@@ -93,7 +94,10 @@ const VideoArt = () => {
                     <motion.div
                         key={index}
                         variants={itemVariants}
-                        className="w-full rounded-lg shadow-lg overflow-hidden"
+                        className="w-full rounded-lg shadow-lg overflow-hidden cursor-pointer"
+                        whileHover={{ scale: 1.1 }}
+                        transition={{ duration: 0.3 }}
+                        onClick={() => setSelectedVideo(video)}
                     >
                         <video
                             src={video}
@@ -102,11 +106,38 @@ const VideoArt = () => {
                             muted
                             playsInline
                             className="w-full"
-                            onLoadedData={handleLoaded} // cuenta cada vez que se carga
+                            onLoadedData={handleLoaded}
                         />
                     </motion.div>
                 ))}
             </motion.div>
+
+            {/* Fullscreen modal con AnimatePresence */}
+            <AnimatePresence>
+                {selectedVideo && (
+                    <motion.div
+                        key="fullscreen-video"
+                        className="fixed inset-0 z-50 flex items-center justify-center bg-black/90 cursor-pointer"
+                        initial={{ opacity: 0 }}
+                        animate={{ opacity: 1 }}
+                        exit={{ opacity: 0 }}
+                        onClick={() => setSelectedVideo(null)}
+                    >
+                        <motion.video
+                            src={selectedVideo}
+                            autoPlay
+                            loop
+                            muted
+                            playsInline
+                            className="max-w-[95%] max-h-[95%] rounded-xl shadow-2xl"
+                            initial={{ scale: 0.5 }}
+                            animate={{ scale: 1 }}
+                            exit={{ scale: 0.5 }}
+                            transition={{ duration: 0.4, ease: "easeInOut" }}
+                        />
+                    </motion.div>
+                )}
+            </AnimatePresence>
         </>
     );
 };
