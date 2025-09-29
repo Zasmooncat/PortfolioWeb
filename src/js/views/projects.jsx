@@ -44,14 +44,16 @@ function Projects() {
       <div className="fixed inset-0 bg-cyan-950/40"></div>
 
       <div className="relative z-10 mt-5 m-3">
-        <motion.div
-          className={`animate-fadeIn   mx-auto mt-10 w-12/15 grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-3 ${user ? "md:ml-55" : ""
-            }`
-          }
-          initial="hidden"
-          animate="visible"
-          variants={containerVariants}
-        >
+       <motion.div
+  className={`animate-fadeIn mx-auto mt-10 
+              grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 
+              gap-3 max-w-[1200px] px-3
+              ${user ? "md:ml-55" : ""}`}
+  initial="hidden"
+  animate="visible"
+  variants={containerVariants}
+>
+
 
               
           <Link to="/counter" className="hover:cursor-pointer">
